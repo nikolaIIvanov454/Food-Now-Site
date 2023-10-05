@@ -1,0 +1,122 @@
+@import url("navbar.css");
+@import url("footer.css");
+
+body {
+    background-image: url("../assets/background.png");
+    background-size: 25em;
+    background-position: 15em;
+    background-repeat: repeat;
+    animation: infinite;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.center-element {
+    justify-content: center;
+    align-items: center;
+}
+
+.form-style {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 5em;
+    border-radius: 2%;
+    border: 5px solid #f6673c;
+    background-color: #e6e6e6;
+    overflow: auto;
+}
+
+.form-style h1 {
+    font-size: 30px;
+}
+
+.v-height {
+    height: 83.7vh;
+}
+
+#float-r {
+    float: right;
+}
+
+.border-radius {
+    border-radius: 1em;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.margin-top-sm {
+    margin-top: 1em;
+}
+
+.margin-bot-sm {
+    margin-bottom: 1em;
+}
+
+.inputs {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 2px solid black;
+    transition: border-bottom 0.4s;
+}
+
+.inputs:focus {
+    border-bottom: 2px solid #f6673c;
+}
+
+.submit {
+    background-color: #f6673c;
+    color: white;
+    opacity: 0.5;
+    transition: opacity 0.5s;
+    padding: 0.5em;
+    outline: 0;
+}
+
+.submit:hover {
+    opacity: 1
+}
+
+.no-margin-top {
+    margin-top: 0;
+}
+
+.form-style a {
+    text-decoration-style: dashed;
+    text-underline-position: under;
+    color: #333;
+}
+
+.form-style a:hover {
+    text-decoration-style: dashed;
+    color: #f6673c;
+}
+
+.bold-text {
+    font-weight: 800;
+}
+
+.errors {
+    width: 320px;
+    margin: 0 auto 1em auto;
+}
+
+.errors h1 {
+    margin: 0;
+    padding: 0;
+    color: red;
+}
+
+.break-words {
+    word-wrap: break-word;
+}
+
+.logout h1{
+    margin-right: 10px;
+}
