@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
+use App\Exeptions\SQLExeption;
+
 use App\Models\User;
 
 class LoginController extends Controller
@@ -20,7 +22,7 @@ class LoginController extends Controller
             $username = $request->input('info');
             $password = $request->input('password');
 
-            $users = DB::table('user_info')->get();
+            $users = User::all();
 
             foreach ($users as $user) {
                 if($user->username == $username && Hash::check($password, $user->password)){

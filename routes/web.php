@@ -4,7 +4,10 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
+
 use App\Http\Controllers\GetFavouritesController;
+use App\Http\Controllers\RestaurantListController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +41,5 @@ Route::get('/about-us', function (){ return view("aboutus"); });
 //ROUTES FOR GETTING DATA//
 
 Route::get('/get-favourited', [GetFavouritesController::class, 'getFavourited'])->name("favourites-each-user");
+
+Route::post('/get-restaurants', [RestaurantListController::class, 'loadRestaurants'])->name("restaurant-list");

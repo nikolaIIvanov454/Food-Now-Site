@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-namespace App\Exeptions\MySQLExpetion;
+namespace App\Exeptions\SQLExpetion;
+namespace App\Models\User;
 
 class GetFavouritesController extends Controller
 {
@@ -11,10 +12,11 @@ class GetFavouritesController extends Controller
 
         try {
             //create the tables and see if it works!
-            $result = DB::table('favourite_restaurants')->select('id_restaurant')->where('id_user', '=', $id_user)->get();
+            // $result = DB::table('favourite_restaurants')->select('id_restaurant')->where('id_user', '=', $id_user)->get();
+            $result = User::all()->select('id_restaurant')->where('id_user', '=', $id_user)->get();
     
             return response()->json($result);
-        } catch (MySQLExpetion $e) {
+        } catch (SQLExpetion $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }

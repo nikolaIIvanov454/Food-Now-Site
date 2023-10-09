@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
+use App\Exeptions\SQLExeption;
+
 use App\Models\User;
-use App\Exeptions\MySQLExeption;
 
 class RegisterController extends Controller
 {
@@ -17,7 +18,7 @@ class RegisterController extends Controller
     }
 
     protected function registerUser(Request $request){
-        if ($request->isMethod('post')) {
+        if($request->isMethod('post')){
             $username = $request->input('username');
             $email = $request->input('email');
             $password = $request->input('password');
@@ -30,16 +31,12 @@ class RegisterController extends Controller
                 $newUser->email = $email;
                 $newUser->password = $hashedPassword;
                 $newUser->save();
-
-                return back()->withSuccess('user added successfully!');
-            }catch (MySQLExeption $e) {
+            }catch (SQLExeption $e) {
                 $e->__construct("The user cannot be registered!");
-                
-                DB::rollBack();
             }
-        }
 
-        return back()->withErrors(['email' => 'Invalid credentials'])->withInput($request->only('email'));
+            return back()->withSuccess('User added successfully!');
+        }
     }
 }
 

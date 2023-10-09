@@ -53,10 +53,11 @@
             <h1><strong>ДОБРЕ ДОШЛИ!</strong></h1>
             <h2>Моля изберете област:</h2>
             <!-- use back() function in controller not home.php -->
-            <form action="home.php" method="post" style="display: inline-block;">
+            <form action="{{ route('restaurant-list') }}" method="post" style="display: inline-block;">
+                @csrf
                 <select name="oblast" id="oblast"></select>
                 <input type="submit" value="Filter">
-            </form>
+            </form> 
         </div>
 
     <div class='item-shell'>
