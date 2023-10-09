@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\GetFavouritesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,8 @@ use App\Http\Controllers\LoginController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+//ROUTES FOR THE PAGES//
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,4 +31,10 @@ Route::get('/login', [LoginController::class, 'create']);
 
 Route::post('/login', [LoginController::class, 'login'])->name('login_user');
 
-Route::get('/home', [HomeController::class, 'create']);
+Route::get('/home', function (){ return view('home'); });
+
+Route::get('/about-us', function (){ return view("aboutus"); });
+
+//ROUTES FOR GETTING DATA//
+
+Route::get('/get-favourited', [GetFavouritesController::class, 'getFavourited'])->name("favourites-each-user");

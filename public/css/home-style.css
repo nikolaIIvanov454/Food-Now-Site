@@ -1,0 +1,437 @@
+@import url("navbar.css");
+@import url("footer.css");
+
+
+/* STYLE FOR THE LISTED RESTAURANTS */
+.body {
+    background: repeating-linear-gradient(180deg,
+            rgba(246, 103, 60, 0.5),
+            rgba(246, 103, 60, 0.5) 5%,
+            rgba(246, 103, 60, 0.3) 5%,
+            rgba(246, 103, 60, 0.3) 10%);
+    background-size: 100px 100px;
+}
+
+.all h1,
+h2,
+.filter {
+    margin: 10px;
+    text-align: center;
+}
+
+.item-shell {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px auto 100px auto;
+}
+
+.item {
+    flex: 1 1 25em;
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+    border: 2px solid rgba(100, 100, 100, 0.3);
+    border-radius: 1em;
+    background-color: rgba(100, 100, 100, 0.3);
+    transition: border-color, background-color 0.5s ease;
+}
+
+.item:hover {
+    border: 2px solid rgba(246, 103, 60, 0.3);
+    background-color: rgba(246, 103, 60, 0.3);
+    cursor: pointer;
+}
+
+.image {
+    aspect-ratio: 4/3;
+}
+
+.image img {
+    display: block;
+    margin: auto;
+    width: 50%;
+    aspect-ratio: 4/3;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.padding-sm {
+    padding: 0.2em;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.new-line {
+    word-wrap: break-word;
+}
+
+#favourite {
+    padding: 3%;
+    background-color: transparent;
+    border: none;
+}
+
+.fa-heart {
+    font-size: xx-large;
+    cursor: default;
+    color: red;
+}
+
+.filter {
+    color: #333;
+    font-size: x-large;
+}
+
+.filter form input {
+    background-color: #f6673c;
+    color: white;
+    opacity: 0.5;
+    border: 1px solid #333;
+    transition: opacity, color 0.5s ease;
+    padding: 0.8em;
+    width: 10em;
+    outline: 0;
+    border-radius: 5px;
+}
+
+.filter form input:hover {
+    opacity: 1;
+    color: black;
+}
+
+@media (max-width: 460px) {
+    .container * {
+        font-size: medium;
+    }
+
+    .image-div img {
+        width: 100%;
+    }
+
+    .products {
+        overflow: auto;
+    }
+
+    .products table {
+        table-layout: fixed;
+    }
+}
+
+#oblast {
+    outline: 0;
+    border: 2px solid #f6673c;
+    border-radius: 5px;
+    box-shadow: 0 0 0 #f6673c;
+    transition: box-shadow 500ms ease-in-out;
+    appearance: none;
+    padding: 10px;
+    width: 200px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-chevron-down' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: 2em 1em;
+    background-position: right center;
+    background-clip: border-box;
+    transition: background-image 0.5s ease;
+}
+
+#oblast:focus {
+    box-shadow: 0 0 6px #f6673c;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-chevron-up' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z'/%3E%3C/svg%3E");
+}
+
+#oblast option:nth-child(even) option:nth-child(even) {
+    background-color: rgba(246, 103, 60, 0.3);
+}
+
+/* STYLE FOR THE CLICKED RESTAURANT */
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.left-div {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+
+.image-div {
+    width: 100%;
+}
+
+.image-div img {
+    max-width: 100%;
+}
+
+.container div img {
+    height: 15em;
+}
+
+.container div h1 {
+    margin-bottom: 5px;
+    height: fit-content;
+}
+
+.container div p {
+    width: 40em;
+    margin-bottom: 10px;
+}
+
+.products {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1em;
+}
+
+.products th {
+    text-align: center;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid black;
+}
+
+.products h2 {
+    margin: 0 0 1em 0;
+}
+
+.products tr td {
+    text-align: center;
+}
+
+.products tr td input {
+    width: 20%;
+    float: left;
+}
+
+#float-r .fa-shopping-cart {
+    margin: 0;
+    padding: 0;
+    float: left;
+}
+
+#cart {
+    position: absolute;
+    top: 80px;
+    right: 20px;
+    display: none;
+    width: fit-content;
+    background-color: #f6673c;
+    text-align: center;
+}
+
+#cart table,
+#cart th,
+#cart td {
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+
+#cart table #cart th,
+#cart td,
+#cart button {
+    padding: 0.5em;
+}
+
+#total {
+    font-size: 5vw;
+}
+
+.new-line p {
+    width: 50%;
+    margin: auto;
+}
+
+.desc-clicked {
+    border: 2px solid #333;
+    background-color: #333;
+    color: #f6673c;
+    border-radius: 10px;
+    font-size: 25px;
+    width: fit-content;
+    padding: 10px;
+}
+
+[class="add"],
+[class="remove"],
+#checkout-button,
+.bottom form input[type="submit"] {
+    background-color: #f6673c;
+    color: white;
+    border-radius: 1em;
+    padding: 5px;
+    border-color: #333;
+    transition: color, background-color 0.5s ease;
+}
+
+[class="add"]:hover,
+[class="remove"]:hover,
+#checkout-button:hover,
+.bottom form input[type="submit"]:hover {
+    background-color: white;
+    color: #333;
+}
+
+.line {
+    height: 12px;
+    position: relative;
+    background-color: #f6673c;
+}
+
+.products h1 {
+    font-size: 2em;
+    text-align: center;
+}
+
+.right-div .center-text {
+    margin-top: 3%;
+}
+
+.bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 50em;
+    background-color: #3f3f3f;
+}
+
+.bottom form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bottom form input[type="submit"] {
+    margin-top: 10px;
+    width: fit-content;
+}
+
+.bottom textarea {
+    resize: none;
+    border: 4px dashed #f6673c;
+    padding: 5px;
+    outline: none;
+    background-color: #d3d3d3;
+}
+
+input[type="range"] {
+    appearance: none;
+    width: 60%;
+    height: 15px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    margin-bottom: 20px;
+    transition: opacity 500ms ease;
+}
+
+input[type="range"]:hover{
+    opacity: 1;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 30px;
+    height: 30px;
+    border: 0;
+    background: url("../restaurant_photos/icon/star.svg") no-repeat;
+    background-position: 0px center;
+    background-size: 30px;
+    cursor: pointer;
+}
+
+#indicator{
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.review-form h1{
+    margin: 20px;
+    color: white;
+    text-align: center;
+}
+
+.reviews-div{
+    display: flex;
+    flex-direction: column;
+    background-color: #d3d3d3;
+    margin: 20px 0 20px 0;
+    width: 50%;
+    overflow-y: auto;
+}
+
+#user-info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: xx-large;
+    margin: 10px;
+    gap: 10px;
+    border: 2px solid #f6673c;
+    padding: 4px;
+    border-radius: 16px;
+}
+
+#user-info i[class*="fa-user"]{
+    border: 2px solid black;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+#user-info i[class*="fa-star"]{
+    text-indent: 10px;
+}
+
+#user-info p{
+    flex: 1;
+}
+
+.reviews-div div[class*="review"]{
+    border-bottom: 5px solid #f6673c;
+}
+
+.reviews-div div span{
+    float: right;
+}
+
+.reviews-div > div > p::before{
+    content: '🡲 ';
+}
+
+.reviews-div > div > p{
+    font-size: x-large;
+    margin: 10px;
+    text-indent: 5px;
+    word-break: break-word;
+}
+
+.reviews-div #delete-review{
+    float: right; 
+    margin: 0 10px 0 0;
+    background-color: #FF2400;
+    padding: 8px;
+    opacity: 0.7;
+    transition: opacity 0.8s ease;
+    border-radius: 16px;
+    border-color: #f6673c;
+}
+
+
+.reviews-div #delete-review:hover{
+    opacity: 1;
+}

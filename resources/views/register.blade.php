@@ -29,7 +29,7 @@
             <li><a href="home.php">Начална страница</a></li>
 			<li><a href="{{ url('/login') }}">Влизане</a></li>
             <li><a href="#" class="current">Регистрация</a></li>
-            <li><a href="aboutus.php">За нас</a></li>
+            <li><a href="{{ url('/about-us') }}">За нас</a></li>
             <?php //session_start(); if(isset($_SESSION['is_Admin']) && $_SESSION['is_Admin'] == "true"){
 				//echo "<li><a href='admin.php'>Администраторски панел</a></li>";
 			//} ?>

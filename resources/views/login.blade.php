@@ -27,7 +27,7 @@
 				<li><a href="home.php">Начална страница</a></li>
                 <li><a href="#" class="current">Влизане</a></li>
                 <li><a href="{{ url('/register') }}">Регистрация</a></li>
-				<li><a href="aboutus.php">За нас</a></li>
+				<li><a href="{{ url('/about-us') }}">За нас</a></li>
 				<li id="float-r"> 
                     <div class="logout">
 						<i class="fa-solid fa-circle-user" style="font-size: 3em; margin: 0.2em 0.2em; color: #fff;"></i>

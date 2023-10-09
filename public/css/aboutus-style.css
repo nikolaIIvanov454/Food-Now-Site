@@ -1,0 +1,60 @@
+@import url("navbar.css");
+@import url("footer.css");
+
+html{
+    height: 100%;
+}
+body{
+    background-color: #3d3d3d;
+}
+#wrapper{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 5em 0 auto 0;
+}
+#images{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 45%;
+    margin: 0 0 0 1em;
+}
+#images img{
+    width: 60%;
+    height: auto;
+    margin: 1em 0 0 20%;
+}
+#content{
+    width: 45%;
+    text-align: center;
+    margin: auto 0 auto 1em;
+    color: white;
+}
+#content p{
+    font-size: xx-large;
+}
+#content h1{
+    text-align: center;
+}
+#contact{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4em;
+    margin-bottom: 5%;
+}
+#phone, #working-time{
+    text-align: center;
+    background-color: #f6673c;
+    color: white;
+    padding: 5em;
+    margin-top: 10%;
+}
+#phone i, #working-time i{
+    font-size: xx-large;
+    padding-bottom: 10%;
+}
+#phone h3, #working-time h3{
+    margin: 0;
+}
