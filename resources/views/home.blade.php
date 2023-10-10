@@ -62,22 +62,22 @@
 
     <div class='item-shell'>
 
-    <?php
-        // if(isset($_POST['oblast'])){
-        //     for($i = 0; $i < count($result); $i++){
-        //         echo "<div class='item' onclick='showRestaurant(this)'>";
-        //         echo "<form method='POST' action='templates/template_restaurant.php'><input type='hidden' id='id_restaurant-" . $result[$i]['id_restaurant'] . "' name='id' value='" . $result[$i]['id_restaurant'] . "'></form>";
-        //         echo "<input type='hidden' id='id_restaurant-" . $result[$i]['id_restaurant'] . "' name='id' value='" . $result[$i]['id_restaurant'] . "'>";
-        //         echo "<div class='padding-sm center-text new-line'><h1>" . $result[$i]['name'] . "</h1></div>";
-        //         echo "<div class='image'><img src=" . $result[$i]["image_path"] . " class='photo'></div>";
-        //         echo "<div class='padding-sm center-text'><h2>" . $result[$i]['price'] . "</h2><button id='favourite'><i class='fa-regular fa-heart'></i></button></div>"; 
-        //         echo "</div>";           
-        //     }                               
-        // }
-    ?>
+    @if(session()->has('restaurants'))
+        @foreach(session('restaurants') as $restaurant)
+            <div class='item' onclick='showRestaurant(this)'>
+                <form method='POST' action='templates/template_restaurant.php'>
+                    <input type='hidden' name='id' value='{{ $restaurant->id }}'>
+                </form>
+                <input type='hidden' name='id' value='{{ $restaurant->id }}'>
+                <div class='padding-sm center-text new-line'><h1>{{ $restaurant->name }}</h1></div>
+                <div class='image'><img src="{{ $restaurant->image_path }}" class='photo'></div>
+                <div class='padding-sm center-text'><h2>{{ $restaurant->price }}</h2><button id='favourite'><i class='fa-regular fa-heart'></i></button></div>
+            </div>                                  
+        @endforeach
+    @endif
+
     </div>
-    </div>
-    
+
     <footer>
         <div class="footer">
             <h3><i class="fa-solid fa-copyright"></i> FoodNow.Inc. All Rights Reserved.</h3>
