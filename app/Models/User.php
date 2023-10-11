@@ -12,9 +12,10 @@ class User extends Model
      * @var array<int, string>
      */
     protected $connection = 'mongodb';
-    protected $table = 'users';
+    protected $collection = 'users';
     
     protected $fillable = [
+        '_id',
         'username',
         'email',
         'password',

@@ -43,9 +43,9 @@ h2,
     cursor: pointer;
 }
 
-.image {
+/* .image {
     aspect-ratio: 4/3;
-}
+} */
 
 .image img {
     display: block;

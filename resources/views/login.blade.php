@@ -30,7 +30,13 @@
 				<li><a href="{{ url('/about-us') }}">За нас</a></li>
 				<li id="float-r"> 
                     <div class="logout">
-						<i class="fa-solid fa-circle-user" style="font-size: 3em; margin: 0.2em 0.2em; color: #fff;"></i>
+						<i class='fa-solid fa-circle-user' style='font-size: 3em; color: #fff;'></i>
+						@if(session()->has('logged_username'))
+							<h1 style='color: #fff; width: min-content; margin-left: 5px; text-transform: capitalize;'>{{ session('logged_username') }}</h1>
+                            <a href="{{ route('logout') }}">Излизане</a>
+                        @else
+							<h1 style='color: #fff; margin-left: 5px;'>Не сте влезли</h1>
+						@endif
                     </div>
                 </li>
         	</ul>

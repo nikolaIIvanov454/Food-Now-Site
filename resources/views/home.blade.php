@@ -27,10 +27,12 @@
 
                 <!-- TODO: check if the user is logged in the HomeController -->
 
-                <!-- <li><a href="{{ url('/login') }}">Влизане</a></li>
-                <li><a href="{{ url('/register') }}">Регистрация</a></li> -->
+                @if(!session()->has('logged_username'))
+                    <li><a href="{{ url('/login') }}">Влизане</a></li>
+                    <li><a href="{{ url('/register') }}">Регистрация</a></li>
+                @endif
 
-                <li><a href="{{ url('/about-us') }}">За нас</a></li>
+                <li><a href="{{ url('/about-us') }}">За нас</a></li>    
 
                 <!-- TODO: here also -->
 
@@ -40,9 +42,11 @@
                 
                 <li id="float-r">
                     <div class="logout">
-                        <?php //echo "<i class='fa-solid fa-circle-user' style='font-size: 3em; color: #fff;'></i><h1 style='color: #fff; width: min-content; margin-left: 5px; text-transform: capitalize;'>" . $_SESSION['logged_user'] . "</h1>"; ?>
+                        @if(session()->has('logged_username'))
+                            <i class='fa-solid fa-circle-user' style='font-size: 3em; color: #fff;'></i><h1 style='color: #fff; width: min-content; margin-left: 5px; text-transform: capitalize;'>{{ session('logged_username') }}</h1>
+                            <a href="{{ route('logout') }}">Излизане</a>
+                        @endif
                     </div>
-                    <!-- <a href="logout.php">Излизане</a> -->
                 </li>
             </ul>
         </div>
@@ -65,13 +69,15 @@
     @if(session()->has('restaurants'))
         @foreach(session('restaurants') as $restaurant)
             <div class='item' onclick='showRestaurant(this)'>
-                <form method='POST' action='templates/template_restaurant.php'>
+                @csrf
+                <form method='POST' action='{{ route("load-restaurant") }}'>
                     <input type='hidden' name='id' value='{{ $restaurant->id }}'>
                 </form>
                 <input type='hidden' name='id' value='{{ $restaurant->id }}'>
                 <div class='padding-sm center-text new-line'><h1>{{ $restaurant->name }}</h1></div>
                 <div class='image'><img src="{{ $restaurant->image_path }}" class='photo'></div>
-                <div class='padding-sm center-text'><h2>{{ $restaurant->price }}</h2><button id='favourite'><i class='fa-regular fa-heart'></i></button></div>
+                <div class='padding-sm center-text'><h2>{{ $restaurant->price }}</h2>
+                <button id='favourite'><i class='fa-regular fa-heart'></i></button></div>
             </div>                                  
         @endforeach
     @endif

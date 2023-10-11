@@ -7,7 +7,7 @@ use MongoDB\Laravel\Eloquent\Model;
 class Restaurant extends Model
 {
     protected $connection = 'mongodb';
-    protected $table = 'restaurants';
+    protected $collection = 'restaurants';
 
     protected $fillable = [
         'name',

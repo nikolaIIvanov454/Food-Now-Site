@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-use App\Exeptions\SQLExeption;
+use App\Exeptions\SQLException;
 
 use App\Models\User;
 
@@ -31,7 +31,7 @@ class RegisterController extends Controller
                 $newUser->email = $email;
                 $newUser->password = $hashedPassword;
                 $newUser->save();
-            }catch (SQLExeption $e) {
+            }catch (SQLException $e) {
                 $e->__construct("The user cannot be registered!");
             }
 

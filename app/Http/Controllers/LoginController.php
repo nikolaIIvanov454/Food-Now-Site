@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-use App\Exeptions\SQLExeption;
+use App\Exeptions\SQLException;
 
 use App\Models\User;
 
@@ -17,7 +17,11 @@ class LoginController extends Controller
         return view('login');
     }
 
-    public function login(Request $request){    
+    //TODO: make login secure using athentication!!!!
+
+    public function login(Request $request)
+    {   
+
         if ($request->isMethod('post')) {
             $username = $request->input('info');
             $password = $request->input('password');
@@ -26,7 +30,8 @@ class LoginController extends Controller
 
             foreach ($users as $user) {
                 if($user->username == $username && Hash::check($password, $user->password)){
-                    session()->put('logged_user_id', $user->id_user);
+                    session()->put('logged_user_id', $user->_id);
+                    session()->put('logged_username', $user->username);
 
                     return redirect("/home");   
                 }

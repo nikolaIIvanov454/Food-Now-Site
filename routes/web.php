@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
@@ -38,8 +39,18 @@ Route::get('/home', function (){ return view('home'); });
 
 Route::get('/about-us', function (){ return view("aboutus"); });
 
-//ROUTES FOR GETTING DATA//
+// Route::post('/restaurant-{name}', [])->name("load-restaurant");
 
-Route::get('/get-favourited', [GetFavouritesController::class, 'getFavourited'])->name("favourites-each-user");
+Route::post('/restaurant', [])->name("load-restaurant");
+
+Route::get('/logout', function () {
+    Session::flush();
+
+    return redirect('/login');
+})->name("logout");
+
+//ROUTES FOR GETTING DATA
+
+Route::get("/get-favourited", [GetFavouritesController::class, 'getFavourited'])->name("get-favourites-each-user");
 
 Route::post('/get-restaurants', [RestaurantListController::class, 'loadRestaurants'])->name("restaurant-list");

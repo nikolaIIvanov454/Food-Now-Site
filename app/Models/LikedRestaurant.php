@@ -4,15 +4,17 @@ namespace App\Models;
 
 use MongoDB\Laravel\Eloquent\Model;
 
-class Region extends Model
-{
+class LikedRestaurant extends Model{
     protected $connection = 'mongodb';
-    protected $table = 'regions';
+    protected $collection = 'user_favourites';
 
     protected $fillable = [
-        'id_restaurant_regions',    
-        'city',
+        'id_user',
+        'id_restaurant',
     ];
 }
+
+
+
 
 ?>

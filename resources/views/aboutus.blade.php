@@ -29,22 +29,17 @@
 				<?php //if(isset($_SESSION['is_Admin']) && $_SESSION['is_Admin'] == "true"){
 					//echo "<li><a href='admin.php'>Администраторски панел</a></li>";
 				//} ?>
-				<li id="float-r">
-					<div class="logout">
-						<i class="fa-solid fa-circle-user" style="font-size: 3em; margin: 0.2em 0.2em; color: #fff;"></i>
-						<?php 
-						// if(isset($_SESSION['logged_user'])){
-						// 	echo "<h1 style='color: #fff; margin-right: 10px; float: left; text-transform: capitalize;'>" . $_SESSION['logged_user'] . "</h1>";
-						// }else{
-						// 	echo "<h1 style='color: #fff; float: left; margin-right: 10px; text-transform: capitalize;'>Not Logged    </h1>"; 
-						// }?>
-					</div>
-					<?php 
-						// if(isset($_SESSION['logged_user'])){
-						// 	echo "<a href='logout.php'>Излизане</a>"; 
-						// }
-					?>
-				</li>
+				<li id="float-r"> 
+                    <div class="logout">
+						<i class='fa-solid fa-circle-user' style='font-size: 3em; color: #fff;'></i>
+						@if(session()->has('logged_username'))
+							<h1 style='color: #fff; width: min-content; margin-left: 5px; text-transform: capitalize;'>{{ session('logged_username') }}</h1>
+                            <a href="{{ route('logout') }}">Излизане</a>
+                        @else
+							<h1 style='color: #fff; margin-left: 5px;'>Не сте влезли</h1>
+						@endif
+                    </div>
+                </li>
         	</ul>
 		</div>
     </nav>
@@ -56,7 +51,7 @@
 				<img src="{{ asset('assets/aboutus_photos/image3.jpg'); }}" alt="icecream">
 				<img src="{{ asset('assets/aboutus_photos/image4.jpg'); }}" alt="salad">
 		</div>
-
+					
 		<div id="content">
 			<h1>Кои сме ние?</h1>
 			<p>Нашият сайт предлага различни вериги ресторанти, които съчетават в себе си разнообразно меню от вкусни традиционни и нехарактерни за нашия регион ястия. Обслужването е бързо и корекно. Тук можете да намерите голям асортимент от предястия, основни ястия и вдъхновяващи десрти. Нашата цел е максимално удоветволяване желанията и нуждите на нашите клиенти!</p>
