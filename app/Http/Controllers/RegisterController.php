@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-use App\Exeptions\SQLException;
-
 use App\Models\User;
 
 class RegisterController extends Controller
@@ -22,20 +20,22 @@ class RegisterController extends Controller
             $username = $request->input('username');
             $email = $request->input('email');
             $password = $request->input('password');
+            $confirm_password = $request->input('confirm-password');
 
-            $hashedPassword = Hash::make($password);
+            if($password == $confirm_password){
 
-            try {
+                $hashedPassword = Hash::make($password);
+
                 $newUser = new User();
                 $newUser->username = $username;
                 $newUser->email = $email;
                 $newUser->password = $hashedPassword;
                 $newUser->save();
-            }catch (SQLException $e) {
-                $e->__construct("The user cannot be registered!");
+
+                return redirect()->route('login');
             }
 
-            return back()->withSuccess('User added successfully!');
+            return back()->with('error', "Невалидни данни!");
         }
     }
 }

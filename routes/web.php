@@ -9,6 +9,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\GetFavouritesController;
 use App\Http\Controllers\RestaurantListController;
 
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +46,13 @@ Route::get('/about-us', function (){ return view("aboutus"); });
 Route::post('/restaurant', [])->name("load-restaurant");
 
 Route::get('/logout', function () {
-    Session::flush();
+    //Session::flush();
+
+    Auth::logout();
+ 
+    $request->session()->invalidate();
+ 
+    $request->session()->regenerateToken();
 
     return redirect('/login');
 })->name("logout");
