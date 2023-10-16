@@ -97,7 +97,7 @@ return [
             'driver'   => 'mongodb',
             'host'     => env('DB_HOST', 'localhost'),
             'port'     => env('DB_PORT', 27017),
-            'database' => env('DB_DATABASE', 'food_now_db'),
+            'database' => env('DB_DATABASE', 'food_now_DB'),
             'username' => env('DB_USERNAME', 'root'),
             'password' => env('DB_PASSWORD', '1234'),
             'options'  => [

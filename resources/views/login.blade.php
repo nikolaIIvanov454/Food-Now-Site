@@ -49,7 +49,7 @@
 			<input type="text" class="margin-top-sm margin-bot-sm inputs" name="info" id="user" required placeholder="Потребителско име / E-Mail">
 			<input type="password" class="margin-top-sm margin-bot-sm inputs" name="password" id="pass" required placeholder="Парола">
 			<input type="submit" class="border-radius margin-top-sm submit" value="Влизане">
-			<a href="register.php" class="margin-top-sm">Регистрация</a>
+			<a href="{{ url('/register') }}" class="margin-top-sm">Регистрация</a>
 			<a href="password_reset.php" class="margin-top-sm">Забравена парола?</a>
 		</form>
 	</div>

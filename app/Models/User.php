@@ -4,11 +4,13 @@ namespace App\Models;
 
 use MongoDB\Laravel\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
+
 
 class User extends Model implements Authenticatable
 {
-    use AuthenticatableTrait;
+    use AuthenticatableTrait, Notifiable;
 
     /**
      * The attributes that are mass assignable.

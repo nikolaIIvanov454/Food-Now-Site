@@ -66,7 +66,7 @@
             <input type="password" class="margin-top-sm margin-bot-sm inputs" name="password" id="pass" required placeholder="Парола">
             <input type="password" class="margin-top-sm margin-bot-sm inputs" name="confirm-password" id="confirm"  required placeholder="Повторете паролата">
             <input type="submit" class="border-radius margin-top-sm submit" value="Регистрация">
-            <a href="login.php" class="margin-top-sm">Вече имате регистрация?</a>
+            <a href="{{ url('/login') }}" class="margin-top-sm">Вече имате регистрация?</a>
         </form>
     </div>
 
