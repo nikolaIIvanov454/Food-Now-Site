@@ -25,8 +25,6 @@
                 <li><img src="{{ asset('assets/icon.svg') }}" alt="icon"></li>
                 <li><a href="#" class="current">Начална страница</a></li>
 
-                <!-- TODO: check if the user is logged in the HomeController -->
-
                 @if(!session()->has('logged_username'))
                     <li><a href="{{ url('/login') }}">Влизане</a></li>
                     <li><a href="{{ url('/register') }}">Регистрация</a></li>
@@ -56,7 +54,6 @@
         <div class="filter">
             <h1><strong>ДОБРЕ ДОШЛИ!</strong></h1>
             <h2>Моля изберете област:</h2>
-            <!-- use back() function in controller not home.php -->
             <form action="{{ route('restaurant-list') }}" method="post" style="display: inline-block;">
                 @csrf
                 <select name="oblast" id="oblast"></select>
@@ -69,15 +66,14 @@
     @if(session()->has('restaurants'))
         @foreach(session('restaurants') as $restaurant)
             <div class='item' onclick='showRestaurant(this)'>
-                @csrf
                 <form method='POST' action='{{ route("load-restaurant") }}'>
+                    @csrf
                     <input type='hidden' name='id' value='{{ $restaurant->id }}'>
+                    <div class='padding-sm center-text new-line'><h1>{{ $restaurant->name }}</h1></div>
+                    <div class='image'><img src="{{ $restaurant->image_path }}" class='photo'></div>
+                    <div class='padding-sm center-text'><h2>{{ $restaurant->price }}</h2>
+                    <button id='favourite'><i class='fa-regular fa-heart'></i></button></div>
                 </form>
-                <input type='hidden' name='id' value='{{ $restaurant->id }}'>
-                <div class='padding-sm center-text new-line'><h1>{{ $restaurant->name }}</h1></div>
-                <div class='image'><img src="{{ $restaurant->image_path }}" class='photo'></div>
-                <div class='padding-sm center-text'><h2>{{ $restaurant->price }}</h2>
-                <button id='favourite'><i class='fa-regular fa-heart'></i></button></div>
             </div>                                  
         @endforeach
     @endif

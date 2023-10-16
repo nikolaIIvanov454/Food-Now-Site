@@ -23,8 +23,10 @@
         	<ul class="navbar-items">
 				<li><img src="{{ asset('assets/icon.svg') }}" alt="icon"></li>
 				<li><a href="home.php">Начална страница</a></li>
-				<li><a href="{{ url('/login') }}">Влизане</a></li><li>
-                <li><a href="{{ url('/register') }}">Регистрация</a></li>
+				@if(!session()->has('logged_username'))
+                    <li><a href="{{ url('/login') }}">Влизане</a></li>
+                    <li><a href="{{ url('/register') }}">Регистрация</a></li>
+                @endif
 				<li><a href="#" class="current">За нас</a></li>
 				<?php //if(isset($_SESSION['is_Admin']) && $_SESSION['is_Admin'] == "true"){
 					//echo "<li><a href='admin.php'>Администраторски панел</a></li>";

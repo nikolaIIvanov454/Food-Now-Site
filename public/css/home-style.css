@@ -43,10 +43,6 @@ h2,
     cursor: pointer;
 }
 
-/* .image {
-    aspect-ratio: 4/3;
-} */
-
 .image img {
     display: block;
     margin: auto;
@@ -146,9 +142,7 @@ h2,
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-chevron-up' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z'/%3E%3C/svg%3E");
 }
 
-#oblast option:nth-child(even) option:nth-child(even) {
-    background-color: rgba(246, 103, 60, 0.3);
-}
+
 
 /* STYLE FOR THE CLICKED RESTAURANT */
 

@@ -37,7 +37,7 @@ xhr.send();
 
 let showRestaurant = (element) => {
     let restaurant = element;
-    let form = restaurant.children[2];
+    let form = restaurant.children[0];
 
     console.log(form)
     

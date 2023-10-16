@@ -24,7 +24,7 @@
 			</div>
         	<ul class="navbar-items">
 				<li><img src="{{ asset('assets/icon.svg') }}" alt="icon"></li>
-				<li><a href="home.php">Начална страница</a></li>
+				<li><a href="{{ url('/home') }}">Начална страница</a></li>
                 <li><a href="#" class="current">Влизане</a></li>
                 <li><a href="{{ url('/register') }}">Регистрация</a></li>
 				<li><a href="{{ url('/about-us') }}">За нас</a></li>

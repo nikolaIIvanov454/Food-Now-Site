@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\AuthenticationController;
 
 use App\Http\Controllers\GetFavouritesController;
-use App\Http\Controllers\RestaurantListController;
+use App\Http\Controllers\RestaurantController;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -23,10 +23,6 @@ use Illuminate\Support\Facades\Auth;
 */
 
 //ROUTES FOR THE PAGES//
-
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('/register', [AuthenticationController::class, 'createRegister']);
 
@@ -46,12 +42,12 @@ Route::get('/home', function (){ return view('home'); })->name('home');
 
 Route::get('/about-us', function (){ return view('aboutus'); });
 
-// Route::post('/restaurant-{name}', [])->name('load-restaurant');
+//MAKE PROTECTED HOME PAGE!!!
 
-Route::post('/restaurant', [])->name('load-restaurant');
+Route::post('/restaurant', [RestaurantController::class, 'loadClickedRestaurant'])->name('load-restaurant');
 
 //ROUTES FOR GETTING DATA
 
 Route::get('/get-favourited', [GetFavouritesController::class, 'getFavourited'])->name('get-favourites-each-user');
 
-Route::post('/get-restaurants', [RestaurantListController::class, 'loadRestaurants'])->name('restaurant-list');
+Route::post('/get-restaurants', [RestaurantController::class, 'loadRestaurants'])->name('restaurant-list');

@@ -8,7 +8,7 @@ use App\Models\Restaurant;
 use App\Models\Region;
 
 
-class RestaurantListController extends Controller
+class RestaurantController extends Controller
 {
     protected function loadRestaurants(Request $request)
     {
@@ -21,9 +21,13 @@ class RestaurantListController extends Controller
 
     protected function loadClickedRestaurant(Request $request)
     {
-        if ($request->isMethod("post")){
-            return view('load-restaurant');
-        }
+        $id = $request->input('id');
+
+        $restaurant = Restaurant::all()->where('_id', $id);
+
+        //dd($restaurant);
+
+        return view('restaurant')->with("loaded_restaurant", $restaurant);
     }
 }
 
