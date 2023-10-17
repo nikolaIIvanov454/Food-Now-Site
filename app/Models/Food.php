@@ -4,18 +4,16 @@ namespace App\Models;
 
 use MongoDB\Laravel\Eloquent\Model;
 
-class Restaurant extends Model
+class Food extends Model
 {
     protected $connection = 'mongodb';
-    protected $collection = 'restaurants';
+    protected $collection = "foods";
 
     protected $fillable = [
-        'id_restaurant',
         'name',
-        'image_path',
-        'description',
+        'weight',
         'price',
-        'region'
+        'id_restaurant'
     ];
 }
 

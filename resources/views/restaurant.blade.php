@@ -121,14 +121,25 @@
             <div class='right-div'><div class='center-text desc-clicked'><p>{{ $restaurant->description }}</p></div>
             <div class='center-text'><h2>{{ $restaurant->price }}</h2></div></div></div><div class='line'></div>
             <div class='products'>
-                <!-- <h1>Меню:</h1>
+                <h1>Меню:</h1>
                 <h2>Какво предлага ресторанта.</h2>
-                <table><tr><th>Тип Храна:</th><th>Грамаж:</th><th>Цена:</th><th>Добавяне:</th></tr> -->
-            <!-- for($j = 0; $j < count($output); $j++) -->
-            <!-- //     echo "<tr><td>" . $output[$j]['name'] . "</td><td>" . $output[$j]['weight'] . "</td><td>" . $output[$j]['price'] . "</td><td><button class='add' food-id='" .  $output[$j]['id_food'] . "' food='" . $output[$j]['name'] . "' weight='" . $output[$j]['weight'] . "' price='" . $output[$j]['price'] ."'>Добави</button></td></tr>"; 
-            // }
-            </table></div><div class='line'></div>";                                 -->
-                            </div>
+                <table>
+                    <tr>
+                        <th>Тип Храна:</th>
+                        <th>Грамаж:</th>
+                        <th>Цена:</th>
+                        <th>Добавяне:</th>
+                    </tr> 
+                    @if($loaded_foods)
+                        @foreach($loaded_foods as $food)
+                            <tr>
+                                <td>{{ $food->name }}</td><td>{{ $food->weight }}</td><td>{{ $food->price }}</td><td><button class='add' food-id='{{ $food->id_food }}' food='{{ $food->name }}' weight='{{ $food->weight }}' price='{{ $food->price }}'>Добави</button></td>
+                            </tr>
+                        @endforeach
+                    @endif
+                </table>
+            </div>
+            <div class='line'></div>
         @endforeach
     @endif
 

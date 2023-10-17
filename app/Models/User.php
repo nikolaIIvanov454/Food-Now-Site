@@ -25,6 +25,7 @@ class User extends Model implements Authenticatable
         'username',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -46,4 +47,9 @@ class User extends Model implements Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    protected function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
 }

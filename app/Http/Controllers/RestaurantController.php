@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Restaurant;
-use App\Models\Region;
+use App\Models\Food;
 
 
 class RestaurantController extends Controller
@@ -23,11 +23,14 @@ class RestaurantController extends Controller
     {
         $id = $request->input('id');
 
-        $restaurant = Restaurant::all()->where('_id', $id);
+        $restaurant = Restaurant::all()->where('id_restaurant', $id);
 
-        //dd($restaurant);
+        $foods_filtered = Food::all()->where('id_restaurant', $id);
 
-        return view('restaurant')->with("loaded_restaurant", $restaurant);
+        return view('restaurant')->with([
+            "loaded_restaurant" => $restaurant,
+            "loaded_foods" => $foods_filtered
+        ]);
     }
 }
 

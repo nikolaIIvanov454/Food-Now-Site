@@ -36,8 +36,15 @@ Route::post('/login', [AuthenticationController::class, 'login'])->name('login_u
 
 Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');
 
+//MIDDLEWARE FOR PROTECTION
 
-Route::get('/home', function (){ return view('home'); })->name('home');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', function (){ return view('home'); })->name('home');
+});
+
+Route::middleware(['admin'])->group(function () {
+    Route::get('/admin', function (){ return view('admin'); })->name('admin_page');
+});
 
 
 Route::get('/about-us', function (){ return view('aboutus'); });

@@ -68,7 +68,7 @@
             <div class='item' onclick='showRestaurant(this)'>
                 <form method='POST' action='{{ route("load-restaurant") }}'>
                     @csrf
-                    <input type='hidden' name='id' value='{{ $restaurant->id }}'>
+                    <input type='hidden' name='id' value='{{ $restaurant->id_restaurant }}'>
                     <div class='padding-sm center-text new-line'><h1>{{ $restaurant->name }}</h1></div>
                     <div class='image'><img src="{{ $restaurant->image_path }}" class='photo'></div>
                     <div class='padding-sm center-text'><h2>{{ $restaurant->price }}</h2>
