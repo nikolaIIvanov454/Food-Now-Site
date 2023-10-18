@@ -1,0 +1,88 @@
+@import url("footer.css");
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-image: url("../restaurant_photos/bgs/admin_background.jpg");
+    background-size: 20em;
+    background-position: 15em;
+    background-repeat: repeat;
+}
+.add-form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+}
+.add-form form{
+    display: flex;
+    margin: 20px 20px 20px 0;
+    flex-direction: column;
+    text-align: center;
+    padding: 3em;
+    border: 5px solid #fdc824;
+    background-color: white;
+}
+.errors{
+    color: red;
+    margin: 1em 0 0 1em;
+}
+.margin-top-sm{
+    margin-top: 1em;
+}
+.margin-bot-sm{
+    margin-bottom: 1em; 
+}
+.inputs{
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 2px solid black;
+    transition: border-bottom 0.4s;
+}
+.inputs:focus{
+    border-bottom: 2px solid #fdc824;
+}
+.desc{
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border: 2px solid black;
+    transition: border 0.4s;
+}
+.desc:focus{
+    border: 2px solid #fdc824;
+}
+.add-form form input[type="submit"]{
+    background-color: #fdc824;
+    opacity: 0.5;
+    padding: 0.5em;
+    outline: 0;
+    transition: all 0.5s ease;
+    border: 0;
+    color: white;
+}
+.add-form form input[type="submit"]:hover{
+    opacity: 1;
+    color: #333;
+}
+.add-form form input[type="file"]{
+    border: 2px solid #fdc824;
+    border-radius: 10px;
+    padding: 2px;
+}
+.add-form form input[type="file"]::-webkit-file-upload-button{
+    background-color: #fdc824;
+    border: 1px solid #fdc824;
+    color: white;
+    border-radius: 10px;
+}
+.add-form form input[type="file"]::-webkit-file-upload-button:hover{
+    color: black;
+}
+.add-form form{
+    overflow: hidden;
+}

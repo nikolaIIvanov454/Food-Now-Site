@@ -102,8 +102,9 @@ let AJAXRequest = (button, restaurant_id) => {
 favouriteButton.forEach(element => {
     element.addEventListener("click", (event) => {
         event.stopPropagation();
+        event.preventDefault();
 
-        let restaurant_id = element.parentElement.parentElement.children[2].value;
+        let restaurant_id = element.parentElement.parentElement.children[1].value;
 
         AJAXRequest(element, restaurant_id);
     });

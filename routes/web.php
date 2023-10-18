@@ -4,9 +4,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
 use App\Http\Controllers\AuthenticationController;
-
-use App\Http\Controllers\GetFavouritesController;
 use App\Http\Controllers\RestaurantController;
+
+use App\Http\Middleware\AdminAuthenticate;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -40,10 +40,8 @@ Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', function (){ return view('home'); })->name('home');
-});
 
-Route::middleware(['admin'])->group(function () {
-    Route::get('/admin', function (){ return view('admin'); })->name('admin_page');
+    Route::get('/admin', function (){ return view('admin'); })->middleware('admin.authentication')->name('admin_page');
 });
 
 
@@ -55,6 +53,6 @@ Route::post('/restaurant', [RestaurantController::class, 'loadClickedRestaurant'
 
 //ROUTES FOR GETTING DATA
 
-Route::get('/get-favourited', [GetFavouritesController::class, 'getFavourited'])->name('get-favourites-each-user');
+Route::get('/get-favourited', [RestaurantController::class, 'getFavourited'])->name('get-favourites-each-user');
 
 Route::post('/get-restaurants', [RestaurantController::class, 'loadRestaurants'])->name('restaurant-list');

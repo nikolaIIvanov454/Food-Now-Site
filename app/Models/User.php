@@ -48,7 +48,7 @@ class User extends Model implements Authenticatable
         'password' => 'hashed',
     ];
 
-    protected function isAdmin()
+    public function isAdmin()
     {
         return $this->role === 'admin';
     }

@@ -1,13 +1,3 @@
-<?php 
-// session_start();
-
-// if ($_SESSION['is_Admin'] == "false" || $_SESSION['is_Admin'] == null) {
-// 	header("location: home.php");
-// 	exit;
-// }
-
-?>
-
 <!DOCTYPE html>
 <html lang="bg">
 <head>
@@ -18,10 +8,10 @@
     <script src="https://kit.fontawesome.com/f2264ef78f.js" crossorigin="anonymous" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js" defer></script>
-    <link rel="stylesheet" href="styles/admin-style.css">
-    <link rel="stylesheet" href="styles/navbar.css">
-    <link rel="stylesheet" href="styles/menu.css">
-    <link rel="shortcut icon" href="restaurant_photos/icon/icon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="{{ asset('css/admin-style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
+    <link rel="stylesheet" href="v{{ asset('css/menu.css') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/icon.svg') }}" type="image/x-icon">
     <title>FoodNow - Администраторски панел</title>
 </head>
 <body>
@@ -33,28 +23,25 @@
             <span></span>
 		</div>
         <ul class="navbar-items">
-            <li><img src="restaurant_photos/icon/icon.svg" alt="icon"></li>
-            <li><a href="home.php">Начална страница</a></li>
-			<?php if(!isset($_SESSION['logged_user'])){ 
-            echo "<li><a href='login.php'>Влизане</a></li><li><a href='register.php'>Регистрация</a></li>";
-            } ?>
-			<li><a href="aboutus.php">За нас</a></li>
-			<?php if(isset($_SESSION['is_Admin']) && $_SESSION['is_Admin'] == "true"){
-				echo "<li><a class='current' href='admin.php'>Администраторски панел</a></li>";
-			} ?>
+            <li><img src="{{ asset('assets/icon.svg') }}" alt="icon"></li>
+            <li><a href="{{ url('/home') }}">Начална страница</a></li>
+			@if(!session()->has('logged_username'))
+                <li><a href="{{ url('/login') }}">Влизане</a></li>
+                <li><a href="{{ url('/register') }}">Регистрация</a></li>
+            @endif
+			<li><a href="{{ url('about-us') }}">За нас</a></li>
+			@auth
+                @if(auth()->user()->isAdmin())
+                    <li><a href='{{ url('/admin') }}'>Администраторски панел</a></li>
+                @endif
+            @endauth
 			<li id="float-r">
                 <div class="logout">
-                    <i class="fa-solid fa-circle-user" style="font-size: 3em; margin: 0.2em 0.2em; color: #fff;"></i>
-                    <?php 
-					if(isset($_SESSION['logged_user'])){
-                        echo "<h1 style='color: #fff; margin: 0; float: left; margin-right: 10px; text-transform: capitalize;'>" . $_SESSION['logged_user'] . "</h1>";
-                    }else{
-                        echo "<h1 style='color: #fff; margin: 0; float: left; margin-right: 10px; text-transform: capitalize;'>Not Logged</h1>"; 
-                    }?>
+                    @if(session()->has('logged_username'))
+                        <i class='fa-solid fa-circle-user' style='font-size: 3em; color: #fff;'></i><h1 style='color: #fff; width: min-content; margin-left: 5px; text-transform: capitalize;'>{{ session('logged_username') }}</h1>
+                        <a href="{{ route('logout') }}">Излизане</a>
+                    @endif
                 </div>
-                <?php if(isset($_SESSION['logged_user'])){
-                    echo "<a href='logout.php'>Излизане</a>";
-                }?>
             </li>
         </ul>
     </nav>

@@ -102,6 +102,7 @@ ul {
     align-items: center;
     gap: 5px;
     float: right;
+    height: 100%;
 }
 
 #cart table,
