@@ -19,27 +19,49 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let formData = new FormData(form);
 
-        let xhr = new XMLHttpRequest();
-        xhr.open('POST', '../scripts/submit_review.php');
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    let checkAlreadyReviewed = JSON.parse(xhr.responseText);
+        $.ajax({
+            type: "POST",
+            url: "../scripts/submit_review.php",
+            data: formData,
+            headers: {
+                'Content-Type' : 'application/json'
+            },
+            success: function (response) {
+                let checkAlreadyReviewed = JSON.parse(xhr.responseText);
 
-                    if (checkAlreadyReviewed !== null) {
-                        alert(checkAlreadyReviewed);
+                if (checkAlreadyReviewed !== null) {
+                    alert(checkAlreadyReviewed);
 
-                        location.reload();
-                    }
-
-                    form.reset();
-                } else {
-                    console.error('Error:', xhr.statusText);
+                    location.reload();
                 }
-            }
-        };
 
-        xhr.send(formData);
+                form.reset();
+            }
+        });
+
+        // let formData = new FormData(form);
+
+        // let xhr = new XMLHttpRequest();
+        // xhr.open('POST', '../scripts/submit_review.php');
+        // xhr.onreadystatechange = function () {
+        //     if (xhr.readyState === XMLHttpRequest.DONE) {
+        //         if (xhr.status === 200) {
+        //             let checkAlreadyReviewed = JSON.parse(xhr.responseText);
+
+        //             if (checkAlreadyReviewed !== null) {
+        //                 alert(checkAlreadyReviewed);
+
+        //                 location.reload();
+        //             }
+
+        //             form.reset();
+        //         } else {
+        //             console.error('Error:', xhr.statusText);
+        //         }
+        //     }
+        // };
+
+        // xhr.send(formData);
     });
 });
 

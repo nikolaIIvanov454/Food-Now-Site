@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ресторанти</title>
-    <script src="{{ asset('js/script_filter.js') }}" defer></script>
-    <script src="{{ asset('js/script_menu.js') }}"></script>
     <script src="https://kit.fontawesome.com/f2264ef78f.js" crossorigin="anonymous" defer></script> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js" defer></script>
+    <script src="{{ asset('js/script_filter.js') }}" defer></script>
+    <script src="{{ asset('js/script_menu.js') }}"></script>
     <link rel="shortcut icon" href="{{ asset('assets/icon.svg') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home-style.css') }}">

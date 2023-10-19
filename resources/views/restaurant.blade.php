@@ -116,16 +116,17 @@
         </form>
 
         <div class="reviews-div">
-            <?php //foreach ($reviews as $key => $value) {
-            //echo "<div class='review-" . $value['id_reviews'] . "'>";  ?>
-            <?php //echo "<div id='user-info'><i class='fa-solid fa-user'></i><p>" . $value["username"] . "</p>"; ?> 
-            <span><?php //echo $value["stars"] . "<i class='fa-solid fa-star' style='color: #ffe234;'></i>"; ?></span> 
-            <?php //echo "</div>"; ?>
-            <!-- <button id="delete-review">Изтрии ревю</button> -->
-            <p><?php //echo $value["review_description"]; ?></p>
-            <?php //echo "</div>"; } ?>
+            @if(isset($loaded_reviews))
+                @foreach($loaded_reviews as $review)
+            <div class='review-{{ $review->id_review }}'>
+                <div id='user-info'><i class='fa-solid fa-user'></i><p>{{ $review->username }} </p>
+                    <span>{{ $review->stars }}<i class='fa-solid fa-star' style='color: #ffe234;'></i></span> 
+                </div>
+                <p>{{ $review->review_description }}</p>
+            </div>
+                @endforeach
+            @endif
         </div>
-    </div>
 
     <footer>
         <div class="footer" style="position: relative;">

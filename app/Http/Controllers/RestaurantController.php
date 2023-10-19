@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Restaurant;
 use App\Models\Food;
 use App\Models\LikedRestaurant;
+use App\Models\Review;
 
 
 class RestaurantController extends Controller
@@ -28,7 +29,10 @@ class RestaurantController extends Controller
 
         $foods_filtered = Food::all()->where('id_restaurant', $id);
 
+        $loaded_reviews = Review::getReviews($id);
+
         return view('restaurant')->with([
+            "loaded_reviews" => $loaded_reviews,
             "loaded_restaurant" => $restaurant,
             "loaded_foods" => $foods_filtered
         ]);
@@ -36,25 +40,23 @@ class RestaurantController extends Controller
 
     protected function getFavourited(Request $request)
     {
-        $id_user = session("logged_user_id");
-        $id_restaurant = $request->input("id");
+        $id_user = session('logged_user_id');
+        $id_restaurant = $request->input('id');
 
-        //make so that it gets in the else statement!!!
+        $favourited_restaurant = LikedRestaurant::where('id_restaurant', $id_restaurant)->first();
 
-        if(isset($id_user) && isset($id_restaurant))
-        {
+        if(!isset($favourited_restaurant)){
             $likedRestaurant = new LikedRestaurant();
             $likedRestaurant->id_user = $id_user;
             $likedRestaurant->id_restaurant = $id_restaurant;
             $likedRestaurant->save();
 
-            return response()->json(['status' => 'favourited']);
-        }else
-        {
-            LikedRestaurant::where('id_restaurant', $id_restaurant)->delete();
-            //return response()->json(['status' => 'unfavourited']);
+            // return response()->json(['status' => 'favourited'], 200, ['Content-Type' => 'application/json']);
+        }else{
+            $favourited_restaurant->delete();
+
+            // return response()->json(['status' => 'unfavourited'], 200, ['Content-Type' => 'application/json']);
         }
-        
     }
 }
 
