@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     $.ajax({
         type: "POST",
-        url: "../assets/scripts (Replace)/submit_review.php",
-        data: JSON.stringify({ username : username }),
+        url: "/handle-review",
+        data: JSON.stringify({ username : username, action : "delete" }),
         contentType: "application/x-www-form-urlencoded",
         success: function (response) {
 

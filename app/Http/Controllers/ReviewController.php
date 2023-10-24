@@ -20,10 +20,10 @@ class ReviewController extends Controller{
             $review->save(); 
             
             return response()->json(['message' => 'Успешно добавяне на ревю!'], 200);
+        }else if($request->input('action') == 'delete'){
+            //LOGIC HERE TO CHECK FOR USER AND WHO CAN DELETE!!!!
+            //$already_reviwed->delete();
         }
-        
-        //if(isset())
-        // $already_reviwed->delete();
 
         return response()->json(['message' => 'Има вече написано ревю от този потребител!'], 200);
     }

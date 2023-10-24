@@ -58,4 +58,4 @@ Route::get('/get-favourited', [RestaurantController::class, 'getFavourited'])->n
 
 Route::post('/get-restaurants', [RestaurantController::class, 'loadRestaurants'])->name('restaurant-list');
 
-Route::post('/send-review', [ReviewController::class, 'reviewOperations'])->name('submit-delete-review');
+Route::post('/handle-review', [ReviewController::class, 'reviewOperations'])->name('submit-delete-review');

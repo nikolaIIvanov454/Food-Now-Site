@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         $.ajax({
             type: "POST",
-            url: "/send-review",
+            url: "/handle-review",
             data: formData,
             processData: false,
             contentType: false,
