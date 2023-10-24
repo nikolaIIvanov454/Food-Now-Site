@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use MongoDB\Laravel\Eloquent\Model;
+use Models\Restaurant;
 
 class Review extends Model
 {
@@ -20,7 +21,7 @@ class Review extends Model
         'id_user',
         'id_restaurant'
     ];
-
+    
     protected static function getReviews($id_restaurant){
         return Review::all()->where('id_restaurant', $id_restaurant);
     }

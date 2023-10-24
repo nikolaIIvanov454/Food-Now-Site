@@ -160,7 +160,7 @@ h2,
 }
 
 .image-div {
-    width: 100%;
+    margin: auto;
 }
 
 .image-div img {

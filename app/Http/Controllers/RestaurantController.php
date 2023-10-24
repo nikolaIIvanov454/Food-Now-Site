@@ -9,7 +9,6 @@ use App\Models\Food;
 use App\Models\LikedRestaurant;
 use App\Models\Review;
 
-
 class RestaurantController extends Controller
 {
     protected function loadRestaurants(Request $request)
@@ -25,16 +24,13 @@ class RestaurantController extends Controller
     {
         $id = $request->input('id');
 
-        $restaurant = Restaurant::all()->where('id_restaurant', $id)->first();
-
-        $foods_filtered = Food::all()->where('id_restaurant', $id);
+        $restaurant = Restaurant::all()->where('_id', $id)->first();
 
         $loaded_reviews = Review::getReviews($id);
 
         return view('restaurant')->with([
             "loaded_reviews" => $loaded_reviews,
-            "loaded_restaurant" => $restaurant,
-            "loaded_foods" => $foods_filtered
+            "loaded_restaurants_and_foods" => $restaurant,
         ]);
     }
 
@@ -50,12 +46,8 @@ class RestaurantController extends Controller
             $likedRestaurant->id_user = $id_user;
             $likedRestaurant->id_restaurant = $id_restaurant;
             $likedRestaurant->save();
-
-            // return response()->json(['status' => 'favourited'], 200, ['Content-Type' => 'application/json']);
         }else{
             $favourited_restaurant->delete();
-
-            // return response()->json(['status' => 'unfavourited'], 200, ['Content-Type' => 'application/json']);
         }
     }
 }

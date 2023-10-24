@@ -21,16 +21,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         $.ajax({
             type: "POST",
-            url: "../scripts/submit_review.php",
+            url: "/send-review",
             data: formData,
-            headers: {
-                'Content-Type' : 'application/json'
-            },
+            processData: false,
+            contentType: false,
             success: function (response) {
-                let checkAlreadyReviewed = JSON.parse(xhr.responseText);
-
-                if (checkAlreadyReviewed !== null) {
-                    alert(checkAlreadyReviewed);
+                if (response["message"] !== null) {
+                    alert(response["message"]);
 
                     location.reload();
                 }
@@ -38,30 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 form.reset();
             }
         });
-
-        // let formData = new FormData(form);
-
-        // let xhr = new XMLHttpRequest();
-        // xhr.open('POST', '../scripts/submit_review.php');
-        // xhr.onreadystatechange = function () {
-        //     if (xhr.readyState === XMLHttpRequest.DONE) {
-        //         if (xhr.status === 200) {
-        //             let checkAlreadyReviewed = JSON.parse(xhr.responseText);
-
-        //             if (checkAlreadyReviewed !== null) {
-        //                 alert(checkAlreadyReviewed);
-
-        //                 location.reload();
-        //             }
-
-        //             form.reset();
-        //         } else {
-        //             console.error('Error:', xhr.statusText);
-        //         }
-        //     }
-        // };
-
-        // xhr.send(formData);
     });
 });
 

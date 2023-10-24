@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use MongoDB\Laravel\Eloquent\Model;
+use Models\Food;
+use Models\Review;
 
 class Restaurant extends Model
 {
@@ -10,12 +12,13 @@ class Restaurant extends Model
     protected $collection = 'restaurants';
 
     protected $fillable = [
-        'id_restaurant',
+        '_id',
         'name',
         'image_path',
         'description',
         'price',
-        'region'
+        'region',
+        'foods'
     ];
 }
 

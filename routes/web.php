@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Session;
 
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\ReviewController;
 
 use App\Http\Middleware\AdminAuthenticate;
 
@@ -56,3 +57,5 @@ Route::post('/restaurant', [RestaurantController::class, 'loadClickedRestaurant'
 Route::get('/get-favourited', [RestaurantController::class, 'getFavourited'])->name('get-favourites-each-user');
 
 Route::post('/get-restaurants', [RestaurantController::class, 'loadRestaurants'])->name('restaurant-list');
+
+Route::post('/send-review', [ReviewController::class, 'reviewOperations'])->name('submit-delete-review');
