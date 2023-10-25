@@ -1,17 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
     let username_div = document.querySelector("#user-info");
-    let username = username_div.querySelector("p").innerHTML;
+    var token = document.querySelector("input[name=_token]").value 
 
     $.ajax({
         type: "POST",
         url: "/handle-review",
-        data: JSON.stringify({ username : username, action : "delete" }),
-        contentType: "application/x-www-form-urlencoded",
+        data: JSON.stringify({ 
+            action : "check", _token : token
+        }),
+        contentType: "application/json",
         success: function (response) {
 
-                console.log(response)
-
-                let authorized_user = JSON.parse(response["authorized_user"]);
+                let authorized_user = response["authorized_user"];
                 let reviews_div = document.querySelector(".reviews-div");
                 let review_divs = reviews_div.querySelectorAll("[class^='review-']");
 
@@ -23,6 +23,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     deleteButton.id = "delete-review";
                     deleteButton.textContent = "Изтрии ревю";
 
+                    let firstElement = review_divs.children.item(1);
+
+                    review_divs.insertBefore(deleteButton, firstElement);
+
                     deleteButton.onclick = () =>{
                         let id_review = review_divs.classList[0].replace("review-", "");
 
@@ -30,55 +34,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         review_divs.remove();
                     }
-
-                    let firstElement = review_divs.children.item(1);
-
-                    review_divs.insertBefore(deleteButton, firstElement);
                 }
             });
         }
     });
-
-//     let xhr = new XMLHttpRequest();
-//     xhr.open('POST', '../assets/scripts (Replace)/submit_review.php');
-//     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-//     xhr.onreadystatechange = function () {
-//         if (xhr.readyState === XMLHttpRequest.DONE) {
-//             if (xhr.status === 200) {
-//                 let authorized_user = JSON.parse(xhr.responseText);
-//                 let reviews_div = document.querySelector(".reviews-div");
-//                 let review_divs = reviews_div.querySelectorAll("[class^='review-']");
-
-//                 review_divs.forEach((review_divs) => {
-//                     let authorized_name = review_divs.querySelector("p").innerHTML;
-
-//                     if(authorized_user === authorized_name){
-//                         let deleteButton = document.createElement("button");
-//                         deleteButton.id = "delete-review";
-//                         deleteButton.textContent = "Изтрии ревю";
-
-//                         deleteButton.onclick = () =>{
-//                             let id_review = review_divs.classList[0].replace("review-", "");
-
-//                             deleteReviewAndUpdate(id_review);
-
-//                             review_divs.remove();
-//                         }
-
-//                         let firstElement = review_divs.children.item(1);
-
-//                         review_divs.insertBefore(deleteButton, firstElement);
-//                     }
-//                 });
-//             } else {
-//                 console.error('Error:', xhr.statusText);
-//             }
-//         }
-//     };
-
-//     //directly sending data without using formdata object
-//     xhr.send("username=${username}");
-// });
 
     function deleteReviewAndUpdate(id_to_delete){
     // let data = new FormData();
@@ -102,14 +61,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         $.ajax({
             type: "POST",
-            url: "../assets/scripts (Replace)/ReviewLogic.php",
+            url: "/handle-review",
             data: JSON.stringify({
                 id_reviews : id_to_delete,
+                _token : token,
                 action : "delete"
             }),
-            success: function (response) {
-                
-            }
+            contentType: "application/json",
         });
     }
 });

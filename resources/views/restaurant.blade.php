@@ -9,7 +9,7 @@
     <script src="{{ asset('js/script_menu.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js" defer></script>
     <script src="{{ asset('js/sendReview.js') }}" defer></script>
-    <!-- <script src="{{ asset('js/handleDeletion.js') }}"></script> -->
+    <script src="{{ asset('js/handleDeletion.js') }}"></script>
     <link rel="shortcut icon" href="{{ asset('assets/icon.svg') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('css/home-style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
@@ -118,7 +118,7 @@
             @if(isset($loaded_reviews))
                 @foreach($loaded_reviews as $review)
             <div class='review-{{ $review->id_review }}'>
-                <div id='user-info'><i class='fa-solid fa-user'></i><p>{{ $review->username }} </p>
+                <div id='user-info'><i class='fa-solid fa-user'></i><p>{{ $review->username }}</p>
                     <span>{{ $review->stars }}<i class='fa-solid fa-star' style='color: #ffe234;'></i></span> 
                 </div>
                 <p>{{ $review->review_description }}</p>
