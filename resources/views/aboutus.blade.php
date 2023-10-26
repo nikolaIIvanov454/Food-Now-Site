@@ -28,9 +28,11 @@
                     <li><a href="{{ url('/register') }}">Регистрация</a></li>
                 @endif
 				<li><a href="#" class="current">За нас</a></li>
-				<?php //if(isset($_SESSION['is_Admin']) && $_SESSION['is_Admin'] == "true"){
-					//echo "<li><a href='admin.php'>Администраторски панел</a></li>";
-				//} ?>
+				@auth
+                    @if(auth()->user()->isAdmin())
+                        <li><a href='{{ url('/admin') }}'>Администраторски панел</a></li>
+                    @endif
+                @endauth
 				<li id="float-r"> 
                     <div class="logout">
 						<i class='fa-solid fa-circle-user' style='font-size: 3em; color: #fff;'></i>

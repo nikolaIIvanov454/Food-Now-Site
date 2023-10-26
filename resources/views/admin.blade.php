@@ -32,7 +32,7 @@
 			<li><a href="{{ url('about-us') }}">За нас</a></li>
 			@auth
                 @if(auth()->user()->isAdmin())
-                    <li><a href='{{ url('/admin') }}'>Администраторски панел</a></li>
+                    <li><a href='{{ url('/admin') }}' class="current">Администраторски панел</a></li>
                 @endif
             @endauth
 			<li id="float-r">

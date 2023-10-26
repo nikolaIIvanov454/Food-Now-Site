@@ -26,7 +26,7 @@ class RestaurantController extends Controller
 
         $restaurant = Restaurant::all()->where('_id', $id)->first();
 
-        $loaded_reviews = Review::getReviews($id);
+        $loaded_reviews = Review::getReviews($id);          
 
         return view('restaurant')->with([
             "loaded_reviews" => $loaded_reviews,

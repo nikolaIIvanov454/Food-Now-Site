@@ -49,7 +49,7 @@
                         @endif
                         <div id="cart">
                         <?php
-                            // $outp    utCheckout = "";
+                            // $outputCheckout = "";
                             // $total = 0;
 
                             // if(!empty($_SESSION['shopping_cart'])){
