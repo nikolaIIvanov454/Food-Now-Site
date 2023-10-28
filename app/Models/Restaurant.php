@@ -2,23 +2,18 @@
 
 namespace App\Models;
 
-use MongoDB\Laravel\Eloquent\Model;
-use Models\Food;
-use Models\Review;
+use Illuminate\Database\Eloquent\Model;
 
 class Restaurant extends Model
 {
-    protected $connection = 'mongodb';
-    protected $collection = 'restaurants';
+    protected $table = 'restaurants';
 
     protected $fillable = [
-        '_id',
         'name',
         'image_path',
         'description',
         'price',
         'region',
-        'foods'
     ];
 }
 

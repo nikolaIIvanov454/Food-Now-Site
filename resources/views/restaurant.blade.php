@@ -76,13 +76,13 @@
         </nav>
     </header> 
 
-    @if(isset($loaded_restaurants_and_foods))
+    @if(isset($loaded_restaurant))
            <div class='container'>
-            <input type='hidden' class='id' name='id' value="{{ $loaded_restaurants_and_foods->id }}">
-            <div class='left-div'><div class='center-text'><h1>{{ $loaded_restaurants_and_foods->name }}</h1></div>
-            <div class='image-div'><img src="{{ $loaded_restaurants_and_foods->image_path }}"></div></div>
-            <div class='right-div'><div class='center-text desc-clicked'><p>{{ $loaded_restaurants_and_foods->description }}</p></div>
-            <div class='center-text'><h2>{{ $loaded_restaurants_and_foods->price }}</h2></div></div></div><div class='line'></div>
+            <input type='hidden' class='id' name='id' value="{{ $loaded_restaurant->id }}">
+            <div class='left-div'><div class='center-text'><h1>{{ $loaded_restaurant->name }}</h1></div>
+            <div class='image-div'><img src="{{ $loaded_restaurant->image_path }}"></div></div>
+            <div class='right-div'><div class='center-text desc-clicked'><p>{{ $loaded_restaurant->description }}</p></div>
+            <div class='center-text'><h2>{{ $loaded_restaurant->price }}</h2></div></div></div><div class='line'></div>
             <div class='products'>
                 <h1>Меню:</h1>
                 <h2>Какво предлага ресторанта.</h2>
@@ -93,9 +93,9 @@
                         <th>Цена:</th>
                         <th>Добавяне:</th>
                     </tr> 
-                        @foreach($loaded_restaurants_and_foods->foods as $food)
+                        @foreach($loaded_menu as $food)
                             <tr>
-                                <td>{{ $food['name'] }}</td><td>{{ $food['weight'] }}</td><td>{{ $food['price'] }}</td><td><button class='add' food-id='{{ $food["_id"] }}' food='{{ $food["name"] }}' weight='{{ $food["weight"] }}' price='{{ $food["price"] }}'>Добави</button></td>
+                                <td>{{ $food->name }}</td><td>{{ $food->weight }}</td><td>{{ $food->price }}</td><td><button class='add' food-id='{{ $food->id_food }}' food='{{ $food->name}}' weight='{{ $food->weight }}' price='{{ $food->price }}'>Добави</button></td>
                             </tr>
                         @endforeach
                 </table>
@@ -106,7 +106,7 @@
     <div class="bottom">
         <form class="review-form">
             @csrf
-            <input type="hidden" name="id_restaurant" value="{{ $loaded_restaurants_and_foods->id }}" required>
+            <input type="hidden" name="id_restaurant" value="{{ $loaded_restaurant->id }}" required>
             <h1>Напишете ревю към този ресторант</h1>
             <input type="range" name="rating" id="rating" min="1" max="5" value="1" oninput="this.nextElementSibling.value = this.value + ' звезда/звезди'" required>
             <output id="indicator">1 звезда/звезди</output>

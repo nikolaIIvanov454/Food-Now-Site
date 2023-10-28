@@ -37,11 +37,10 @@ class AuthenticationController extends Controller
         $info = $request->input('info');
 
         $credentials = [
-            filter_var($request->info, FILTER_VALIDATE_EMAIL) ? 'email' : 'username' => $request->info,
-            'password' => $request->password,
+            filter_var($request->info, FILTER_VALIDATE_EMAIL) ? 'email' : 'username' => $request->info, 'password' => $request->password,
         ];
 
-        $credentials['password'] = $request->password;     
+        $credentials['password'] = $request->password;    
 
         if (Auth::attempt($credentials)) 
         {
@@ -62,7 +61,7 @@ class AuthenticationController extends Controller
                 'username' => 'required',
                 'email' => 'required | email | unique:users',
                 'password' => 'required',
-                'confirm-password' => 'required'
+                'confirm-password' => 'required | same:password'
             ]);
 
             $username = $request->input('username');

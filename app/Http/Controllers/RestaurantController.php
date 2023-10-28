@@ -24,13 +24,16 @@ class RestaurantController extends Controller
     {
         $id = $request->input('id');
 
-        $restaurant = Restaurant::all()->where('_id', $id)->first();
+        $restaurant = Restaurant::all()->where('id', $id)->first();
 
-        $loaded_reviews = Review::getReviews($id);          
+        $menu = Food::all()->where('id_restaurant', $id);
+
+        $loaded_reviews = Review::getReviews($id);    
 
         return view('restaurant')->with([
             "loaded_reviews" => $loaded_reviews,
-            "loaded_restaurants_and_foods" => $restaurant,
+            "loaded_restaurant" => $restaurant,
+            "loaded_menu" => $menu
         ]);
     }
 

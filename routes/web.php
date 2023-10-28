@@ -48,8 +48,6 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/about-us', function (){ return view('aboutus'); });
 
-//MAKE PROTECTED HOME PAGE!!!
-
 Route::post('/restaurant', [RestaurantController::class, 'loadClickedRestaurant'])->name('load-restaurant');
 
 //ROUTES FOR GETTING DATA

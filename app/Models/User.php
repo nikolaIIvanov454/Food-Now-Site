@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
-use MongoDB\Laravel\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
-
 
 class User extends Model implements Authenticatable
 {
@@ -17,11 +16,9 @@ class User extends Model implements Authenticatable
      *
      * @var array<int, string>
      */
-    protected $connection = 'mongodb';
-    protected $collection = 'users';
+    protected $table = 'users';
     
     protected $fillable = [
-        '_id',
         'username',
         'email',
         'password',

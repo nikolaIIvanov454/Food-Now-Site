@@ -2,19 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use MongoDB\Laravel\Eloquent\Model;
-use Models\Restaurant;
+use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
-    use HasFactory;
-
-    protected $connection = 'mongodb';
-    protected $collection = 'reviews';
+    protected $table = 'reviews';
 
     protected $fillabe = [
-        'id_review',
         'username',
         'stars',
         'review_description',
