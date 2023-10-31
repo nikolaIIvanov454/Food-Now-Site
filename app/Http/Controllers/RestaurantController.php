@@ -20,23 +20,6 @@ class RestaurantController extends Controller
         return back()->with("restaurants", $restaurants_filtered);
     }
 
-    protected function loadClickedRestaurant(Request $request)
-    {
-        $id = $request->input('id');
-
-        $restaurant = Restaurant::all()->where('id', $id)->first();
-
-        $menu = Food::all()->where('id_restaurant', $id);
-
-        $loaded_reviews = Review::getReviews($id);    
-
-        return view('restaurant')->with([
-            "loaded_reviews" => $loaded_reviews,
-            "loaded_restaurant" => $restaurant,
-            "loaded_menu" => $menu
-        ]);
-    }
-
     protected function getFavourited(Request $request)
     {
         $id_user = session('logged_user_id');
@@ -52,6 +35,26 @@ class RestaurantController extends Controller
         }else{
             $favourited_restaurant->delete();
         }
+    }
+
+
+
+
+    protected function loadClickedRestaurant(Request $request)
+    {
+        $id = $request->input('id');
+
+        $restaurant = Restaurant::all()->where('id', $id)->first();
+
+        $menu = Food::all()->where('id_restaurant', $id);
+
+        $loaded_reviews = Review::getReviews($id);    
+
+        return view('restaurant')->with([
+            "loaded_reviews" => $loaded_reviews,
+            "loaded_restaurant" => $restaurant,
+            "loaded_menu" => $menu
+        ]);
     }
 }
 

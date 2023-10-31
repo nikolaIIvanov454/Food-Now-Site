@@ -13,7 +13,7 @@ class Review extends Model
         'stars',
         'review_description',
         'id_user',
-        'id_restaurant'
+        'id_restaurant',
     ];
     
     protected static function getReviews($id_restaurant){

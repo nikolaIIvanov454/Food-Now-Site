@@ -10,8 +10,8 @@ area[0].hidden = true;
 //THIS HERE IS FOR GETTING THE OPTIONS FROM THE DATABASE DYNAMICALLY
 
 $.ajax({
-    url: '../assets/scripts (Replace)/getOptions.php',
-    type: 'POST',
+    url: '/get-options',
+    type: 'GET',
     dataType: 'json',
     success: function(result) {
         for (let index = 0; index < result.length; index++) {

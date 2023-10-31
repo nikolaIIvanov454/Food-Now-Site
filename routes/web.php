@@ -1,7 +1,10 @@
 <?php
 
+use App\Models\RestaurantRegion;
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Cache;
 
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\RestaurantController;
@@ -55,5 +58,13 @@ Route::post('/restaurant', [RestaurantController::class, 'loadClickedRestaurant'
 Route::get('/get-favourited', [RestaurantController::class, 'getFavourited'])->name('get-favourites-each-user');
 
 Route::post('/get-restaurants', [RestaurantController::class, 'loadRestaurants'])->name('restaurant-list');
+
+Route::get('/get-options', function (){ 
+    $cachedRegions = Cache::remember('restaurant-options', 60, function () {
+        return response()->json(RestaurantRegion::select('city')->get());
+    }); 
+
+    return $cachedRegions;
+})->name('get-restaurant-options');
 
 Route::post('/handle-review', [ReviewController::class, 'reviewOperations'])->name('submit-delete-review');
