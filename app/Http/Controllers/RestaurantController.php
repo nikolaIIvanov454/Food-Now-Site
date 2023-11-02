@@ -48,7 +48,7 @@ class RestaurantController extends Controller
 
         $menu = Food::all()->where('id_restaurant', $id);
 
-        $loaded_reviews = Review::getReviews($id);    
+        $loaded_reviews = Review::getReviews($id);  
 
         return view('restaurant')->with([
             "loaded_reviews" => $loaded_reviews,

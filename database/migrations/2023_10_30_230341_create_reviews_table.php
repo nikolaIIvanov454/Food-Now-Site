@@ -19,6 +19,9 @@ return new class extends Migration
             $table->integer('id_restaurant');
             $table->integer('id_user');
             $table->timestamps();
+
+            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('id_restaurant')->references('id')->on('restaurants');
         });
     }
 
