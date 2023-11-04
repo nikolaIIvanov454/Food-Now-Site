@@ -89,10 +89,30 @@ let AJAXRequest = (button, restaurant_id) => {
 //         }
 //     };
 
-//     xhr.send();
-// }
+let saveFavourited = () =>{
+    $.ajax({
+        type: "GET",
+        url: "/get-favourited?checkFavourited=true",
+        headers: {
+            'Content-Type' : 'application/json'
+        },
+        success: function (response) {
+            for (let i = 0; i < response.length; i++) {
+                for (let y = 0; y < favouriteButton.length; y++) {
+                    const element = favouriteButton[y];
 
-// saveFavourited();
+                    console.log(response[i]['id_restaurant'])
+                    
+                    if(response[i]['id_restaurant'] == element.parentElement.parentElement.children[1].value){
+                        element.firstChild.classList.replace('fa-regular', 'fa-solid');
+                    }
+                }
+            }
+        }
+    });
+}
+
+saveFavourited();
 
 favouriteButton.forEach(element => {
     element.addEventListener('click', (event) => {

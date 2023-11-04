@@ -11,13 +11,13 @@ class ReviewController extends Controller{
         $already_reviwed = Review::all()->where("username", session('logged_username'))->first();
 
         if(!isset($already_reviwed)){
-            $review = new Review();
-            $review->stars = $request->input('rating');
-            $review->review_description = $request->input('review-description');
-            $review->username = session('logged_username');
-            $review->id_user = session('logged_user_id');
-            $review->id_restaurant = $request->input('id_restaurant');
-            $review->save(); 
+            Review::create([
+                'username' => session('logged_username'),
+                'stars' => $request->input('rating'),
+                'review_description' => $request->input('review-description'),
+                'id_user' => session('logged_user_id'),
+                'id_restaurant' => $request->input('id_restaurant')
+            ]);
             
             return response()->json(['message' => 'Успешно добавяне на ревю!'], 200);
         }

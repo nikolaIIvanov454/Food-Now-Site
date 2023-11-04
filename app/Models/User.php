@@ -17,12 +17,14 @@ class User extends Model implements Authenticatable
      * @var array<int, string>
      */
     protected $table = 'users';
+
+    protected $primaryKey = 'id';
     
     protected $fillable = [
         'username',
         'email',
         'password',
-        'role',
+        'role'
     ];
 
     /**

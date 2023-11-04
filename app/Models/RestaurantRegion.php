@@ -11,6 +11,8 @@ class RestaurantRegion extends Model
 
     protected $table = 'regions';
 
+    protected $primaryKey = 'id_region';
+
     protected $fillabe = [
         'city'
     ];

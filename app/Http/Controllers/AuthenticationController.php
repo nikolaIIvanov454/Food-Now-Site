@@ -46,7 +46,7 @@ class AuthenticationController extends Controller
         {
             $user = Auth::user();
             
-            session()->put('logged_user_id', $user->_id);
+            session()->put('logged_user_id', $user->id);
             session()->put('logged_username', $user->username);
 
             return redirect()->intended(route('home'));

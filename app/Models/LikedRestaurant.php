@@ -2,19 +2,19 @@
 
 namespace App\Models;
 
-use MongoDB\Laravel\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class LikedRestaurant extends Model{
-    protected $connection = 'mongodb';
-    protected $collection = 'user_favourites';
+class LikedRestaurant extends Model
+{
+    use HasFactory;
+
+    protected $table = 'favourite_restaurants';
+
+    protected $primaryKey = 'id_favourite_restaurant';
 
     protected $fillable = [
         'id_user',
         'id_restaurant',
     ];
 }
-
-
-
-
-?>

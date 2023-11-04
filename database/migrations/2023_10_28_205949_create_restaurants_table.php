@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('restaurants', function (Blueprint $table) {
             $table->increments('id'); // Auto-incrementing primary key
             $table->string('name', 100);
-            $table->string('image_path', 255);
+            $table->text('image_path');
             $table->text('description');
             $table->string('price'); // Decimal column with 10 digits in total and 2 decimal places
             $table->string('region', 50);
