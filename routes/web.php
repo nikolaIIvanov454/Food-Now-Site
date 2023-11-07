@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Cache;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\CartController;
 
 use App\Http\Middleware\AdminAuthenticate;
 
@@ -39,6 +40,8 @@ Route::post('/login', [AuthenticationController::class, 'login'])->name('login_u
 
 
 Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');
+
+Route::get('/basket', [CartController::class, 'index'])->name('basket-page');
 
 //MIDDLEWARE FOR PROTECTION
 

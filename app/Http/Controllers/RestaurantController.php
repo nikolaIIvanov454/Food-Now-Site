@@ -25,28 +25,14 @@ class RestaurantController extends Controller
         $id_user = session('logged_user_id');
         $id_restaurant = $request->input('id');
 
-        $favourited_restaurants = LikedRestaurant::select('id_restaurant')->where('id_user', $id_user)->get();
+        $operation = LikedRestaurant::checkFavourited($id_user);
 
-        if($request->input('checkFavourited') == true){
-            return response()->json($favourited_restaurants);
+        if ($id_restaurant) {
+            $operation = LikedRestaurant::favouriteLogic($id_user, $id_restaurant);
         }
 
-
-        //Make these two in separate functions!!!!
-
-
-        $favourited_restaurant = LikedRestaurant::select('id_restaurant')->where('id_user', $id_user)->where('id_restaurant', $id_restaurant)->first();
-
-        if($favourited_restaurant){
-            LikedRestaurant::where('id_user', $id_user)->where('id_restaurant', $id_restaurant)->delete();
-        }else{
-            LikedRestaurant::create([
-                'id_user' => $id_user,
-                'id_restaurant' => $id_restaurant,
-            ]);
-        }
+        return $operation;
     }
-
 
 
 

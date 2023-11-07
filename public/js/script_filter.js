@@ -43,10 +43,7 @@ let showRestaurant = (element) => {
 
 let favouriteButton = document.querySelectorAll('#favourite');
 
-let counter = 0;
-
 let AJAXRequest = (button, restaurant_id) => {
-    counter++;
 
     $.ajax({
         type: "GET",
@@ -54,45 +51,21 @@ let AJAXRequest = (button, restaurant_id) => {
         headers: {
             'Content-Type' : 'application/json'
         },
+        success: function (response) {
+
+            if (response['status'] === 'favourited') {
+                button.firstChild.classList.replace('fa-regular', 'fa-solid');
+            } else if (response['status'] === 'unfavourited') {
+                button.firstChild.classList.replace('fa-solid', 'fa-regular');
+            }
+        }
     });
-
-    if (counter % 2 === 0) {
-        button.firstChild.classList.replace('fa-regular', 'fa-solid');
-    } else if (counter % 2 === 1) {
-        button.firstChild.classList.replace('fa-solid', 'fa-regular');
-    }
 }
-
-// let saveFavourited = () =>{
-//     const xhr = new XMLHttpRequest();
-//     xhr.open('GET', '/get-favourited?checkFavourited=true');
-//     xhr.setRequestHeader('Content-Type', 'application/json');
-//     xhr.onreadystatechange = function () {
-//         if (xhr.readyState === XMLHttpRequest.DONE) {
-//             if (xhr.status === 200) {
-//                 const result = JSON.parse(xhr.responseText);
-
-//                 for (let i = 0; i < result.length; i++) {
-//                     for (let y = 0; y < favouriteButton.length; y++) {
-//                         const element = favouriteButton[y];
-
-//                         console.log(element.parentElement.parentElement.children);
-                        
-//                         if(result[i]['id'] == element.parentElement.parentElement.children[1].value){
-//                             element.firstChild.classList.replace('fa-regular', 'fa-solid');
-//                         }
-//                     }
-//                 }
-//             } else {
-//                 console.error('Error:', xhr.statusText);
-//             }
-//         }
-//     };
 
 let saveFavourited = () =>{
     $.ajax({
         type: "GET",
-        url: "/get-favourited?checkFavourited=true",
+        url: "/get-favourited",
         headers: {
             'Content-Type' : 'application/json'
         },
@@ -100,8 +73,6 @@ let saveFavourited = () =>{
             for (let i = 0; i < response.length; i++) {
                 for (let y = 0; y < favouriteButton.length; y++) {
                     const element = favouriteButton[y];
-
-                    console.log(response[i]['id_restaurant'])
                     
                     if(response[i]['id_restaurant'] == element.parentElement.parentElement.children[1].value){
                         element.firstChild.classList.replace('fa-regular', 'fa-solid');

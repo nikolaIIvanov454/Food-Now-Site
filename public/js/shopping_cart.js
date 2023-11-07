@@ -83,5 +83,13 @@ shoppingCart.addEventListener("click", (event) => {
 
 listener();
 
+let icon = document.getElementById('icon');
+
+let form = document.getElementById('cart');
+
+icon.addEventListener('click', (element) =>{
+    form.submit();
+});
+
 
 // attachListener();

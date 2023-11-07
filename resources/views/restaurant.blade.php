@@ -42,7 +42,10 @@
                 @endauth
                 <li id="float-r">
                     <div class="logout">
-                        <i class="fas fa-shopping-cart" style="font-size: 2em; color: #fff;"><i class="fas fa-plus-circle" style="font-size: 0.5em; color: #f6673c; transform: translate(-80%, -100%);"></i></i>
+                        <div id="icon">
+                            <form action="{{ route('basket-page') }}" method="get" id='cart'></form>
+                            <i class="fas fa-shopping-cart" style="font-size: 2em; color: #fff;"><i class="fas fa-plus-circle" style="font-size: 0.5em; color: #f6673c; transform: translate(-80%, -100%);"></i></i>
+                        </div>
                         @if(session()->has('logged_username'))
                             <i class='fa-solid fa-circle-user' style='font-size: 3em; color: #fff;'></i><h1 style='color: #fff; width: min-content; margin-left: 5px; text-transform: capitalize;'>{{ session('logged_username') }}</h1>
                             <a href="{{ route('logout') }}">Излизане</a>
