@@ -41,7 +41,7 @@ Route::post('/login', [AuthenticationController::class, 'login'])->name('login_u
 
 Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');
 
-Route::get('/basket', [CartController::class, 'index'])->name('basket-page');
+Route::get('/basket', [CartController::class, 'start'])->name('basket-page');
 
 //MIDDLEWARE FOR PROTECTION
 
@@ -71,3 +71,5 @@ Route::get('/get-options', function (){
 })->name('get-restaurant-options');
 
 Route::post('/handle-review', [ReviewController::class, 'reviewOperations'])->name('submit-delete-review');
+
+Route::get('/add-product', [CartController::class, 'addItem'])->name('add-item');

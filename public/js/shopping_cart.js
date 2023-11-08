@@ -1,35 +1,29 @@
 let addButton = document.querySelectorAll(".add");
 
-let addProduct = (id, name, weight, price) =>{
-    let data = new FormData();
-    data.append('id_cart', id);
-    data.append('cart_name', name);
-    data.append('cart_weight', weight);
-    data.append('cart_price', price);
-    data.append('cart_quantity', 1);
-    data.append('action', "add");
-
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", "../scripts/HandleShoppingCart.php", true);
-    xhr.onreadystatechange = function() {
-    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-        let result = JSON.parse(xhr.responseText);
-        let cart = document.getElementById("cart");
-        cart.innerHTML = result;
-    }
-    };
-
-    xhr.send(data);
+let addProduct = (id) =>{
+    $.ajax({
+        type: "GET",
+        url: `/add-product?id=${id}&quantity=${1}`,
+        success: function (response) {
+            alert(response['message']);
+            // let result = JSON.parse(xhr.responseText);
+            // let cart = document.getElementById("cart");
+            // cart.innerHTML = result;
+        }
+    });
 }
+
+let counter = 0;
 
 addButton.forEach(element => {
     element.addEventListener("click", () => {
         let id_food = element.attributes[1].value;
-        let food_name = element.attributes[2].value;
-        let food_weight = element.attributes[3].value;
-        let food_price = element.attributes[4].value;
 
-        addProduct(id_food, food_name, food_weight, food_price);
+        addProduct(id_food);
+
+        counter++;
+
+        document.querySelector('.count-items').textContent = counter;
     });
 });
 

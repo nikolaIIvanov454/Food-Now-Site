@@ -13,9 +13,6 @@
     <link rel="shortcut icon" href="{{ asset('assets/icon.svg') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('css/home-style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
-    <script>
-        
-    </script>
     <title>FoodNow - Ресторант: @if(isset($loaded_restaurant)) {{ $loaded_restaurant->name }} @else {{ "Restaurant" }} @endif</title>
 </head>
 <body>
@@ -44,7 +41,8 @@
                     <div class="logout">
                         <div id="icon">
                             <form action="{{ route('basket-page') }}" method="get" id='cart'></form>
-                            <i class="fas fa-shopping-cart" style="font-size: 2em; color: #fff;"><i class="fas fa-plus-circle" style="font-size: 0.5em; color: #f6673c; transform: translate(-80%, -100%);"></i></i>
+                            <span class="count-items" style="font-size: 0.8em; padding: 5px 5px; background-color: rgba(246, 103, 48); border-radius: 16px; color: white; position: relative; top: -9px; right: 9px;">{{ session('items_count'); }}</span>
+                            <i class="fas fa-shopping-cart" style="font-size: 2em; color: #fff;"></i>
                         </div>
                         @if(session()->has('logged_username'))
                             <i class='fa-solid fa-circle-user' style='font-size: 3em; color: #fff;'></i><h1 style='color: #fff; width: min-content; margin-left: 5px; text-transform: capitalize;'>{{ session('logged_username') }}</h1>
@@ -88,7 +86,7 @@
             <div class='center-text'><h2>{{ $loaded_restaurant->price }}</h2></div></div></div><div class='line'></div>
             <div class='products'>
                 <h1>Меню:</h1>
-                <h2>Какво предлага ресторанта.</h2>
+                <h2>Какво предлага ресторантът.</h2>
                 <table>
                     <tr>
                         <th>Тип Храна:</th>
