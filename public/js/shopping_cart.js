@@ -1,29 +1,26 @@
 let addButton = document.querySelectorAll(".add");
 
-let addProduct = (id) =>{
+let addProduct = (id, token) =>{
     $.ajax({
-        type: "GET",
-        url: `/add-product?id=${id}&quantity=${1}`,
+        type: "POST",
+        url: `/add-product`,
+        data: JSON.stringify({
+            'id' : id, _token : token
+        }),
+        contentType: "application/json",
         success: function (response) {
             alert(response['message']);
-            // let result = JSON.parse(xhr.responseText);
-            // let cart = document.getElementById("cart");
-            // cart.innerHTML = result;
+            document.querySelector('.count-items').textContent = response['items_count'];
         }
     });
 }
 
-let counter = 0;
 
 addButton.forEach(element => {
     element.addEventListener("click", () => {
         let id_food = element.attributes[1].value;
 
-        addProduct(id_food);
-
-        counter++;
-
-        document.querySelector('.count-items').textContent = counter;
+        addProduct(id_food, document.querySelector('[name="_token"]').value);
     });
 });
 

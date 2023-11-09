@@ -20,6 +20,50 @@
             width: 90%;
             margin: auto;
         }
+
+        #item{
+            text-align: center;
+            font-size: 25px;
+        }
+
+        #item table, th, td{
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+
+        #item th:nth-child(odd), #item tfoot tr th:last-child{
+            background-color: rgba(246, 103, 48, 0.7);
+        }
+
+        #item td:nth-child(odd){
+            background-color: rgba(246, 103, 48, 0.5);
+        }
+
+        #item td:last-child{
+            background-color: white;
+        }
+
+        #item table th, td{
+            padding: 15px;
+        }
+
+        i[class*=fa-xmark]{
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            color: #ff1f1f;
+            padding: 18px;
+            border: 2px solid red;
+            background-color: white;
+            border-radius: 16px;
+            transition: all 200ms ease-in-out;
+        }
+
+        i[class*=fa-xmark]:hover{
+            border-color: white;
+            background-color: red;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -48,7 +92,7 @@
                     <div class="logout">
                         <div id="icon">
                             <i class="fas fa-shopping-cart" style="font-size: 2em; color: #fff;"></i>
-                            <span class="count-items" style="font-size: 0.8em; padding: 5px 5px; background-color: rgba(246, 103, 48); border-radius: 16px; color: white; position: relative; top: -20px; right: 9px;">{{ $basket_items->Count() }}</span>
+                            <span class="count-items" style="font-size: 0.8em; padding: 5px 5px; background-color: rgb(246, 103, 48); border-radius: 16px; color: white; position: relative; top: -20px; right: 9px;">{{ $basket_items->Count() }}</span>
                         </div>
                         @if(session()->has('logged_username'))
                             <i class='fa-solid fa-circle-user' style='font-size: 3em; color: #fff;'></i><h1 style='color: #fff; width: min-content; margin-left: 5px; text-transform: capitalize;'>{{ session('logged_username') }}</h1>
@@ -63,14 +107,49 @@
 
     <div id="container">
     @if($basket_items->Count() > 0)
-        @foreach($basket_items as $item)
-        <div id="item">
-            <h1>{{ $item->name }}</h1>
-            <h1>{{ $item->price }}</h1>
-            <h1>{{ $item->qty }}</h1>
-            <h1>{{ $item->options->weight }}</h1>
-        </div>
-        @endforeach
+    <div id="item">
+        <table>
+                <thead>
+                    <tr>
+                        <th>Вид храна:</th>
+                        <th>Цена:</th>
+                        <th>Брой:</th>
+                        <th>Грамаж:</th>
+                        <th>Изтриване:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach($basket_items as $item)
+                        <tr>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->price }}</td>
+                            <td>{{ $item->qty }}</td>
+                            <td>{{ $item->options->weight }}</td>
+                            <td style="padding: 0;">
+                                <form action="{{ route('remove-item') }}" id="remove" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{ $item->rowId }}">
+                                    <i class="fa-solid fa-xmark" onclick="document.getElementById('remove').submit()"></i>
+                                </form>
+                            </td>
+                        </tr>
+                @endforeach
+                </tbody>
+
+                @php
+                $totalPrice = 0;
+                foreach($basket_items as $item) {
+                    $totalPrice += $item->price * $item->qty;
+                }   
+                @endphp
+
+                <tfoot>
+                    <tr>
+                        <th colspan=5>Обща цена: {{ $totalPrice }}</th>
+                    </tr>
+                </tfoot>
+        </table>
+    </div>
     @else
         <h1>Нямате продукти в количката!</h1>
     @endif

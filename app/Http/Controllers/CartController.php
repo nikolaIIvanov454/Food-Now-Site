@@ -13,8 +13,6 @@ class CartController extends Controller
     {
         $items = Cart::instance('basket')->content();
 
-        session()->put('items_count', $items->Count());
-
         //complete the cart logic and representation in the site!!!!
 
         return view('basket')->with('basket_items', $items);
@@ -26,7 +24,14 @@ class CartController extends Controller
 
         Cart::instance('basket')->add($product->id_food, $product->name, 1, str_replace('лв.', '', $product->price), ['weight' => $product->weight])->associate('App\Models\Food');
 
-        return response()->json(['message' => 'Успешно добавяне!']);
+        return response()->json(['message' => 'Успешно добавяне!', 'items_count' => Cart::instance('basket')->Count()]);
+    } 
+
+    protected function removeItem(Request $request)
+    {   
+        Cart::instance('basket')->remove($request->input('id'));
+
+        return back();
     } 
 }
 

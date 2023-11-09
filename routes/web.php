@@ -72,4 +72,7 @@ Route::get('/get-options', function (){
 
 Route::post('/handle-review', [ReviewController::class, 'reviewOperations'])->name('submit-delete-review');
 
-Route::get('/add-product', [CartController::class, 'addItem'])->name('add-item');
+
+Route::post('/add-product', [CartController::class, 'addItem'])->name('add-item');
+
+Route::post('/remove-product', [CartController::class, 'removeItem'])->name('remove-item');

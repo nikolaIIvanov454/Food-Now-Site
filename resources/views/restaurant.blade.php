@@ -39,9 +39,12 @@
                 @endauth
                 <li id="float-r">
                     <div class="logout">
+                        @php
+                            $items_number = Cart::instance('basket')->content()->Count()
+                        @endphp
                         <div id="icon">
                             <form action="{{ route('basket-page') }}" method="get" id='cart'></form>
-                            <span class="count-items" style="font-size: 0.8em; padding: 5px 5px; background-color: rgba(246, 103, 48); border-radius: 16px; color: white; position: relative; top: -9px; right: 9px;">{{ session('items_count'); }}</span>
+                            <span class="count-items" style="font-size: 0.8em; padding: 5px 5px; background-color: rgb(246, 103, 48); border-radius: 16px; color: white; position: relative; top: -9px; right: 9px;">{{ $items_number }}</span>
                             <i class="fas fa-shopping-cart" style="font-size: 2em; color: #fff;"></i>
                         </div>
                         @if(session()->has('logged_username'))

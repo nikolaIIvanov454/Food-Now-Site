@@ -9,6 +9,8 @@ use App\Models\Food;
 use App\Models\LikedRestaurant;
 use App\Models\Review;
 
+use Cart;
+
 class RestaurantController extends Controller
 {
     protected function loadRestaurants(Request $request)
@@ -17,7 +19,7 @@ class RestaurantController extends Controller
         
         $restaurants_filtered = Restaurant::all()->where('region', $municipality);
 
-        return back()->with("restaurants", $restaurants_filtered);
+        return back()->with('restaurants', $restaurants_filtered);
     }
 
     protected function getFavourited(Request $request)
