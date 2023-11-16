@@ -43,6 +43,10 @@ Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout
 
 Route::get('/basket', [CartController::class, 'start'])->name('basket-page');
 
+Route::post('/checkout', [CartController::class, 'completeOrder'])->name('complete-order');
+
+Route::match(['get', 'post'], '/reset-password', [AuthenticationController::class, 'resetPassword'])->name('password_reset');
+
 //MIDDLEWARE FOR PROTECTION
 
 Route::middleware(['auth'])->group(function () {

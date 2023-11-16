@@ -6,51 +6,95 @@
     <title>Количка</title>
     <script src="https://kit.fontawesome.com/f2264ef78f.js" crossorigin="anonymous" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js" defer></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{{ asset('js/script_menu.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/checkout.css') }}">
     <style>
         #container{
             display: flex;
-            justify-content: center;
-            align-items: center;
             flex-direction: column;
             border: 2px solid black;
             border-radius: 16px;
             width: 90%;
             margin: auto;
+            padding: 10px;
+        }
+
+        #left-content{
+            display: flex;
+            align-items: center;
+        }
+
+        #name{
+            display: flex;
+            justify-content: center;
+        }
+
+        #complete-order{
+            display: none;
+        }
+
+        #complete-order input{
+            background-color: #f6673c;
+            color: white;
+            border-radius: 1em;
+            padding: 5px;
+            border-color: #333;
+            transition: color, background-color 0.5s ease;
+            cursor: pointer;
+        }
+
+        #complete-order input:hover{
+            background-color: white;
+            color: #333;
+        }
+
+        #name h1{
+            width: fit-content; 
+            font-weight: bolder; 
+            border-bottom: 2px groove #333; 
+            margin-bottom: 20px;
         }
 
         #item{
-            text-align: center;
-            font-size: 25px;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 0 10px 10px 10px;
+            border-bottom: 1px solid #ccc;
         }
 
-        #item table, th, td{
-            border: 2px solid black;
-            border-collapse: collapse;
+        #total{
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
         }
 
-        #item th:nth-child(odd), #item tfoot tr th:last-child{
-            background-color: rgba(246, 103, 48, 0.7);
+        #total h1{
+            font-size: 2rem;
         }
 
-        #item td:nth-child(odd){
-            background-color: rgba(246, 103, 48, 0.5);
+        #buttons-container{
+            display: flex; 
+            justify-content: flex-end; 
+            align-items: center; 
+            flex: 1;
+            width: 25%;
         }
 
-        #item td:last-child{
-            background-color: white;
-        }
-
-        #item table th, td{
-            padding: 15px;
+        #complete-order{
+            display: flex;
+            justify-content: center;
         }
 
         i[class*=fa-xmark]{
             display: flex; 
             justify-content: center; 
             align-items: center; 
+            width: 200px;
             color: #ff1f1f;
             padding: 18px;
             border: 2px solid red;
@@ -63,8 +107,52 @@
             border-color: white;
             background-color: red;
             color: white;
+            cursor: pointer;
+        }
+
+        @media (max-width: 1035px) {
+            #container {
+                width: 100%; 
+            }
+
+            #item {
+                flex-direction: column; 
+                align-items: center;
+            }
+
+            #buttons-container {
+                width: 100%; 
+                justify-content: center; 
+                margin-top: 10px; 
+            }
         }
     </style>
+    <script>
+        let checkout = (event) =>{
+            let form = document.getElementById('checkout-form');
+            event.preventDefault();
+
+            let formData = new FormData(form);
+
+            $.ajax({
+                type: "POST",
+                url: "/checkout",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    swal("Успешно завършване на поръчката", "", "success");
+
+                    setTimeout(function() {
+                        form.submit();
+                    }, 2500); 
+                },
+                error: function (message) {
+                    swal("Възникна проблем", "", "error");
+                }
+            });
+        }
+    </script>
 </head>
 <body>
 <header>
@@ -106,53 +194,54 @@
     </header> 
 
     <div id="container">
+    <div id="name">
+        <h1>Моята количка</h1>
+    </div>
     @if($basket_items->Count() > 0)
-    <div id="item">
-        <table>
-                <thead>
-                    <tr>
-                        <th>Вид храна:</th>
-                        <th>Цена:</th>
-                        <th>Брой:</th>
-                        <th>Грамаж:</th>
-                        <th>Изтриване:</th>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach($basket_items as $item)
-                        <tr>
-                            <td>{{ $item->name }}</td>
-                            <td>{{ $item->price }}</td>
-                            <td>{{ $item->qty }}</td>
-                            <td>{{ $item->options->weight }}</td>
-                            <td style="padding: 0;">
-                                <form action="{{ route('remove-item') }}" id="remove" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="id" value="{{ $item->rowId }}">
-                                    <i class="fa-solid fa-xmark" onclick="document.getElementById('remove').submit()"></i>
-                                </form>
-                            </td>
-                        </tr>
-                @endforeach
-                </tbody>
+        @foreach($basket_items as $item)
+        <div id="item">
+                <div id="left-content">
+                    <h1>{{ $item->name }}</h1>
+                </div>
+                <div id="right-content">
+                    <h3>Грамаж: {{ $item->options->weight }}</h3>
+                    <h3>Количество: {{ $item->qty }}</h3>
+                    <strong>Цена: {{ $item->price }}</strong>
+                </div>
+                <div id="buttons-container">
+                    <form action="{{ route('remove-item') }}" id="remove" method="POST">
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $item->rowId }}">
+                        <i class="fa-solid fa-xmark" onclick="document.getElementById('remove').submit()"></i>
+                    </form>
+                </div>
+            </div>
 
-                @php
+            @php
                 $totalPrice = 0;
                 foreach($basket_items as $item) {
                     $totalPrice += $item->price * $item->qty;
                 }   
-                @endphp
+            @endphp
+        @endforeach
 
-                <tfoot>
-                    <tr>
-                        <th colspan=5>Обща цена: {{ $totalPrice }}</th>
-                    </tr>
-                </tfoot>
-        </table>
-    </div>
+        <div id="total">
+            <h1>Обща Цена: {{ $totalPrice }}</h1>
+        </div>
+
+        <div id="complete-order">
+            <form id="checkout-form">
+                @csrf
+                <input type="hidden" name="items-total-price" value="{{ $totalPrice }}">
+                <input type="hidden" name="items" value="{{ $basket_items }}">
+                <input type="submit" onclick="checkout(event)" style="display: flex; align-items: center;" value="Завърши поръчката">
+            </form>
+        </div>
     @else
-        <h1>Нямате продукти в количката!</h1>
+        <h1 style="text-align: center;">Нямате продукти в количката!</h1>
     @endif
     </div>
+
+    @include('components.footer')
 </body>
 </html>

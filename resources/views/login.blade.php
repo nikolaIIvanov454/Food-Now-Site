@@ -50,19 +50,10 @@
 			<input type="password" class="margin-top-sm margin-bot-sm inputs" name="password" id="pass" required placeholder="Парола">
 			<input type="submit" class="border-radius margin-top-sm submit" value="Влизане">
 			<a href="{{ url('/register') }}" class="margin-top-sm">Регистрация</a>
-			<a href="password_reset.php" class="margin-top-sm">Забравена парола?</a>
+			<a href="{{ route('password_reset') }}" class="margin-top-sm">Забравена парола?</a>
 		</form>
 	</div>
 
-	<footer>
-        <div class="footer" style="position: relative;">
-            <h3><i class="fa-solid fa-copyright"></i> FoodNow.Inc. All Rights Reserved.</h3>
-            <div class="icons">
-                <i class="fa-brands fa-facebook"></i>
-                <i class="fa-brands fa-instagram"></i>
-                <i class="fa-brands fa-twitter"></i>
-            </div>
-        </div>
-    </footer>
+	@include('components.footer', ['dynamic_content' => 'position: relative;'])
 </body>
 </html>

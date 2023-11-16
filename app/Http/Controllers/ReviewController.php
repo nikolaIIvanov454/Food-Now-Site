@@ -8,9 +8,11 @@ use App\Models\Review;
 class ReviewController extends Controller{
     protected function reviewOperations(Request $request){
 
-        $already_reviwed = Review::all()->where("username", session('logged_username'))->first();
+        if($request->input('id_restaurant')){
+            $already_reviwed = Review::all()->where("username", session('logged_username'))->where('id_restaurant',  $request->input('id_restaurant'))->first();
+        }
 
-        if(!isset($already_reviwed)){
+        if(!isset($already_reviwed) && $request->input('id_restaurant')){
             Review::create([
                 'username' => session('logged_username'),
                 'stars' => $request->input('rating'),

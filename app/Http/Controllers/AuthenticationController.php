@@ -90,6 +90,11 @@ class AuthenticationController extends Controller
         
         return redirect()->route('login_user');
     }
+
+    protected function resetPassword(Request $request){
+        return view('pass-reset');
+        //Mail::to(auth()->user()->email)->send(new CompleteOrderMailable());
+    }
 }
 
 ?>

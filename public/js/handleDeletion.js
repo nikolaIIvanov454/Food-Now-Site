@@ -11,9 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
         contentType: "application/json",
         success: function (response) {
 
-                let authorized_user = response["authorized_user"];
-                let reviews_div = document.querySelector(".reviews-div");
-                let review_divs = reviews_div.querySelectorAll("[class^='review-']");
+            let authorized_user = response["authorized_user"];
+            let reviews_div = document.querySelector(".reviews-div");
+            let review_divs = reviews_div.querySelectorAll("[class^='review-']");
 
             review_divs.forEach((review_divs) => {
                 let authorized_name = review_divs.querySelector("p").innerHTML;

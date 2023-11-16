@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url("navbar.css");
+
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+
+body,
+html {
+    height: 100%;
+}
+
+body {
+    background-image: url("../restaurant_photos/bgs/login-bg.png");
+    background-size: 25em;
+    background-position: 15em;
+    background-repeat: repeat;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    flex-direction: column;
+}
+
+.container {
+    border: 5px solid #f6673c;
+    border-radius: 10px;
+    padding: 5%;
+    background-color: #e6e6e6;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+form input[type="email"],
+input[type="submit"], input[type="password"] {
+    margin: 12px 0 5px 0;
+}
+
+form input[type="email"], input[type="password"]{
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 2px solid black;
+    transition: border-bottom 0.4s;
+    width: 200px;
+}
+
+form input[type="email"]:focus , input[type="password"]:focus{
+    border-bottom: 2px solid #f6673c;
+}
+
+.button {
+    border: 2px solid #f6673c;
+    color: white;
+    padding: 12px 50px 12px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0.8;
+    box-shadow: 5px 5px 5px #f6673c;
+    background-image: url('../restaurant_photos/icon/send.png');
+    background-color: #f6673c;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+    transition: opacity 1s ease;
+    overflow: hidden;
+}
+
+.button:hover{
+    opacity: 1;
+}
+
+.button-change{
+    border: 2px solid #f6673c;
+    color: white;
+    padding: 12px 50px 12px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0.8;
+    box-shadow: 5px 5px 5px #f6673c;
+    background-image: url("../restaurant_photos/icon/arrow.png");
+    background-color: #f6673c;
+    background-repeat: no-repeat;
+    background-position: right;
+    transition: opacity 1s ease;
+    background-size: 15%;
+    overflow: hidden;
+}
+
+.button-change:hover{
+    opacity: 1;
+}
+
+.logout h1{
+    margin-right: 10px;
+}

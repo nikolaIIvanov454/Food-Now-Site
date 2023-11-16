@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+
+use App\Mail\CompleteOrderMailable;
+
 use App\Models\Food;
 
 use Cart;
@@ -12,8 +16,6 @@ class CartController extends Controller
     protected function start()
     {
         $items = Cart::instance('basket')->content();
-
-        //complete the cart logic and representation in the site!!!!
 
         return view('basket')->with('basket_items', $items);
     }
@@ -33,6 +35,18 @@ class CartController extends Controller
 
         return back();
     } 
+
+    protected function completeOrder(Request $request){
+
+        $data = [
+            'total_price' => $request->input('items-total-price:'),
+            'items' =>  json_decode($request->input('items'))
+        ];
+
+        Mail::to(auth()->user()->email)->send(new CompleteOrderMailable());
+
+        Cart::instance('basket')->destroy();
+    }
 }
 
 ?>

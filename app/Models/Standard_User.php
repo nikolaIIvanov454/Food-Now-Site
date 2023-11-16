@@ -7,10 +7,11 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use database\factories\UserFactory;
 
-class User extends Model implements Authenticatable
+class Standard_User extends Model implements Authenticatable, User
 {
-    use AuthenticatableTrait, Notifiable, HasFactory;
+    use AuthenticatableTrait, Notifiable, HasFactory, UserFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -50,6 +51,6 @@ class User extends Model implements Authenticatable
 
     public function isAdmin()
     {
-        return $this->role === 'admin';
+        return false;
     }
 }
