@@ -11,6 +11,7 @@ body {
 
 .flex {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
 }
 
@@ -24,6 +25,7 @@ body {
     flex-direction: column;
     box-sizing: border-box;
     padding: 5em;
+    gap: 20px;
     border-radius: 2%;
     border: 5px solid #f6673c;
     background-color: #e6e6e6;
@@ -44,14 +46,6 @@ body {
 
 .center-text {
     text-align: center;
-}
-
-.margin-top-sm {
-    margin-top: 1em;
-}
-
-.margin-bot-sm {
-    margin-bottom: 1em;
 }
 
 .inputs {
@@ -98,12 +92,15 @@ body {
     font-weight: 800;
 }
 
-.errors {
-    width: 320px;
-    margin: 0 auto 1em auto;
+#errors {
+    background-color: #e6e6e6; 
+    padding: 20px; 
+    border-radius: 10px; 
+    margin-bottom: 20px;
+    width: 600px; 
 }
 
-.errors h1 {
+#errors h1 {
     margin: 0;
     padding: 0;
     color: red;

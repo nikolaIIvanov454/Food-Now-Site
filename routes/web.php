@@ -45,7 +45,9 @@ Route::get('/basket', [CartController::class, 'start'])->name('basket-page');
 
 Route::post('/checkout', [CartController::class, 'completeOrder'])->name('complete-order');
 
-Route::match(['get', 'post'], '/reset-password', [AuthenticationController::class, 'resetPassword'])->name('password_reset');
+Route::match(['get', 'post'], '/send-reset-password', [AuthenticationController::class, 'sendRequest'])->name('send_password_reset');
+
+Route::match(['get', 'post'], '/reset-password', [AuthenticationController::class, 'resetPassword'])->name('password_change');
 
 //MIDDLEWARE FOR PROTECTION
 

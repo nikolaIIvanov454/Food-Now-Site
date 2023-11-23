@@ -42,15 +42,22 @@
         	</ul>
 		</div>
     </nav>
+
 	<div class="flex center-element v-height center-text">
+		@error('error')
+			<div id="errors">
+				<h1>{{ $message }}</h1>
+			</div>
+		@enderror
+
 		<form action="{{ route('login_user') }}" method="post" class="form-style">
             @csrf
 			<h1 class="no-margin-top">Влизане в сайта:</h1>
-			<input type="text" class="margin-top-sm margin-bot-sm inputs" name="info" id="user" required placeholder="Потребителско име / E-Mail">
-			<input type="password" class="margin-top-sm margin-bot-sm inputs" name="password" id="pass" required placeholder="Парола">
-			<input type="submit" class="border-radius margin-top-sm submit" value="Влизане">
-			<a href="{{ url('/register') }}" class="margin-top-sm">Регистрация</a>
-			<a href="{{ route('password_reset') }}" class="margin-top-sm">Забравена парола?</a>
+			<input type="text" class="inputs" name="info" id="user" placeholder="Потребителско име / E-Mail" required>
+			<input type="password" class="inputs" name="password" id="pass" placeholder="Парола" required>
+			<input type="submit" class="border-radius submit" value="Влизане">
+			<a href="{{ url('/register') }}">Регистрация</a>
+			<a href="{{ route('send_password_reset') }}">Забравена парола?</a>
 		</form>
 	</div>
 

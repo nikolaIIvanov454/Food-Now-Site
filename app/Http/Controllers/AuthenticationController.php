@@ -7,8 +7,15 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 use App\Models\User;
+
+use App\Rules\EmailRule;
+use App\Rules\PasswordRule;
+
+use App\Mail\PasswordResetMailable;
 
 class AuthenticationController extends Controller
 {
@@ -24,23 +31,20 @@ class AuthenticationController extends Controller
 
     protected function login(Request $request)
     {   
-
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'info' => 'required',
             'password' => 'required'
         ]);
 
-        if (filter_var($request->info, FILTER_VALIDATE_EMAIL)) {
-            $infoField = 'email';
+        $inputData = $validator->validated(); 
+
+        if (filter_var($inputData['info'], FILTER_VALIDATE_EMAIL)) {
+            $credentials['email'] = $inputData['info'];
+        } else {
+            $credentials['username'] = $inputData['info'];
         }
 
-        $info = $request->input('info');
-
-        $credentials = [
-            filter_var($request->info, FILTER_VALIDATE_EMAIL) ? 'email' : 'username' => $request->info, 'password' => $request->password,
-        ];
-
-        $credentials['password'] = $request->password;    
+        $credentials['password'] = $inputData['password']; 
 
         if (Auth::attempt($credentials)) 
         {
@@ -52,36 +56,41 @@ class AuthenticationController extends Controller
             return redirect()->intended(route('home'));
         }
 
-        return redirect()->route('login_user')->with('error', 'Invalid credentials');
+        $validator->errors()->add('error', 'Невалидни потребителски данни!');
+
+        return back()->withErrors($validator->errors())->withInput();
     }
 
-    protected function registerUser(Request $request){
+    protected function registerUser(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'username' => 'required',
+            'email' => ['required', new EmailRule(), 'unique:users'],
+            'password' => ['required', new PasswordRule()],
+            'confirm-password' => ['required', 'same:password']
+        ]); 
 
-            $request->validate([
-                'username' => 'required',
-                'email' => 'required | email | unique:users',
-                'password' => 'required',
-                'confirm-password' => 'required | same:password'
-            ]);
-
-            $username = $request->input('username');
-            $email = $request->input('email');
-            $password = $request->input('password');
-            $confirm_password = $request->input('confirm-password');
-
-            if($password == $confirm_password){
-                $hashedPassword = Hash::make($password);
-
-                User::create([
-                    'username' => $username,
-                    'email' => $email,
-                    'password' => $hashedPassword,
-                ]);
-
-                return redirect()->intended(route('login_user'));
+        if($validator->fails()){
+            if($request->input('password') != $request->input('confirm-password')){
+                $validator->errors()->add('confirm-password', 'Паролите не съвпадат');
             }
+            
+            return back()->withErrors($validator)->withInput();
+        }
 
-            return back()->with('error', "Невалидни данни!");
+        $validatedData = $validator->validated();   
+
+        $hashedPassword = Hash::make($validatedData['password']);
+
+        $user = User::create([
+            'username' => $validatedData['username'],
+            'email' => $validatedData['email'],
+            'password' => $hashedPassword,
+        ]);
+
+        if($user){
+            return redirect()->intended(route('login_user'));
+        }
     }
 
     protected function logout(Request $request){
@@ -91,9 +100,47 @@ class AuthenticationController extends Controller
         return redirect()->route('login_user');
     }
 
+    protected function sendRequest(Request $request){
+        if($request->method() == 'GET'){
+            return view('pass-reset'); 
+        }
+
+        $validation = $request->validate([
+            'email' => 'required | email'
+        ]);
+
+        $email = $validation['email'];
+
+        $user = User::select('email')->where('email', $email)->first();
+
+        if($user != null && $user->email == $email){
+            Mail::to($email)->send(new PasswordResetMailable($email));
+
+            return back()->with('message', "Успешно изпращане на заявката!");
+        }
+
+        return back()->with('message', "Невалиден имейл!");
+    }
+
     protected function resetPassword(Request $request){
-        return view('pass-reset');
-        //Mail::to(auth()->user()->email)->send(new CompleteOrderMailable());
+        if($request->method() == 'GET'){
+            return view('pass-change'); 
+        }
+
+        $validation = $request->validate([
+            'email' => 'required | email',
+            'pass' => ['required', 'min: 8', 'regex: /\A(?>(?<upper>[A-Z])|(?<lower>[a-z])|(?<digit>[0-9])|.){8,}?(?(upper)(?(lower)(?(digit)|(?!))|(?!))|(?!))$/'],
+            'confirm' => 'same:pass'
+        ]);
+
+        $new_password = Hash::make($validation['pass']);
+
+        $user = User::where('email', $validation['email'])->first();
+
+        $user->password = $new_password;
+        $user->save();
+
+        return back()->with('message', 'Успешно променяне на паролата!');
     }
 }
 

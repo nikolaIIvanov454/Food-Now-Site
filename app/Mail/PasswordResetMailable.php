@@ -13,12 +13,14 @@ class PasswordResetMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
+    private $email;
+
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($email)
     {
-        //
+        $this->email = $email;
     }
 
     /**
@@ -38,7 +40,7 @@ class PasswordResetMailable extends Mailable
     {
         return new Content(
             view: 'mail_components.template-password-reset',
-            with: ['token' => md5(rand()), 'name' => session('logged_username'), 'email' => auth()->user()->email],
+            with: ['token' => md5(rand()), 'name' => session('logged_username'), 'email' => $this->email],
         );
     }
 

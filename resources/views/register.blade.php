@@ -48,25 +48,23 @@
     </nav>
 
 	<div class="flex center-element v-height center-text">
+        @if($errors->has('email') || $errors->has('password') || $errors->has('confirm-password'))
+            <div id="errors">
+                <h1>{{ $errors->first('email') }}</h1>
+                <h1>{{ $errors->first('password') }}</h1>
+                <h1>{{ $errors->first('confirm-password') }}</h1>
+            </div>
+        @endif
+
         <form action="{{ route('register_user') }}" method="post" class="form-style">
             @csrf
-            <div class="errors">
-                <?php 
-                    // if(isset($_SESSION['errors'])){ 
-                    //     foreach($_SESSION['errors'] as $value){
-                    //         echo "<h1 class='break-words'>" . $value . "</h1>"; 
-                    //     } 
-                    // } 
-                    // unset($_SESSION['errors']); 
-                ?>
-            </div>
-            <h1 class="no-margin-top break-words">Форма за Регистрация</h1>
-            <input type="text" class="margin-top-sm margin-bot-sm inputs" name="username" id="user" required placeholder="Потребителско име">
-            <input type="email" class="margin-top-sm margin-bot-sm inputs" name="email" id="mail" required placeholder="E-mail">
-            <input type="password" class="margin-top-sm margin-bot-sm inputs" name="password" id="pass" required placeholder="Парола">
-            <input type="password" class="margin-top-sm margin-bot-sm inputs" name="confirm-password" id="confirm"  required placeholder="Повторете паролата">
-            <input type="submit" class="border-radius margin-top-sm submit" value="Регистрация">
-            <a href="{{ url('/login') }}" class="margin-top-sm">Вече имате регистрация?</a>
+            <h1 class="no-margin-top break-words">Регистрация в сайта</h1>
+            <input type="text" class="inputs" name="username" id="user" placeholder="Потребителско име" required>
+            <input type="email" class="inputs" name="email" id="mail" placeholder="E-mail" required>
+            <input type="password" class="inputs" name="password" id="pass" placeholder="Парола" required>
+            <input type="password" class="inputs" name="confirm-password" id="confirm"  placeholder="Повторете паролата" required>
+            <input type="submit" class="border-radius submit" value="Регистрация">
+            <a href="{{ url('/login') }}">Вече имате регистрация?</a>
         </form>
     </div>
 

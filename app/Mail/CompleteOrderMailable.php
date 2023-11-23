@@ -25,7 +25,7 @@ class CompleteOrderMailable extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('reset_password@foodnow.com', 'Nick Ivanov'),
+            from: new Address('complete_order@foodnow.com', 'Nick Ivanov'),
             subject: 'Успрешно завършване на поръчката',
         );
     }
@@ -36,7 +36,7 @@ class CompleteOrderMailable extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail_componenets.template-checkout',
+            view: 'mail_components.template-checkout',
             with: ['name' => session('logged_username')],
         );
     }

@@ -48,18 +48,12 @@
 
     <div class="form">
         <div class="container">
-            <?php
-                if(isset($_SESSION['error'])){
-                    echo "<h1>" . $_SESSION['error'] . "</h1>";
-                }
-                unset($_SESSION['error']);
-                if(isset($_SESSION['message'])){
-                    echo "<h1>" . $_SESSION['message'] . "</h1>";
-                }
-                unset($_SESSION['message']);
-            ?>
+            @if(session('message'))
+                <h1>{{ session('message') }}</h1>
+            @endif
             <h1>Променяне на паролата</h1>
-            <form action="password_reset.php" method="post">
+            <form action="{{ route('send_password_reset') }}" method="post">
+                @csrf
                 <label for="email">Въведете имейл за въстановяване на паролата:</label>
                 <input type="email" name="email" id="email" required>
                 <input type="submit" class="button" value="Изпращане на линк!">
