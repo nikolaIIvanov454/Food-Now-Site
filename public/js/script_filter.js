@@ -28,7 +28,6 @@ $.ajax({
     }
 });
 
-
 //THIS IS FOR GOING TO THE CLICKED RESTAURANT
 
 
