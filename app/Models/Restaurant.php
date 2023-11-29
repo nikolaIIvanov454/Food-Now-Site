@@ -20,6 +20,15 @@ class Restaurant extends Model
         'price',
         'region',
     ];
+
+
+    public static function getRestaurantRegions(){
+        return static::pluck('region');
+    }
+
+    public static function getRestaurantsAndImagePath(){
+        return static::pluck('name', 'image_path');
+    }
 }
 
 ?>

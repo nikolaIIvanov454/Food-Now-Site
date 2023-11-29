@@ -176,6 +176,13 @@ h2,
     height: fit-content;
 }
 
+#price-div{
+    width: fit-content;
+    margin: 10px auto auto auto; 
+    border: 2px solid black;
+    border-radius: 16px;
+}
+
 .container div p {
     width: 40em;
     margin-bottom: 10px;

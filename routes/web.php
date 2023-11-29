@@ -10,6 +10,7 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\AdminPageController;
 
 use App\Http\Middleware\AdminAuthenticate;
 
@@ -55,6 +56,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home', function (){ return view('home'); })->name('home');
 
     Route::get('/admin', function (){ return view('admin'); })->middleware('admin.authentication')->name('admin_page');
+
+    Route::post('/add-restaurant', [AdminPageController::class, 'addRestaurant'])->middleware('admin.authentication')->name('add_restaurant');
+
+    Route::post('/remove-restaurant', [AdminPageController::class, 'removeRestaurant'])->middleware('admin.authentication')->name('remove_restaurant');
+
+    Route::post('/remove-user', [AdminPageController::class, 'removeUser'])->middleware('admin.authentication')->name('remove_user');
 });
 
 

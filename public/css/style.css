@@ -92,18 +92,9 @@ body {
     font-weight: 800;
 }
 
-#errors {
-    background-color: #e6e6e6; 
-    padding: 20px; 
-    border-radius: 10px; 
-    margin-bottom: 20px;
-    width: 600px; 
-}
-
-#errors h1 {
-    margin: 0;
-    padding: 0;
+#error{
     color: red;
+    font-size: 0.8em;
 }
 
 .break-words {

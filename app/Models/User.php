@@ -52,4 +52,9 @@ class User extends Model implements Authenticatable
     {
         return $this->role === 'admin';
     }
+
+    protected static function getUserNames()
+    {
+        return static::pluck('username');
+    }
 }

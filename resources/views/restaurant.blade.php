@@ -51,28 +51,6 @@
                             <i class='fa-solid fa-circle-user' style='font-size: 3em; color: #fff;'></i><h1 style='color: #fff; width: min-content; margin-left: 5px; text-transform: capitalize;'>{{ session('logged_username') }}</h1>
                             <a href="{{ route('logout') }}">Излизане</a>
                         @endif
-                        <div id="cart">
-                        <?php
-                            // $outputCheckout = "";
-                            // $total = 0;
-
-                            // if(!empty($_SESSION['shopping_cart'])){
-                            //     $outputCheckout .= "<table><thead><tr><td>Продукт:</td><td>Грамаж:</td><td>Цена:</td><td>Количество:</td><td><i class='fa-solid fa-xmark' style='color: red; font-size: 3em;'></i></td></tr></thead>";
-
-                            //     foreach($_SESSION['shopping_cart'] as $key => $value){
-                            //         $outputCheckout .= "<tr><td>" . $value['p_name'] . "</td><td>" . $value['p_weight'] . "</td><td>" . (doubleval($value['p_price']) * doubleval($value['p_quantity'])) . "</td><td>" . $value['p_quantity'] . "</td><td><button class='remove' data-remove-id='" . $value['p_id'] . "' data-remove-name='" . $value['p_name'] . "'>Изтрии</button></td></tr>";
-
-                            //         $total = $total + (doubleval($value['p_price']) * doubleval($value['p_quantity']));
-                            //     }
-
-                            //     $outputCheckout .= "</table>";
-                            //     $outputCheckout .= "<div style='text-align: center;' id='total'><b>Total: " . $total . "</b></div>";
-                            //     $outputCheckout .= "<form action='../checkout.php' method='post'><input type='hidden' name='total' value=" . $total . "><button id='checkout-button'>Завършване на поръчката</button></form>";
-                            // }
-
-                            // echo $outputCheckout;
-                        ?>
-                        </div>
                     </div>
                 </li>
             </ul>
@@ -86,7 +64,7 @@
             <div class='left-div'><div class='center-text'><h1>{{ $loaded_restaurant->name }}</h1></div>
             <div class='image-div'><img src="{{ $loaded_restaurant->image_path }}"></div></div>
             <div class='right-div'><div class='center-text desc-clicked'><p>{{ $loaded_restaurant->description }}</p></div>
-            <div class='center-text'><h2>{{ $loaded_restaurant->price }}</h2></div></div></div><div class='line'></div>
+            <div id='price-div'><h2>{{ $loaded_restaurant->price }}</h2></div></div></div><div class='line'></div>
             <div class='products'>
                 <h1>Меню:</h1>
                 <h2>Какво предлага ресторантът.</h2>
@@ -121,12 +99,12 @@
         <div class="reviews-div">
             @if(isset($loaded_reviews))
                 @foreach($loaded_reviews as $review)
-            <div class='review-{{ $review->id_review }}'>
-                <div id='user-info'><i class='fa-solid fa-user'></i><p>{{ $review->username }}</p>
-                    <span>{{ $review->stars }}<i class='fa-solid fa-star' style='color: #ffe234;'></i></span> 
+                <div class='review-{{ $review->id_review }}'>
+                    <div id='user-info'><i class='fa-solid fa-user'></i><p>{{ $review->username }}</p>
+                        <span>{{ $review->stars }}<i class='fa-solid fa-star' style='color: #ffe234;'></i></span> 
+                    </div>
+                    <p>{{ $review->review_description }}</p>
                 </div>
-                <p>{{ $review->review_description }}</p>
-            </div>
                 @endforeach
             @endif  
         </div>

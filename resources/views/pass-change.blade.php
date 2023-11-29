@@ -68,14 +68,6 @@
 <body>
     <div class="form">
         <div class="container">
-            <?php
-                // if(isset($_SESSION['invalid'])){ 
-                //     foreach($_SESSION['invalid'] as $value){
-                //         echo "<h1>" . $value . "</h1>"; 
-                //     } 
-                // } 
-                // unset($_SESSION['invalid']); 
-            ?>
             @if(session('message'))
                 <h1>{{ session('message') }}</h1>
             @endif

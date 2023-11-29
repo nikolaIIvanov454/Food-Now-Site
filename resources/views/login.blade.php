@@ -44,16 +44,13 @@
     </nav>
 
 	<div class="flex center-element v-height center-text">
-		@error('error')
-			<div id="errors">
-				<h1>{{ $message }}</h1>
-			</div>
-		@enderror
-
 		<form action="{{ route('login_user') }}" method="post" class="form-style">
             @csrf
 			<h1 class="no-margin-top">Влизане в сайта:</h1>
-			<input type="text" class="inputs" name="info" id="user" placeholder="Потребителско име / E-Mail" required>
+    		<input type="text" class="inputs" name="info" id="user" placeholder="Потребителско име / E-Mail" required>
+			@error('error')
+                <div id="error">{{ $message }}</div>
+            @enderror
 			<input type="password" class="inputs" name="password" id="pass" placeholder="Парола" required>
 			<input type="submit" class="border-radius submit" value="Влизане">
 			<a href="{{ url('/register') }}">Регистрация</a>

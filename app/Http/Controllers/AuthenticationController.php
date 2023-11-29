@@ -14,6 +14,7 @@ use App\Models\User;
 
 use App\Rules\EmailRule;
 use App\Rules\PasswordRule;
+use App\Rules\UsernameRule;
 
 use App\Mail\PasswordResetMailable;
 
@@ -34,6 +35,11 @@ class AuthenticationController extends Controller
         $validator = Validator::make($request->all(), [
             'info' => 'required',
             'password' => 'required'
+        ]);
+
+        $validator->setCustomMessages([
+            'info.required' => 'Грешно име\имейл',
+            'password.required' => 'Грешна парола'
         ]);
 
         $inputData = $validator->validated(); 
@@ -64,17 +70,19 @@ class AuthenticationController extends Controller
     protected function registerUser(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'username' => 'required',
+            'username' => ['required', new UsernameRule(), 'unique:users'],
             'email' => ['required', new EmailRule(), 'unique:users'],
             'password' => ['required', new PasswordRule()],
             'confirm-password' => ['required', 'same:password']
         ]); 
 
+        $validator->setCustomMessages([
+            'confirm-password.same' => 'Паролите не съвпадат.',
+            'email.unique' => 'Имейлът е зает.',
+            'username.unique' => 'Името е заето.'
+        ]);
+
         if($validator->fails()){
-            if($request->input('password') != $request->input('confirm-password')){
-                $validator->errors()->add('confirm-password', 'Паролите не съвпадат');
-            }
-            
             return back()->withErrors($validator)->withInput();
         }
 
@@ -129,8 +137,13 @@ class AuthenticationController extends Controller
 
         $validation = $request->validate([
             'email' => 'required | email',
-            'pass' => ['required', 'min: 8', 'regex: /\A(?>(?<upper>[A-Z])|(?<lower>[a-z])|(?<digit>[0-9])|.){8,}?(?(upper)(?(lower)(?(digit)|(?!))|(?!))|(?!))$/'],
+            'pass' => ['required', 'min: 8', new PasswordRule()],
             'confirm' => 'same:pass'
+        ]);
+
+        $validation->setCustomMessages([
+            'confirm-password.same' => 'Паролите не съвпадат.',
+            'email.unique' => 'Имейлът е зает.',
         ]);
 
         $new_password = Hash::make($validation['pass']);

@@ -48,21 +48,25 @@
     </nav>
 
 	<div class="flex center-element v-height center-text">
-        @if($errors->has('email') || $errors->has('password') || $errors->has('confirm-password'))
-            <div id="errors">
-                <h1>{{ $errors->first('email') }}</h1>
-                <h1>{{ $errors->first('password') }}</h1>
-                <h1>{{ $errors->first('confirm-password') }}</h1>
-            </div>
-        @endif
-
         <form action="{{ route('register_user') }}" method="post" class="form-style">
             @csrf
             <h1 class="no-margin-top break-words">Регистрация в сайта</h1>
             <input type="text" class="inputs" name="username" id="user" placeholder="Потребителско име" required>
+            @if($errors->has('username'))
+                <div id="error">{{ $errors->first('username') }}</div>
+            @endif
             <input type="email" class="inputs" name="email" id="mail" placeholder="E-mail" required>
+            @if($errors->has('email'))
+                <div id="error">{{ $errors->first('email') }}</div>
+            @endif
             <input type="password" class="inputs" name="password" id="pass" placeholder="Парола" required>
+            @if($errors->has('password'))
+                <div id="error">{{ $errors->first('password') }}</div>
+            @endif
             <input type="password" class="inputs" name="confirm-password" id="confirm"  placeholder="Повторете паролата" required>
+            @if($errors->has('confirm-password'))
+                <div id="error">{{ $errors->first('confirm-password') }}</div>
+            @endif
             <input type="submit" class="border-radius submit" value="Регистрация">
             <a href="{{ url('/login') }}">Вече имате регистрация?</a>
         </form>

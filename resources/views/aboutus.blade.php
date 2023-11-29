@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script src="https://kit.fontawesome.com/f2264ef78f.js" crossorigin="anonymous" defer></script>
-	<script src="scripts/script_menu.js"></script>
+	<script src="{{ asset('js/script_menu.js') }}"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js" defer></script>
 	<link rel="stylesheet" href="{{ asset('css/aboutus-style.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/menu.css') }}">
@@ -50,10 +50,10 @@
 
 	<div id="wrapper">
 		<div id="images">
-				<img src="{{ asset('assets/aboutus_photos/image1.png'); }}" alt="pizza">
-				<img src="{{ asset('assets/aboutus_photos/image2.avif'); }}" alt="wine_glass">
-				<img src="{{ asset('assets/aboutus_photos/image3.jpg'); }}" alt="icecream">
-				<img src="{{ asset('assets/aboutus_photos/image4.jpg'); }}" alt="salad">
+			<img src="{{ asset('assets/aboutus_photos/image1.png'); }}" alt="pizza">
+			<img src="{{ asset('assets/aboutus_photos/image2.avif'); }}" alt="wine_glass">
+			<img src="{{ asset('assets/aboutus_photos/image3.jpg'); }}" alt="icecream">
+			<img src="{{ asset('assets/aboutus_photos/image4.jpg'); }}" alt="salad">
 		</div>
 					
 		<div id="content">
