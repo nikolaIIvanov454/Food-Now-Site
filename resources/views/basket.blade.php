@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('css/checkout.css') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/icon.svg') }}" type="image/x-icon">
     <style>
         #container{
             display: flex;
