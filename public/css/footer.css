@@ -1,3 +1,9 @@
+:root{
+    --whiteish: #E1E6E1;
+    --orange: #F6673C;
+    --grey: #292F36;
+}
+
 /* FOOTER */
 .footer {
     display: flex;
@@ -6,8 +12,8 @@
     flex-direction: column;
     position: fixed;
     font-size: large;
-    color: white;
-    background-color: #333;
+    color: var(--whiteish);
+    background-color: var(--grey);
     text-align: center;
     bottom: 0;
     width: 100%;

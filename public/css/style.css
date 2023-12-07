@@ -1,12 +1,25 @@
 @import url("navbar.css");
 @import url("footer.css");
 
-body {
-    background-image: url("../assets/background.png");
-    background-size: 25em;
-    background-position: 15em;
-    background-repeat: repeat;
-    animation: infinite;
+:root{
+    --whiteish: #E1E6E1;
+    --orange: #F6673C;
+    --grey: #292F36;
+    --green: #568EA3;
+}
+
+body{
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin:auto;background:%23f1f2f3;display:block;z-index:1;position:relative" width="1920" height="1080" preserveAspectRatio="xMidYMid" viewBox="0 0 1920 1080"><g transform="translate(960,540) scale(1,1) translate(-960,-540)"><defs><filter id="blur-nbg6jes7bwa-1" x="-1" y="-1" width="3" height="3"><feGaussianBlur stdDeviation="3"></feGaussianBlur></filter><filter id="blur-nbg6jes7bwa-2" x="-1" y="-1" width="3" height="3"><feGaussianBlur stdDeviation="1.5"></feGaussianBlur></filter><filter id="blur-nbg6jes7bwa-3" x="-1" y="-1" width="3" height="3"><feGaussianBlur stdDeviation="1"></feGaussianBlur></filter></defs><circle cx="0.18323650349742593" cy="0" transform="translate(0 980.0873545205386)" r="11.428417780219819" fill="%23568ea3" opacity="0.36000000000000004"><animateTransform attributeName="transform" type="translate" begin="-7.017607353694664s" dur="20s" repeatCount="indefinite" keyTimes="0;1" values="0 1091.42841778022;0 -11.428417780219819"></animateTransform></circle><circle cx="1909.0897013192598" cy="0" transform="translate(0 29.125998879797194)" r="15.666714686133297" fill="%23f6673c" opacity="0.63"><animateTransform attributeName="transform" type="translate" begin="-6.64228728249999s" dur="10s" repeatCount="indefinite" keyTimes="0;1" values="0 1095.6667146861332;0 -15.666714686133297"></animateTransform></circle><circle cx="37.788617585802626" cy="0" transform="translate(0 434.32838041367063)" r="13.793196213134518" fill="%23568ea3" opacity="0.63"><animateTransform attributeName="transform" type="translate" begin="-2.0594505757127735s" dur="10s" repeatCount="indefinite" keyTimes="0;1" values="0 1093.7931962131345;0 -13.793196213134518"></animateTransform></circle><circle cx="502.0670035281799" cy="0" transform="translate(0 667.0816554497522)" r="15.892378200435555" fill="%23f6673c" opacity="0.63"><animateTransform attributeName="transform" type="translate" begin="-1.966205622773436s" dur="10s" repeatCount="indefinite" keyTimes="0;1" values="0 1095.8923782004356;0 -15.892378200435555"></animateTransform></circle><circle cx="905.4112642875343" cy="0" transform="translate(0 504.5079443180123)" r="14.371092308437445" fill="%23568ea3" opacity="0.63"><animateTransform attributeName="transform" type="translate" begin="-3.5682426372840315s" dur="10s" repeatCount="indefinite" keyTimes="0;1" values="0 1094.3710923084375;0 -14.371092308437445"></animateTransform></circle><circle cx="953.5446540647116" cy="0" transform="translate(0 916.8326287870617)" r="20.117272952860404" fill="%23292f36" opacity="0.7200000000000001"><animateTransform attributeName="transform" type="translate" begin="-5.327990222538413s" dur="6.666666666666666s" repeatCount="indefinite" keyTimes="0;1" values="0 1100.1172729528605;0 -20.117272952860404"></animateTransform></circle><circle cx="227.43752890196234" cy="0" transform="translate(0 1069.8703434870076)" r="19.649237415406596" fill="%23568ea3" opacity="0.63"><animateTransform attributeName="transform" type="translate" begin="-2.744712675216021s" dur="10s" repeatCount="indefinite" keyTimes="0;1" values="0 1099.6492374154066;0 -19.649237415406596"></animateTransform></circle><circle cx="1509.3532980299665" cy="0" transform="translate(0 334.79441000428744)" r="10.813326105093365" fill="%23f6673c" opacity="0.36000000000000004"><animateTransform attributeName="transform" type="translate" begin="-18.887899334731124s" dur="20s" repeatCount="indefinite" keyTimes="0;1" values="0 1090.8133261050934;0 -10.813326105093365"></animateTransform></circle><circle cx="1129.9029714921423" cy="0" transform="translate(0 807.3045533314564)" r="9.240332311246362" fill="%23568ea3" opacity="0.36000000000000004"><animateTransform attributeName="transform" type="translate" begin="-9.664447829197783s" dur="20s" repeatCount="indefinite" keyTimes="0;1" values="0 1089.2403323112464;0 -9.240332311246362"></animateTransform></circle><circle cx="895.1687230181346" cy="0" transform="translate(0 339.05367760154394)" r="15.908459494762065" fill="%23f6673c" opacity="0.63"><animateTransform attributeName="transform" type="translate" begin="-1.473866424551653s" dur="10s" repeatCount="indefinite" keyTimes="0;1" values="0 1095.9084594947622;0 -15.908459494762065"></animateTransform></circle><circle cx="188.0284827026749" cy="0" transform="translate(0 945.1085861120063)" r="25.47803724153279" fill="%23f6673c" opacity="0.7200000000000001"><animateTransform attributeName="transform" type="translate" begin="-1.8774361315170502s" dur="6.666666666666666s" repeatCount="indefinite" keyTimes="0;1" values="0 1105.4780372415328;0 -25.47803724153279"></animateTransform></circle><circle cx="1564.449220862043" cy="0" transform="translate(0 752.1252500826218)" r="10.994603741222456" fill="%23568ea3" opacity="0.36000000000000004"><animateTransform attributeName="transform" type="translate" begin="-3.497762370437285s" dur="20s" repeatCount="indefinite" keyTimes="0;1" values="0 1090.9946037412224;0 -10.994603741222456"></animateTransform></circle><circle cx="1524.5174508458033" cy="0" transform="translate(0 1013.6351614758025)" r="16.83488386666141" fill="%23292f36" opacity="0.63"><animateTransform attributeName="transform" type="translate" begin="-3.5596152049632757s" dur="10s" repeatCount="indefinite" keyTimes="0;1" values="0 1096.8348838666614;0 -16.83488386666141"></animateTransform></circle><circle cx="1099.7945655763947" cy="0" transform="translate(0 849.6179193112762)" r="8.17211780718532" fill="%23f6673c" opacity="0.36000000000000004"><animateTransform attributeName="transform" type="translate" begin="-7.461197685425205s" dur="20s" repeatCount="indefinite" keyTimes="0;1" values="0 1088.1721178071853;0 -8.17211780718532"></animateTransform></circle><circle cx="1154.5037237324195" cy="0" transform="translate(0 97.83581085193201)" r="17.49669438128842" fill="%23292f36" opacity="0.63"><animateTransform attributeName="transform" type="translate" begin="-3.4729877890212912s" dur="10s" repeatCount="indefinite" keyTimes="0;1" values="0 1097.4966943812883;0 -17.49669438128842"></animateTransform></circle><circle cx="1512.1681917213104" cy="0" transform="translate(0 906.1052959653344)" r="17.07604899727889" fill="%23568ea3" opacity="0.63"><animateTransform attributeName="transform" type="translate" begin="-4.685776911034156s" dur="10s" repeatCount="indefinite" keyTimes="0;1" values="0 1097.0760489972788;0 -17.07604899727889"></animateTransform></circle><circle cx="400.93200222718707" cy="0" transform="translate(0 91.33627899084638)" r="19.297617635985972" fill="%23f6673c" opacity="0.63"><animateTransform attributeName="transform" type="translate" begin="-1.6872867270879555s" dur="10s" repeatCount="indefinite" keyTimes="0;1" values="0 1099.297617635986;0 -19.297617635985972"></animateTransform></circle><circle cx="341.25706362782023" cy="0" transform="translate(0 409.15214650047335)" r="13.380356404253124" fill="%23568ea3" opacity="0.63"><animateTransform attributeName="transform" type="translate" begin="-9.493079678581148s" dur="10s" repeatCount="indefinite" keyTimes="0;1" values="0 1093.3803564042532;0 -13.380356404253124"></animateTransform></circle><circle cx="196.613679362776" cy="0" transform="translate(0 19.651381306075155)" r="20.72570553161647" fill="%23f6673c" opacity="0.7200000000000001"><animateTransform attributeName="transform" type="translate" begin="-1.0986143917672742s" dur="6.666666666666666s" repeatCount="indefinite" keyTimes="0;1" values="0 1100.7257055316165;0 -20.72570553161647"></animateTransform></circle><circle cx="63.73647526897528" cy="0" transform="translate(0 597.2332174108984)" r="15.214888182568847" fill="%23292f36" opacity="0.63"><animateTransform attributeName="transform" type="translate" begin="-3.820559387290239s" dur="10s" repeatCount="indefinite" keyTimes="0;1" values="0 1095.2148881825688;0 -15.214888182568847"></animateTransform></circle></g></svg>');
+}
+
+.half-circle {
+    position: absolute;
+    bottom: 85px;
+    right: 15px;
+    width: 250px;
+    height: 250px;
+    background-image: linear-gradient(319deg, #1d0e0b 0%, #774023 25%, #d88c51 50%, #f3e7c9 75%, #fff9f5 100%);
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
 }
 
 .flex {
@@ -27,8 +40,8 @@ body {
     padding: 5em;
     gap: 20px;
     border-radius: 2%;
-    border: 5px solid #f6673c;
-    background-color: #e6e6e6;
+    border: 5px solid var(--orange);
+    background-color: var(--whiteish);
     overflow: auto;
 }
 
@@ -48,21 +61,30 @@ body {
     text-align: center;
 }
 
+.input {
+    display: flex;
+    align-items: center;
+}
+
 .inputs {
+    display: flex;
+    align-items: center;
     border: 0;
     outline: 0;
     background: transparent;
+    font-size: 16px;
+    width: 100%;
     border-bottom: 2px solid black;
     transition: border-bottom 0.4s;
 }
 
 .inputs:focus {
-    border-bottom: 2px solid #f6673c;
+    border-bottom: 2px solid var(--orange);
 }
 
 .submit {
-    background-color: #f6673c;
-    color: white;
+    background-image: linear-gradient(250deg, #ffffff 0%, #ffa488 50%, var(--orange) 100%);
+    color: black;
     opacity: 0.5;
     transition: opacity 0.5s;
     padding: 0.5em;
@@ -78,14 +100,16 @@ body {
 }
 
 .form-style a {
+    width: fit-content;
+    margin: auto;
     text-decoration-style: dashed;
     text-underline-position: under;
-    color: #333;
+    color: var(--grey);
+    transition: color 0.5s ease;
 }
 
 .form-style a:hover {
-    text-decoration-style: dashed;
-    color: #f6673c;
+    color: var(--orange);
 }
 
 .bold-text {
@@ -102,5 +126,9 @@ body {
 }
 
 .logout h1{
+    margin-right: 10px;
+}
+
+.input i{
     margin-right: 10px;
 }
