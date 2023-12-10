@@ -19,8 +19,6 @@
     <title>FoodNow - Регистрация</title>
 </head>
 <body>
-    <!-- <div class="half-circle"></div> -->
-
     <nav class="navbar">
         <div class='navbar-container'>
             <div id="nav-icon" class='navbar-toggle'>

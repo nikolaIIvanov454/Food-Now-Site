@@ -5,13 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script src="https://kit.fontawesome.com/f2264ef78f.js" crossorigin="anonymous" defer></script>
-	<script src="{{ asset('js/script_menu.js') }}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js" defer></script>
+	<script src="{{ asset('js/script_menu.js') }}"></script>
+	<script src="{{ asset('js/carousel.js') }}" defer></script>
 	<link rel="stylesheet" href="{{ asset('css/aboutus-style.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/menu.css') }}">
 	<link rel="shortcut icon" href="{{ asset('assets/icon.svg') }}" type="image/x-icon">
-	<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
-	<link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
 	<style>
 		.carousel{
 			display: flex;
@@ -28,43 +29,48 @@
 		.splide__pagination__page.is-active {
 			background-color: #F6673C;
 		}	
+		
+		#images {
+			max-width: 100%;
+			margin: 0 auto;
+			padding: 0 20px;
+    	}
+
+		.splide__slide {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			width: calc(100%) !important; 
+		}
+
+		.splide__slide img {
+			max-width: 100%;
+			max-height: 100%;
+			object-fit: contain;
+			height: auto;
+			width: auto;
+		}
 
 		.splide {
-  width: 100%;
-  max-width: 100%; /* Adjust max-width as needed */
-  height: 800px; /* Set a default height */
-}
+			background-color: transparent; 
+		}
 
-/* Ensure the slide occupies the container's width and height */
-.splide__slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensures the image covers the entire slide */
-}
+		.splide__arrow {
+			top: 50%; 
+		}
 
-#content {
-  padding-top: 20px; /* Adjust as needed */
-}
+		@media screen and (max-width: 768px) {
+			.splide__slide {
+				height: 250px; 
+			}
+		}
 
-/* Media query for responsiveness */
-@media (max-width: 1024px) {
-
-  #content {
-    padding-top: 10px; /* Adjust the padding for smaller screens */
-  }
-
-  .splide {
-  width: 50%;
-  max-width: 50%; /* Adjust max-width as needed */
-  height: 200px; /* Set a default height */
-}
-
-/* Ensure the slide occupies the container's width and height */
-.splide__slide img {
-  width: 100%;
-  height: 100%;
-}
-}
+		@media screen and (max-width: 576px) {
+			.splide__slide {
+				height: 200px; 
+			}
+		}
 	</style>
 	<title>FoodNow - About Us</title>
 </head>
@@ -110,27 +116,23 @@
 				<section class="splide" aria-label="Placeholder Example">
 					<div class="splide__track">
 						<ul class="splide__list">
-							<li class="splide__slide"><img src="{{ asset('assets/aboutus_photos/image1.png'); }}" alt="pizza"></li>
-							<li class="splide__slide"><img src="{{ asset('assets/aboutus_photos/image2.avif'); }}" alt="wine_glass"></li>
-							<li class="splide__slide"><img src="{{ asset('assets/aboutus_photos/image3.jpg'); }}" alt="icecream"></li>
-							<li class="splide__slide"><img src="{{ asset('assets/aboutus_photos/image4.jpg'); }}" alt="salad"></li>
+							<li class="splide__slide">
+								<img src="{{ asset('assets/aboutus_photos/image1.png'); }}" alt="pizza">
+							</li>
+							<li class="splide__slide">
+								<img src="{{ asset('assets/aboutus_photos/image2.avif'); }}" alt="wine_glass">
+							</li>
+							<li class="splide__slide">
+								<img src="{{ asset('assets/aboutus_photos/image3.jpg'); }}" alt="icecream">
+							</li>
+							<li class="splide__slide">
+								<img src="{{ asset('assets/aboutus_photos/image4.jpg'); }}" alt="salad">
+							</li>
 						</ul>
 					</div>
 				</section>
 			</div>
 		</div>
-
-		<script>
-		var splide = new Splide( '.splide', {
-			type  : 'fade',
-			rewind: true,	
-			focus: 'center',
-			autoplay: true,
-			interval: 3000,
-		} );
-
-		splide.mount();
-		</script>
 					
 		<div id="content">
 			<h1>Кои сме ние?</h1>

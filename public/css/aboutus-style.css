@@ -12,6 +12,7 @@ body{
     justify-content: space-around;
     flex-wrap: wrap;
     margin: 5em 0 auto 0;
+    gap: 10px;
 }
 #images{
     display: flex;
@@ -23,7 +24,6 @@ body{
 #content{
     width: 45%;
     text-align: center;
-    margin: auto 0 auto 1em;
     color: white;
 }
 #content p{

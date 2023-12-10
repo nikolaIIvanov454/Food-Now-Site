@@ -9,6 +9,10 @@ area[0].hidden = true;
 
 //THIS HERE IS FOR GETTING THE OPTIONS FROM THE DATABASE DYNAMICALLY
 
+let restaurants_div = document.getElementsByClassName('item-shell');
+
+restaurants_div.innerHTML 
+
 $.ajax({
     url: '/get-options',
     type: 'GET',

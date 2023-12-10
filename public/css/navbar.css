@@ -53,12 +53,12 @@
     width: 4em;
 }
 
-ul {
+.navbar ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color:var(--grey);
+    background-color: var(--grey);
     top: 0;
     width: 100%;
     height: 4rem;
