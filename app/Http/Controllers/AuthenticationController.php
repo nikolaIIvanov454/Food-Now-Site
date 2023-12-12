@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Carbon;
 
 use App\Models\User;
 
@@ -122,6 +123,8 @@ class AuthenticationController extends Controller
         $user = User::select('email')->where('email', $email)->first();
 
         if($user != null && $user->email == $email){
+            $user->password_expiration_time = Carbon::now()->addMinutes(60);
+
             Mail::to($email)->send(new PasswordResetMailable($email));
 
             return back()->with('message', "Успешно изпращане на заявката!");
@@ -135,25 +138,31 @@ class AuthenticationController extends Controller
             return view('pass-change'); 
         }
 
-        $validation = $request->validate([
+        $validation = Validator::make($request->all(), [
             'email' => 'required | email',
             'pass' => ['required', 'min: 8', new PasswordRule()],
             'confirm' => 'same:pass'
         ]);
 
         $validation->setCustomMessages([
-            'confirm-password.same' => 'Паролите не съвпадат.',
-            'email.unique' => 'Имейлът е зает.',
+            'confirm.same' => 'Паролите не съвпадат.',
+            'email.unique' => 'Имейлът е зает.'
         ]);
 
-        $new_password = Hash::make($validation['pass']);
+        $validatedInput = $validation->validated();
 
-        $user = User::where('email', $validation['email'])->first();
+        $user = User::where('email', $validatedInput['email'])->first();
 
-        $user->password = $new_password;
-        $user->save();
+        if(!Carbon::parse($user->password_reset_expires_at)->isPast()){
+            $new_password = Hash::make($validatedInput['pass']);
 
-        return back()->with('message', 'Успешно променяне на паролата!');
+            $user->password = $new_password;
+            $user->save();
+
+            return back()->with('message', 'Успешно променяне на паролата!');
+        }else{
+            return back()->with('message', 'Времето за промяната на паролата изтече!');
+        }
     }
 }
 

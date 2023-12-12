@@ -1,6 +1,13 @@
 @import url("navbar.css");
 @import url("footer.css");
 
+@keyframes appear {
+    to{
+      bottom: 500px;
+      opacity: 1;
+    }
+  }
+
 html{
     height: 100%;
 }
@@ -20,11 +27,15 @@ body{
     flex-direction: column;
     width: 45%;
     margin: 0 0 0 1em;
+    opacity: 0;
+    animation: appear 1s ease forwards;
 }
 #content{
     width: 45%;
     text-align: center;
     color: white;
+    opacity: 0;
+    animation: appear 1s ease forwards;
 }
 #content p{
     font-size: xx-large;
@@ -38,6 +49,8 @@ body{
     flex-wrap: wrap;
     gap: 4em;
     margin-bottom: 5%;
+    opacity: 0;
+    animation: appear 1s ease forwards;
 }
 #phone, #working-time{
     text-align: center;

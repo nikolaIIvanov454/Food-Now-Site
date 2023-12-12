@@ -43,7 +43,8 @@
                     @endif
                 </div>
             </li>
-        </ul>
+            </ul>
+        </div>
     </nav>
 
 	<div class="flex center-element v-height center-text">
