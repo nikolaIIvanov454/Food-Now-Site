@@ -9,6 +9,8 @@ use App\Mail\CompleteOrderMailable;
 
 use App\Models\Food;
 
+use App\Events\ProductAddedToCart;
+
 use Cart;
 
 class CartController extends Controller
@@ -26,7 +28,10 @@ class CartController extends Controller
 
         Cart::instance('basket')->add($product->id_food, $product->name, 1, str_replace('лв.', '', $product->price), ['weight' => $product->weight])->associate('App\Models\Food');
 
-        return response()->json(['message' => 'Успешно добавяне!', 'items_count' => Cart::instance('basket')->Count()]);
+        
+        broadcast(new ProductAddedToCart(['message' => 'Успешно добавяне!', 'items_count' => Cart::instance('basket')->Count()]));
+
+        //return response()->json(['message' => 'Успешно добавяне!', 'items_count' => Cart::instance('basket')->Count()]);
     } 
 
     protected function removeItem(Request $request)

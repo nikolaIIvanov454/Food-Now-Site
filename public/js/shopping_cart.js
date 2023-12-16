@@ -1,16 +1,36 @@
 let addButton = document.querySelectorAll(".add");
 
+const socket = new WebSocket('ws://localhost:6001');
+
+socket.addEventListener('open', () => {
+    console.log('WebSocket connected');
+});
+
+socket.addEventListener('error', function(event) {
+    console.error('WebSocket encountered an error:', event);
+  });
+
 let addProduct = (id, token) =>{
-    $.ajax({
-        type: "POST",
-        url: `/add-product`,
-        data: JSON.stringify({
-            'id' : id, _token : token
-        }),
-        contentType: "application/json",
-        success: function (response) {
-            alert(response['message']);
-            document.querySelector('.count-items').textContent = response['items_count'];
+    // $.ajax({
+    //     type: "POST",
+    //     url: `/add-product`,
+    //     data: JSON.stringify({
+    //         'id' : id, _token : token
+    //     }),
+    //     contentType: "application/json",
+    //     success: function (response) {
+    //         alert(response['message']);
+    //         document.querySelector('.count-items').textContent = response['items_count'];
+    //     }
+    // });
+
+    socket.addEventListener('message', (event) => {
+        const data = JSON.parse(event.data);
+    
+        if (data.event === 'ProductAddedToCart') {
+            console.log(event);
+        } else if (data.event === 'ProductRemovedFromCart') {
+            console.log(event);
         }
     });
 }
@@ -38,25 +58,11 @@ let removeProduct = (id, name) =>{
         listener();
 
         cart.innerHTML = result;
-
-        // attachListener();
     }
     };
 
     xhr.send(data);
 }
-
-// let attachListener = () =>{
-//     let removeButton = document.querySelectorAll(".remove");
-
-//     removeButton.forEach(element => {
-//         element.addEventListener("click", () => {
-//             let id = element.dataset.removeId;
-    
-//             removeProduct(id);
-//         });
-//     });
-// }
 
 let listener = () => { 
 
@@ -81,6 +87,3 @@ let form = document.getElementById('cart');
 icon.addEventListener('click', (element) =>{
     form.submit();
 });
-
-
-// attachListener();
