@@ -35,3 +35,5 @@ let form = document.getElementById('cart');
 icon.addEventListener('click', (element) =>{
     form.submit();
 });
+
+

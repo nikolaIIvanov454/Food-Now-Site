@@ -11,6 +11,7 @@ use App\Models\Food;
 
 use App\Events\SuccessfullyAddedProductToCart;
 use App\Events\AddProductToCart;
+use App\Events\DeleteProductFromCart;
 
 use Cart;
 
@@ -36,7 +37,7 @@ class CartController extends Controller
     {   
         Cart::instance('basket')->remove($request->input('id'));
 
-        return back();
+        broadcast(new DeleteProductFromCart());
     } 
 
     protected function completeOrder(Request $request){

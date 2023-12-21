@@ -7,7 +7,9 @@
     <script src="https://kit.fontawesome.com/f2264ef78f.js" crossorigin="anonymous" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js" defer></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    @vite('resources/js/app.js')
     <script src="{{ asset('js/script_menu.js') }}"></script>
+    <script src="{{ asset('js/shopping_cart_logic.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
@@ -128,32 +130,6 @@
             }
         }
     </style>
-    <script>
-        let checkout = (event) =>{
-            let form = document.getElementById('checkout-form');
-            event.preventDefault();
-
-            let formData = new FormData(form);
-
-            $.ajax({
-                type: "POST",
-                url: "/checkout",
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function (response) {
-                    swal("Успешно завършване на поръчката", "", "success");
-
-                    setTimeout(function() {
-                        form.submit();
-                    }, 2500); 
-                },
-                error: function (message) {
-                    swal("Възникна проблем", "", "error");
-                }
-            });
-        }
-    </script>
 </head>
 <body>
 <header>
@@ -210,11 +186,11 @@
                     <strong>Цена: {{ $item->price }}</strong>
                 </div>
                 <div id="buttons-container">
-                    <form action="{{ route('remove-item') }}" id="remove" method="POST">
+                    <div id="item">
+                        <input type="hidden" id="row-id" name="id" value="{{ $item->rowId }}">
                         @csrf
-                        <input type="hidden" name="id" value="{{ $item->rowId }}">
-                        <i class="fa-solid fa-xmark" onclick="document.getElementById('remove').submit()"></i>
-                    </form>
+                        <i class="fa-solid fa-xmark" onclick="removeProduct()"></i>
+                    </div>
                 </div>
             </div>
 
