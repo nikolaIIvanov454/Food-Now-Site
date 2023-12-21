@@ -8,7 +8,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
 
-class Admin_User extends Model implements Authenticatable, User
+class Admin_User extends Model implements Authenticatable
 {
     use AuthenticatableTrait, Notifiable, HasFactory;
 

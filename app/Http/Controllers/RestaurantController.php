@@ -9,6 +9,8 @@ use App\Models\Food;
 use App\Models\LikedRestaurant;
 use App\Models\Review;
 
+use App\Events\AddProductToCart;
+
 use Cart;
 
 class RestaurantController extends Controller

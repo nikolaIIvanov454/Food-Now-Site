@@ -10,11 +10,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js" defer></script>
     <script src="{{ asset('js/sendReview.js') }}" defer></script>
     <script src="{{ asset('js/handleDeletion.js') }}"></script>
+    @vite('resources/js/app.js')
     <link rel="shortcut icon" href="{{ asset('assets/icon.svg') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('css/home-style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
     <title>FoodNow - Ресторант: @if(isset($loaded_restaurant)) {{ $loaded_restaurant->name }} @else {{ "Restaurant" }} @endif</title>
 </head>
+
 <body>
     <header>
         <nav class="navbar">
@@ -40,7 +42,7 @@
                 <li id="float-r">
                     <div class="logout">
                         @php
-                            $items_number = Cart::instance('basket')->content()->Count()
+                            $items_number = Cart::instance('basket')->Count()
                         @endphp
                         <div id="icon">
                             <form action="{{ route('basket-page') }}" method="get" id='cart'></form>

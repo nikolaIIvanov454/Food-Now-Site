@@ -16,7 +16,7 @@ class Review extends Model
         'review_description',
         'id_user',
         'id_restaurant'
-    ];
+    ];  
     
     protected static function getReviews($id_restaurant){
         return Review::all()->where('id_restaurant', $id_restaurant);

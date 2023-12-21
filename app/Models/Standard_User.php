@@ -9,7 +9,7 @@ use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use database\factories\UserFactory;
 
-class Standard_User extends Model implements Authenticatable, User
+class Standard_User extends Model implements Authenticatable
 {
     use AuthenticatableTrait, Notifiable, HasFactory, UserFactory;
 

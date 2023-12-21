@@ -10,16 +10,20 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class AddProductToCart implements ShouldBroadcast
+class SuccessfullyAddedProductToCart implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
+
+    public $message;
+    public $itemsCount;
 
     /**
      * Create a new event instance.
      */
-    public function __construct()
+    public function __construct($data)
     {
-        //
+        $this->message = $data['message'];
+        $this->itemsCount = $data['items_count'];
     }
 
     /**
