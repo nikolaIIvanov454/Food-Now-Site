@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('password_expiration_time')->nullable(); // Example: Adding a new nullable column
+            $table->date('password_expiration_time')->nullable();
         });
     }
 

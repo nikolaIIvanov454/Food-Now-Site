@@ -120,10 +120,11 @@ class AuthenticationController extends Controller
 
         $email = $validation['email'];
 
-        $user = User::select('email')->where('email', $email)->first();
+        $user = User::where('email', $email)->first();
 
         if($user != null && $user->email == $email){
-            $user->password_expiration_time = Carbon::now()->addMinutes(60);
+            $user->password_expiration_time = Carbon::now()->addMinutes(60)->toDateString();;
+            $user->save();
 
             Mail::to($email)->send(new PasswordResetMailable($email));
 
@@ -153,7 +154,7 @@ class AuthenticationController extends Controller
 
         $user = User::where('email', $validatedInput['email'])->first();
 
-        if(!Carbon::parse($user->password_reset_expires_at)->isPast()){
+        if(!Carbon::parse($user->password_reset_expires_at)->isAfter(Carbon::now())){
             $new_password = Hash::make($validatedInput['pass']);
 
             $user->password = $new_password;

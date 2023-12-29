@@ -19,22 +19,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let formData = new FormData(form);
 
-        $.ajax({
+        $.ajax({ 
             type: "POST",
             url: "/handle-review",
             data: formData,
             processData: false,
             contentType: false,
-            success: function (response) {
-                if (response["message"] !== null) {
-                    alert(response["message"]);
+        });
 
-                    location.reload();
+        if (!window.Echo.connector.channels['add-review']) {
+            window.Echo.channel('add-review')
+            .listen('AddReview', (data) => {
+
+                console.log(data.message);
+
+                if (data.message !== null) {
+                    alert(data.message);
                 }
 
-                form.reset();
-            }
-        });
+                location.reload();
+            });
+        }else if (!window.Echo.connector.channels['check-review']) {
+            window.Echo.channel('check-review')
+            .listen('AlreadyReviewed', (data) => {
+                alert(data.message);
+            });
+        }
     });
 });
 
