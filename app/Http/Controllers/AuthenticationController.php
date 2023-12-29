@@ -19,6 +19,8 @@ use App\Rules\UsernameRule;
 
 use App\Mail\PasswordResetMailable;
 
+//MAKE A CUSTOM REQUEST AND MOVE THE VALIDATION AND SOME OF THE LOGIC THERE!!!!!
+
 class AuthenticationController extends Controller
 {
     protected function createRegister()
