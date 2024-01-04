@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    let username_div = document.querySelector("#user-info");
     var token = document.querySelector("input[name=_token]").value 
 
     $.ajax({
@@ -14,8 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
             let authorized_user = response["authorized_user"];
             let reviews_div = document.querySelector(".reviews-div");
             let review_divs = reviews_div.querySelectorAll("[class^='review-']");
-            let id_restaurant = document.querySelector('input[name=id_restaurant]').value;
-
+            let id_restaurant = document.querySelector(".id").value;
+            
             review_divs.forEach((review_divs) => {
                 let authorized_name = review_divs.querySelector("p").innerHTML;
 

@@ -25,7 +25,8 @@ class User extends Model implements Authenticatable
         'username',
         'email',
         'password',
-        'role'
+        'role',
+        'password_reset_expires_at'
     ];
 
     /**

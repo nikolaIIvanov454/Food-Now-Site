@@ -44,8 +44,10 @@ class CartController extends Controller
 
         $data = [
             'total_price' => $request->input('items-total-price:'),
-            'items' =>  json_decode($request->input('items'))
+            'items' => json_decode($request->input('items'))
         ];
+
+        //maybe add the products in the email
 
         Mail::to(auth()->user()->email)->send(new CompleteOrderMailable());
 
