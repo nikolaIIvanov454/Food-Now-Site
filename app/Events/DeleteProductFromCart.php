@@ -10,7 +10,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class DeleteProductFromCart
+class DeleteProductFromCart implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -19,7 +19,7 @@ class DeleteProductFromCart
      */
     public function __construct()
     {
-        //
+        
     }
 
     /**
@@ -30,7 +30,7 @@ class DeleteProductFromCart
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('delete-product'),
+            new Channel('delete-product'),
         ];
     }
 }

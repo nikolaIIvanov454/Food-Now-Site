@@ -10,6 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js" defer></script>
     <script src="{{ asset('js/sendReview.js') }}" defer></script>
     <script src="{{ asset('js/handleDeletion.js') }}"></script>
+    <script src="{{ asset('js/rating-slider.js') }}" defer></script>
     @vite('resources/js/app.js')
     <link rel="shortcut icon" href="{{ asset('assets/icon.svg') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('css/home-style.css') }}">
@@ -61,7 +62,7 @@
     </header> 
 
     @if(isset($loaded_restaurant))
-           <div class='container'>
+        <div class='container'>
             <input type='hidden' class='id' name='id' value="{{ $loaded_restaurant->id }}">
             <div class='left-div'><div class='center-text'><h1>{{ $loaded_restaurant->name }}</h1></div>
             <div class='image-div'><img src="{{ $loaded_restaurant->image_path }}"></div></div>
@@ -85,15 +86,22 @@
                 </table>
             </div>
             <div class='line'></div>
+        </div>
     @endif
 
     <div class="bottom">
         <form class="review-form">
             @csrf
             <input type="hidden" name="id_restaurant" value="{{ $loaded_restaurant->id }}" required>
+            <input type="hidden" name="rating" value="1" required>
             <h1>Напишете ревю към този ресторант</h1>
-            <input type="range" name="rating" id="rating" min="1" max="5" value="1" oninput="this.nextElementSibling.value = this.value + ' звезда/звезди'" required>
-            <output id="indicator">1 звезда/звезди</output>
+            <div id="rating-slider">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+            </div>
             <textarea name="review-description" id="review" cols="40" rows="10" maxlength="1000" required></textarea>
             <input type="submit" value="Напиши ревю" class="submit-button">
         </form>

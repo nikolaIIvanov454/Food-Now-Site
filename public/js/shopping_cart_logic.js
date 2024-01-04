@@ -28,23 +28,21 @@ let checkout = (event) =>{
 
     let formData = new FormData(form);
 
-    console.log(formData)
+    $.ajax({
+        type: "POST",
+        url: "/checkout",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            swal("Успешно завършване на поръчката", "", "success");
 
-    // $.ajax({
-    //     type: "POST",
-    //     url: "/checkout",
-    //     data: formData,
-    //     processData: false,
-    //     contentType: false,
-    //     success: function (response) {
-    //         swal("Успешно завършване на поръчката", "", "success");
-
-    //         setTimeout(function() {
-    //             form.submit();
-    //         }, 2500); 
-    //     },
-    //     error: function (message) {
-    //         swal("Възникна проблем", "", "error");
-    //     }
-    // });
+            setTimeout(function() {
+                form.submit();
+            }, 2500); 
+        },
+        error: function (message) {
+            swal("Възникна проблем", "", "error");
+        }
+    });
 }

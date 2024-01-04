@@ -330,37 +330,13 @@ h2,
     background-color: #d3d3d3;
 }
 
-input[type="range"] {
-    appearance: none;
-    width: 60%;
-    height: 15px;
-    border-radius: 5px;
-    background: #d3d3d3;
-    outline: none;
-    opacity: 0.7;
+#rating-slider{
+    font-size: larger;
     margin-bottom: 20px;
-    transition: opacity 500ms ease;
 }
 
-input[type="range"]:hover{
-    opacity: 1;
-}
-
-input[type="range"]::-webkit-slider-thumb {
-    appearance: none;
-    width: 30px;
-    height: 30px;
-    border: 0;
-    background: url("../restaurant_photos/icon/star.svg") no-repeat;
-    background-position: 0px center;
-    background-size: 30px;
-    cursor: pointer;
-}
-
-#indicator{
-    font-size: 2em;
-    margin-bottom: 10px;
-    color: white;
+.checked{
+    color: orange;
 }
 
 .review-form h1{

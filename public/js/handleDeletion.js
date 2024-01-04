@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
             let authorized_user = response["authorized_user"];
             let reviews_div = document.querySelector(".reviews-div");
             let review_divs = reviews_div.querySelectorAll("[class^='review-']");
+            let id_restaurant = document.querySelector('input[name=id_restaurant]').value;
 
             review_divs.forEach((review_divs) => {
                 let authorized_name = review_divs.querySelector("p").innerHTML;
@@ -30,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     deleteButton.onclick = () =>{
                         let id_review = review_divs.classList[0].replace("review-", "");
 
-                        deleteReviewAndUpdate(id_review);
+                        deleteReviewAndUpdate(id_review, id_restaurant);
 
                         review_divs.remove();
                     }
@@ -39,12 +40,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    function deleteReviewAndUpdate(id_to_delete){
+    function deleteReviewAndUpdate(id_to_delete, id_restaurant){
         $.ajax({
             type: "POST",
             url: "/handle-review",
             data: JSON.stringify({
                 id_reviews : id_to_delete,
+                id_restaurant : id_restaurant,
                 _token : token,
                 action : "delete"
             }),
