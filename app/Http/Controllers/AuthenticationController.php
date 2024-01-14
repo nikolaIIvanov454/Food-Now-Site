@@ -47,6 +47,7 @@ class AuthenticationController extends Controller
 
         $inputData = $validator->validated(); 
 
+
         if (filter_var($inputData['info'], FILTER_VALIDATE_EMAIL)) {
             $credentials['email'] = $inputData['info'];
         } else {
@@ -125,7 +126,7 @@ class AuthenticationController extends Controller
         $user = User::where('email', $email)->first();
 
         if($user != null && $user->email == $email){
-            $user->password_expiration_time = Carbon::now()->addMinutes(60)->toDateString();;
+            $user->password_expiration_time = Carbon::now()->addMinutes(60)->toDateTimeString();
             $user->save();
 
             Mail::to($email)->send(new PasswordResetMailable($email));
@@ -156,10 +157,10 @@ class AuthenticationController extends Controller
 
         $user = User::where('email', $validatedInput['email'])->first();
 
-        if(!Carbon::parse($user->password_reset_expires_at)->isAfter(Carbon::now())){
+        if(Carbon::parse($user->password_reset_expires_at)->isBefore(Carbon::now())){
             $new_password = Hash::make($validatedInput['pass']);
 
-            $user->password = $new_password;
+            $user->password = $new_password;    
             $user->save();
 
             return back()->with('message', 'Успешно променяне на паролата!');

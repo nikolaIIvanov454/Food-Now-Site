@@ -39,7 +39,7 @@ let checkout = (event) =>{
 
             setTimeout(function() {
                 form.submit();
-            }, 2500); 
+            });
         },
         error: function (message) {
             swal("Възникна проблем", "", "error");

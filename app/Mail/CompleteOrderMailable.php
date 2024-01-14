@@ -14,10 +14,16 @@ class CompleteOrderMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
+    private $products;
+    private $total_price;
+
     /**
      * Create a new message instance.
      */
-    public function __construct(){}
+    public function __construct($data){
+        $this->products = $data['items'];
+        $this->total_price = $data['total_price'];
+    }
 
     /**
      * Get the message envelope.
@@ -37,7 +43,7 @@ class CompleteOrderMailable extends Mailable
     {
         return new Content(
             view: 'mail_components.template-checkout',
-            with: ['name' => session('logged_username')],
+            with: ['products' => $this->products, 'total_price' => $this->total_price],
         );
     }
 

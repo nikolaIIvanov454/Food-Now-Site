@@ -7,5 +7,15 @@
 </head>
 <body>
     <p>Здравейте, {{ session('logged_username') }}, вашата поръчка е приета успешно!</p>
+    <ul>
+        @foreach($products as $product)
+            <li>Вид продукт: {{ $product->name }}</li>
+            <li>Количество: {{ $product->qty }}</li>
+            <li>Единична цена: {{ $product->price }}</li>
+            <li>Грамаж: {{ $product->options->weight }}</li>
+            <br>
+        @endforeach
+        <li><strong>Обща цена: {{ $total_price }} лева.</strong></li>
+    </ul>
 </body>
 </html>

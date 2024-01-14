@@ -27,7 +27,6 @@ return [
     'database' => [
 
         'connection' => env('DB_CONNECTION', 'pgsql'),
-
         'table' => 'shopping_cart',
 
     ],
@@ -42,7 +41,7 @@ return [
     |
     */
 
-    'destroy_on_logout' => false,
+    'destroy_on_logout' => true,
 
     /*
     |--------------------------------------------------------------------------

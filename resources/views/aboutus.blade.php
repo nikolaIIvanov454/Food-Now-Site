@@ -13,65 +13,6 @@
 	<link rel="stylesheet" href="{{ asset('css/aboutus-style.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/menu.css') }}">
 	<link rel="shortcut icon" href="{{ asset('assets/icon.svg') }}" type="image/x-icon">
-	<style>
-		.carousel{
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-		}
-
-		.splide__pagination {
-			position: relative;
-			background-color: transparent;
-			transform: translateY(-80%);
-		}
-		
-		.splide__pagination__page.is-active {
-			background-color: #F6673C;
-		}	
-		
-		#images {
-			max-width: 100%;
-			margin: 0 auto;
-			padding: 0 20px;
-    	}
-
-		.splide__slide {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			text-align: center;
-			width: calc(100%) !important; 
-		}
-
-		.splide__slide img {
-			max-width: 100%;
-			max-height: 100%;
-			object-fit: contain;
-			height: auto;
-			width: auto;
-		}
-
-		.splide {
-			background-color: transparent; 
-		}
-
-		.splide__arrow {
-			top: 50%; 
-		}
-
-		@media screen and (max-width: 768px) {
-			.splide__slide {
-				height: 250px; 
-			}
-		}
-
-		@media screen and (max-width: 576px) {
-			.splide__slide {
-				height: 200px; 
-			}
-		}
-	</style>
 	<title>FoodNow - About Us</title>
 </head>
 <body>

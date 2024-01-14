@@ -28,7 +28,8 @@ class CartController extends Controller
     {   
         $product = Food::where('id_food', $request->id)->first();
 
-        Cart::instance('basket')->add($product->id_food, $product->name, 1, str_replace('лв.', '', $product->price), ['weight' => $product->weight])->associate('App\Models\Food');
+        Cart::instance('basket')->add($product->id_food, $product->name, 1, str_replace('лв.', '', $product->price), ['weight' => $product->weight])->associate('Food');
+        Cart::instance('basket')->store($product->id_food, $product->name, 1, str_replace('лв.', '', $product->price), $product->weight);
 
         broadcast(new SuccessfullyAddedProductToCart(['message' => 'Успешно добавяне!', 'items_count' => Cart::instance('basket')->Count()]));
     } 
@@ -41,17 +42,16 @@ class CartController extends Controller
     } 
 
     protected function completeOrder(Request $request){
-
         $data = [
-            'total_price' => $request->input('items-total-price:'),
-            'items' => json_decode($request->input('items'))
+            'total_price' => $request->input('items-total-price'),
+            'items' => Cart::instance('basket')->content()
         ];
 
-        //maybe add the products in the email
-
-        Mail::to(auth()->user()->email)->send(new CompleteOrderMailable());
+        Mail::to(auth()->user()->email)->send(new CompleteOrderMailable($data));
 
         Cart::instance('basket')->destroy();
+
+        //TODO: CREATE A MODEL FOR THE SHOPPING_CART TABLE AND DELETE THE RECORDS THERE!!!
     }
 }
 
