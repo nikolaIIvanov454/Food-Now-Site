@@ -64,7 +64,7 @@
             </form>
         </div>
     @else
-        <h1 style="text-align: center;">Нямате продукти в количката!</h1>
+        <h1 style="text-align: center;">Количката е празна!</h1>
     @endif
     </div>
 
