@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\CompleteOrderMailable;
 
 use App\Models\Food;
+use App\Models\ShoppingCart;
 
 use App\Events\SuccessfullyAddedProductToCart;
 use App\Events\AddProductToCart;
@@ -21,6 +22,12 @@ class CartController extends Controller
     {
         $items = Cart::instance('basket')->content();
 
+        if($items->isEmpty()){
+            foreach ($items as $item) {
+                Cart::instance('basket')->store($item->id, $item->name, 1, str_replace('лв.', '', $item->price), $item->weight);
+            }
+        }   
+
         return view('basket')->with('basket_items', $items);
     }
 
@@ -28,8 +35,15 @@ class CartController extends Controller
     {   
         $product = Food::where('id_food', $request->id)->first();
 
+        // Cart::instance('basket')->add($product->id_food, $product->name, 1, str_replace('лв.', '', $product->price), ['weight' => $product->weight])->associate('Food');
+
+        foreach (Cart::instance('basket')->content() as $item) {
+            if($item->id === $product->id_food){
+                Cart::instance('basket')->update($item->rowId, ['quantity' => $item->qty + 1]);
+            }
+        }
+
         Cart::instance('basket')->add($product->id_food, $product->name, 1, str_replace('лв.', '', $product->price), ['weight' => $product->weight])->associate('Food');
-        Cart::instance('basket')->store($product->id_food, $product->name, 1, str_replace('лв.', '', $product->price), $product->weight);
 
         broadcast(new SuccessfullyAddedProductToCart(['message' => 'Успешно добавяне!', 'items_count' => Cart::instance('basket')->Count()]));
     } 
@@ -50,6 +64,10 @@ class CartController extends Controller
         Mail::to(auth()->user()->email)->send(new CompleteOrderMailable($data));
 
         Cart::instance('basket')->destroy();
+
+        foreach (Cart::instance('basket')->content() as $item) {
+            Cart::erase($item);
+        }
 
         //TODO: CREATE A MODEL FOR THE SHOPPING_CART TABLE AND DELETE THE RECORDS THERE!!!
     }
