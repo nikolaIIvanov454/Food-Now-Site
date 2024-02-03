@@ -6,23 +6,23 @@ let removeProduct = () => {
         type: "POST",
         url: "/remove-product",
         data: JSON.stringify({
-            'id' : id, _token : token
+            'id': id, _token: token
         }),
         contentType: "application/json",
-        success: function() {
+        success: function () {
             location.reload();
         }
     });
 
     if (!window.Echo.connector.channels['remove-product']) {
         window.Echo.channel('remove-product')
-        .listen('DeleteProductFromCart', (data) => {
-            location.reload();
-        });
+            .listen('DeleteProductFromCart', (data) => {
+                location.reload();
+            });
     }
 }
 
-let checkout = (event) =>{
+let checkout = (event) => {
     let form = document.getElementById('checkout-form');
     event.preventDefault();
 
@@ -37,9 +37,9 @@ let checkout = (event) =>{
         success: function (response) {
             swal("Успешно завършване на поръчката", "", "success");
 
-            setTimeout(function() {
-                form.submit();
-            });
+            setTimeout(function () {
+                location.reload(true);
+            }, 1000);
         },
         error: function (message) {
             swal("Възникна проблем", "", "error");

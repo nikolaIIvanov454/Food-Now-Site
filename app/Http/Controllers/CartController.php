@@ -22,12 +22,6 @@ class CartController extends Controller
     {
         $items = Cart::instance('basket')->content();
 
-        if($items->isEmpty()){
-            foreach ($items as $item) {
-                Cart::instance('basket')->store($item->id, $item->name, 1, str_replace('лв.', '', $item->price), $item->weight);
-            }
-        }   
-
         return view('basket')->with('basket_items', $items);
     }
 
@@ -35,11 +29,11 @@ class CartController extends Controller
     {   
         $product = Food::where('id_food', $request->id)->first();
 
-        // Cart::instance('basket')->add($product->id_food, $product->name, 1, str_replace('лв.', '', $product->price), ['weight' => $product->weight])->associate('Food');
-
         foreach (Cart::instance('basket')->content() as $item) {
             if($item->id === $product->id_food){
                 Cart::instance('basket')->update($item->rowId, ['quantity' => $item->qty + 1]);
+            }else{
+                Cart::instance('basket')->store($item->id, $item->name, 1, str_replace('лв.', '', $item->price), $item->weight);
             }
         }
 
@@ -52,6 +46,10 @@ class CartController extends Controller
     {   
         Cart::instance('basket')->remove($request->input('id'));
 
+        foreach (Cart::instance('basket')->content() as $item) {
+            ShoppingCart::eraseProductByID($request->input('id'));
+        }
+
         broadcast(new DeleteProductFromCart());
     } 
 
@@ -63,13 +61,11 @@ class CartController extends Controller
 
         Mail::to(auth()->user()->email)->send(new CompleteOrderMailable($data));
 
-        Cart::instance('basket')->destroy();
-
         foreach (Cart::instance('basket')->content() as $item) {
-            Cart::erase($item);
+            ShoppingCart::eraseProductByID($item->id);
         }
 
-        //TODO: CREATE A MODEL FOR THE SHOPPING_CART TABLE AND DELETE THE RECORDS THERE!!!
+        Cart::instance('basket')->destroy();
     }
 }
 
