@@ -32,8 +32,6 @@ class CartController extends Controller
         foreach (Cart::instance('basket')->content() as $item) {
             if($item->id === $product->id_food){
                 Cart::instance('basket')->update($item->rowId, ['quantity' => $item->qty + 1]);
-            }else{
-                Cart::instance('basket')->store($item->id, $item->name, 1, str_replace('лв.', '', $item->price), $item->weight);
             }
         }
 
@@ -59,10 +57,14 @@ class CartController extends Controller
             'items' => Cart::instance('basket')->content()
         ];
 
+        $id = md5(random_bytes(16));
+
+        Cart::instance('basket')->store($id, ['storeItems' => $data['items']]);
+
         Mail::to(auth()->user()->email)->send(new CompleteOrderMailable($data));
 
         foreach (Cart::instance('basket')->content() as $item) {
-            ShoppingCart::eraseProductByID($item->id);
+            ShoppingCart::eraseProductByID($id);
         }
 
         Cart::instance('basket')->destroy();

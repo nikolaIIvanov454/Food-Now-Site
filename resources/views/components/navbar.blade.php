@@ -23,7 +23,7 @@
                 <div class="logout">
                     <div id="icon">
                         <i class="fas fa-shopping-cart" style="font-size: 2em; color: #fff;"></i>
-                        <span class="count-items" style="font-size: 0.8em; padding: 5px 5px; background-color: rgb(246, 103, 48); border-radius: 16px; color: white; position: relative; top: -20px; right: 9px;">{{ $basket_items->Count() }}</span>
+                        <span class="count-items" style="font-size: 0.8em; padding: 5px 5px; background-color: rgb(246, 103, 48); border-radius: 16px; color: white; position: relative; top: -20px; right: 9px;">{{ Cart::instance('basket')->Count() }}</span>
                     </div>
                     @if(session()->has('logged_username'))
                         <i class='fa-solid fa-circle-user' style='font-size: 3em; color: #fff;'></i><h1 style='color: #fff; width: min-content; margin-left: 5px; text-transform: capitalize;'>{{ session('logged_username') }}</h1>
