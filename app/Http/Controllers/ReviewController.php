@@ -10,7 +10,7 @@ use App\Events\AlreadyReviewed;
 
 class ReviewController extends Controller
 {
-
+    
     protected function reviewOperations(Request $request)
     {
 

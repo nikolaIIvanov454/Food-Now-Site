@@ -72,6 +72,18 @@
                 </form>
             </div>                                  
         @endforeach
+    @else
+        @foreach($restaurants_unfiltered as $restaurant)
+        <div class='item'>
+            <input type='hidden' name='id' value='{{ $restaurant->id }}'>
+            <div class='padding-sm center-text new-line'><h1>{{ $restaurant->name }}</h1></div>
+            <div class='image'><img src="{{ $restaurant->image_path }}" class='photo'></div>
+            <div class='padding-sm center-text'><h2>{{ $restaurant->price }}</h2>
+            <button id='favourite'><i class='fa-regular fa-heart'></i></button></div>
+        </div>
+        @endforeach
+
+        {{ session()->forget('restaurants_unfiltered'); }}
     @endif
 
     </div>

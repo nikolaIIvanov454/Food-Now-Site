@@ -53,7 +53,7 @@ Route::match(['get', 'post'], '/reset-password', [AuthenticationController::clas
 //MIDDLEWARE FOR PROTECTION
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/home', function (){ return view('home'); })->name('home');
+    Route::get('/home', [RestaurantController::class, 'loadRestaurantsUnfiltered'])->name('home');
 
     Route::get('/admin', function (){ return view('admin'); })->middleware('admin.authentication')->name('admin_page');
 

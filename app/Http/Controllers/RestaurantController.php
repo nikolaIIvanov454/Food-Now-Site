@@ -15,6 +15,13 @@ use Cart;
 
 class RestaurantController extends Controller
 {
+    protected function loadRestaurantsUnfiltered(Request $request)
+    {
+        $restaurants_unfiltered = Restaurant::all();
+
+        return view('home')->with('restaurants_unfiltered', $restaurants_unfiltered);
+    }
+
     protected function loadRestaurants(Request $request)
     {
         $municipality = $request->input('oblast');

@@ -8,10 +8,17 @@ area[0].disabled = true;
 area[0].hidden = true;
 
 //THIS HERE IS FOR GETTING THE OPTIONS FROM THE DATABASE DYNAMICALLY
+let button = document.querySelector('input[type=submit]');
+
+if(area.value === 'Изберете град:'){
+    button.disabled = true;
+}
+
+area.addEventListener('change', function() {
+    button.disabled = false;
+});
 
 let restaurants_div = document.getElementsByClassName('item-shell');
-
-restaurants_div.innerHTML 
 
 $.ajax({
     url: '/get-options',
