@@ -2,10 +2,10 @@
 @import url("footer.css");
 
 :root{
-    --whiteish: #E1E6E1;
+    --whiteish: #F3F7F3;
     --orange: #F6673C;
-    --grey: #292F36;
-    --green: #568EA3;
+    --grey: #211621;
+    --orange_2: #BC6448;
 }
 
 /* STYLE FOR THE LISTED RESTAURANTS */
@@ -56,6 +56,12 @@ h2,
     border-radius: 8px;
 }
 
+.lower-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .no-margin {
     margin: 0;
 }
@@ -81,7 +87,12 @@ h2,
 .fa-heart {
     font-size: xx-large;
     cursor: default;
-    color: red;
+    color: #ef4676;
+}
+
+.center-text p {
+    font-size: x-large;
+    font-weight: 500;
 }
 
 .filter {
@@ -90,10 +101,10 @@ h2,
 }
 
 .filter form input {
-    background-color: #f6673c;
-    color: white;
+    background-color: var(--orange);
+    color: var(--whiteish);
     opacity: 0.5;
-    border: 1px solid #333;
+    border: 1px solid var(--grey);
     transition: opacity, color 0.5s ease;
     padding: 0.8em;
     width: 10em;
@@ -126,9 +137,9 @@ h2,
 
 #oblast {
     outline: 0;
-    border: 2px solid #f6673c;
+    border: 2px solid var(--orange);
     border-radius: 5px;
-    box-shadow: 0 0 0 #f6673c;
+    box-shadow: 0 0 0 var(--orange);
     transition: box-shadow 500ms ease-in-out;
     appearance: none;
     padding: 10px;
@@ -142,7 +153,7 @@ h2,
 }
 
 #oblast:focus {
-    box-shadow: 0 0 6px #f6673c;
+    box-shadow: 0 0 6px var(--orange);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-chevron-up' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z'/%3E%3C/svg%3E");
 }
 
@@ -180,17 +191,35 @@ h2,
     height: fit-content;
 }
 
+.right-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #price-div{
-    width: fit-content;
-    margin: 10px auto auto auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
     border: 2px solid black;
     border-radius: 16px;
 }
 
 .container div p {
-    width: 40em;
-    margin-bottom: 10px;
+    font-weight: 800;
+    margin: 10px;
 }
+
+.right-div {
+    width: 48%; 
+}
+
+@media (max-width: 1035px) {
+    .right-div {
+        width: 100%;
+    }
+}   
 
 .products {
     display: flex;
@@ -231,7 +260,7 @@ h2,
     right: 20px;
     display: none;
     width: fit-content;
-    background-color: #f6673c;
+    background-color: var(--orange);
     text-align: center;
 }
 
@@ -258,9 +287,9 @@ h2,
 }
 
 .desc-clicked {
-    border: 2px solid #333;
-    background-color: #333;
-    color: #f6673c;
+    border: 2px solid var(--grey);
+    background-color: var(--grey);
+    color: #dcdcdc;
     border-radius: 10px;
     font-size: 25px;
     width: fit-content;
@@ -271,11 +300,11 @@ h2,
 [class="remove"],
 #checkout-button,
 .bottom form input[type="submit"] {
-    background-color: #f6673c;
-    color: white;
+    background-color: var(--orange);
+    color: var(--whiteish);
     border-radius: 1em;
     padding: 5px;
-    border-color: #333;
+    border-color: var(--grey);
     transition: color, background-color 0.5s ease;
 }
 
@@ -284,13 +313,13 @@ h2,
 #checkout-button:hover,
 .bottom form input[type="submit"]:hover {
     background-color: white;
-    color: #333;
+    color: var(--grey);
 }
 
 .line {
     height: 12px;
     position: relative;
-    background-color: #f6673c;
+    background-color: var(--orange);
 }
 
 .products h1 {
@@ -309,7 +338,7 @@ h2,
     flex-direction: column;
     width: 100%;
     height: 50em;
-    background-color: #3f3f3f;
+    background-color: var(--grey);
 }
 
 .bottom form {
@@ -325,15 +354,19 @@ h2,
 
 .bottom textarea {
     resize: none;
-    border: 4px dashed #f6673c;
+    border: 4px dashed var(--orange);
     padding: 5px;
     outline: none;
-    background-color: #d3d3d3;
+    background-color: var(--whiteish);
 }
 
 #rating-slider{
     font-size: larger;
     margin-bottom: 20px;
+}
+
+.fa-star{
+    color: #616161;
 }
 
 .checked{
@@ -349,7 +382,7 @@ h2,
 .reviews-div{
     display: flex;
     flex-direction: column;
-    background-color: #d3d3d3;
+    background-color: var(--whiteish);
     margin: 20px 0 20px 0;
     width: 50%;
     overflow-y: auto;
@@ -383,7 +416,7 @@ h2,
 }
 
 .reviews-div div[class*="review"]{
-    border-bottom: 5px solid #f6673c;
+    border-bottom: 5px solid var(--orange);
 }
 
 .reviews-div div span{
@@ -409,7 +442,7 @@ h2,
     opacity: 0.7;
     transition: opacity 0.8s ease;
     border-radius: 16px;
-    border-color: #f6673c;
+    border-color: var(--orange);
 }
 
 

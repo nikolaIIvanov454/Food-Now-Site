@@ -64,10 +64,20 @@
     @if(isset($loaded_restaurant))
         <div class='container'>
             <input type='hidden' class='id' name='id' value="{{ $loaded_restaurant->id }}">
-            <div class='left-div'><div class='center-text'><h1>{{ $loaded_restaurant->name }}</h1></div>
-            <div class='image-div'><img src="{{ $loaded_restaurant->image_path }}"></div></div>
-            <div class='right-div'><div class='center-text desc-clicked'><p>{{ $loaded_restaurant->description }}</p></div>
-            <div id='price-div'><h2>{{ $loaded_restaurant->price }}</h2></div></div></div><div class='line'></div>
+            <div class='left-div'>
+                <div class='center-text'><h1>{{ $loaded_restaurant->name }}</h1></div>
+                <div class='image-div'><img src="{{ $loaded_restaurant->image_path }}"></div>
+            </div>
+            <div class='right-div'>
+                <div class='center-text desc-clicked'>
+                    <p>{{ $loaded_restaurant->description }}</p>
+                </div>
+                <div id='price-div'>
+                    <p>{{ $loaded_restaurant->price }} лв.</p>
+                </div>
+            </div>
+            </div>
+            <div class='line'></div>
             <div class='products'>
                 <h1>Меню:</h1>
                 <h2>Какво предлага ресторантът.</h2>

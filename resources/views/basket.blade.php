@@ -36,7 +36,7 @@
                     <strong>Цена: {{ $item->price }}</strong>
                 </div>
                 <div id="buttons-container">
-                    <div id="item">
+                    <div id="button">
                         <input type="hidden" id="row-id" name="id" value="{{ $item->rowId }}">
                         @csrf
                         <i class="fa-solid fa-xmark" onclick="removeProduct()"></i>
