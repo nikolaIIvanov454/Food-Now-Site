@@ -61,31 +61,33 @@
 
     @if(session()->has('restaurants'))
         @foreach(session('restaurants') as $restaurant)
-            <div class='item' onclick='showRestaurant(this)'>
+            <div class='item'>
                 <form method='POST' action='{{ route("load-restaurant") }}'>
                     @csrf
                     <input type='hidden' name='id' value='{{ $restaurant->id }}'>
-                    <div class='padding-sm center-text new-line'><h1>{{ $restaurant->name }}</h1></div>
+                    <div class='padding-sm center-text new-line'><h3>{{ $restaurant->name }}</h3></div>
                     <div class='image'><img src="{{ $restaurant->image_path }}" class='photo'></div>
                     <div class='padding-sm center-text lower-div'>
                         <p>{{ $restaurant->price }}</p>
                         <button id='favourite'><i class='fa-regular fa-heart'></i></button>
                     </div>
+                    <div id="see-restaurant-button"><button onclick='showRestaurant(this)'>Разгледай ресторанта</button></div>
                 </form>
             </div>                                  
         @endforeach
     @else
         @foreach($restaurants_unfiltered as $restaurant)
-        <div class='item' onclick='showRestaurant(this)'>
+        <div class='item'>
             <form method='POST' action='{{ route("load-restaurant") }}'>
                 @csrf
                 <input type='hidden' name='id' value='{{ $restaurant->id }}'>
-                <div class='padding-sm center-text new-line'><h1>{{ $restaurant->name }}</h1></div>
+                <div class='padding-sm center-text new-line'><h3>{{ $restaurant->name }}</h3></div>
                 <div class='image'><img src="{{ $restaurant->image_path }}" class='photo'></div>
                 <div class='padding-sm center-text lower-div'>
                     <p>{{ $restaurant->price }}</p>
                     <button id='favourite'><i class='fa-regular fa-heart'></i></button>
                 </div>
+                <div id="see-restaurant-button"><button onclick='showRestaurant(this)'>Разгледай ресторанта</button></div>
             </form>
         </div>
         @endforeach

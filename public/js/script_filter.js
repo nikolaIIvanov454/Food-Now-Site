@@ -45,6 +45,8 @@ $.ajax({
 let showRestaurant = (element) => {
     let restaurant = element;
     let form = restaurant.children[0];
+
+    console.log(form)
     
     form.submit();
 }
