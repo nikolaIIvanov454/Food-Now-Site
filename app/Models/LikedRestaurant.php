@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Restaurant;
+
 class LikedRestaurant extends Model
 {
     use HasFactory;
@@ -21,11 +23,13 @@ class LikedRestaurant extends Model
     public static function checkFavourited($id_user){
         $favourited_restaurants = LikedRestaurant::select('id_restaurant')->where('id_user', $id_user)->get();
 
+        self::counterLogic();
+
         return response()->json($favourited_restaurants);
     }
 
     public static function favouriteLogic($id_user, $id_restaurant){
-        $favourited_restaurant = LikedRestaurant::select('id_restaurant')->where('id_restaurant', $id_restaurant)->first();
+        $favourited_restaurant = LikedRestaurant::select('id_restaurant')->where('id_restaurant', $id_restaurant)->where('id_user', $id_user)->first();
 
         if($favourited_restaurant){
             LikedRestaurant::where('id_user', $id_user)->where('id_restaurant', $id_restaurant)->delete();
@@ -39,5 +43,18 @@ class LikedRestaurant extends Model
 
             return response(['status' => 'favourited']);
         }
+    }
+
+    public static function counterLogic(){
+        $restaurants_favourite_count = [];
+
+        $restaurants_unfiltered = Restaurant::all();
+
+        foreach ($restaurants_unfiltered as $restaurant) {
+            $count_of_favourites = Restaurant::join('favourite_restaurants', 'id_restaurant', '=', 'restaurants.id')->where('id_restaurant', $restaurant->id)->count();
+            $restaurants_favourite_count[$restaurant->id] = $count_of_favourites;
+        }
+
+        return $restaurants_favourite_count;
     }
 }

@@ -17,9 +17,11 @@ class RestaurantController extends Controller
 {
     protected function loadRestaurantsUnfiltered(Request $request)
     {
-        $restaurants_unfiltered = Restaurant::all();
+        $restaurants_unfiltered = Restaurant::paginate(16);
 
-        return view('home')->with('restaurants_unfiltered', $restaurants_unfiltered);
+        $favourited_counter = LikedRestaurant::counterLogic();
+
+        return view('home')->with(['restaurants_unfiltered' => $restaurants_unfiltered, 'favourited_count' => $favourited_counter]);
     }
 
     protected function loadRestaurants(Request $request)

@@ -70,6 +70,7 @@
                     <div class='padding-sm center-text lower-div'>
                         <p>{{ $restaurant->price }}</p>
                         <button id='favourite'><i class='fa-regular fa-heart'></i></button>
+                        <p class="favourite-counter" restaurant_id="{{ $restaurant->id }}">{{ $favourited_count[$restaurant->id] }}</p>
                     </div>
                     <div id="see-restaurant-button"><button onclick='showRestaurant(this)'>Разгледай ресторанта</button></div>
                 </form>
@@ -86,6 +87,7 @@
                 <div class='padding-sm center-text lower-div'>
                     <p>{{ $restaurant->price }}</p>
                     <button id='favourite'><i class='fa-regular fa-heart'></i></button>
+                    <p class="favourite-counter" restaurant_id="{{ $restaurant->id }}">{{ $favourited_count[$restaurant->id] }}</p>
                 </div>
                 <div id="see-restaurant-button"><button onclick='showRestaurant(this)'>Разгледай ресторанта</button></div>
             </form>

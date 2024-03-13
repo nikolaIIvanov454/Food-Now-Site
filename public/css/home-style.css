@@ -113,7 +113,7 @@
 .fa-heart {
     font-size: xx-large;
     cursor: default;
-    color: #ef4676;
+    color: var(--whiteish); 
 }
 
 .center-text p {

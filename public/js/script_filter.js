@@ -45,8 +45,6 @@ $.ajax({
 let showRestaurant = (element) => {
     let restaurant = element;
     let form = restaurant.children[0];
-
-    console.log(form)
     
     form.submit();
 }
@@ -54,6 +52,8 @@ let showRestaurant = (element) => {
 //THIS IS FOR MANIPULATION OF THE FAVOURITE BUTTON
 
 let favouriteButton = document.querySelectorAll('#favourite');
+
+let favourite_counter = document.querySelectorAll('.favourite-counter');
 
 let AJAXRequest = (button, restaurant_id) => {
 
@@ -67,8 +67,28 @@ let AJAXRequest = (button, restaurant_id) => {
 
             if (response['status'] === 'favourited') {
                 button.firstChild.classList.replace('fa-regular', 'fa-solid');
+                
+                for (let index = 0; index < favourite_counter.length; index++) {
+                    const currentCounter = favourite_counter[index];
+
+                    if(restaurant_id === currentCounter.getAttribute('restaurant_id')){
+                        let previousValue = parseInt(currentCounter.innerText);
+
+                        currentCounter.innerText = previousValue + 1; 
+                    }
+                }
             } else if (response['status'] === 'unfavourited') {
                 button.firstChild.classList.replace('fa-solid', 'fa-regular');
+
+                for (let index = 0; index < favourite_counter.length; index++) {
+                    const currentCounter = favourite_counter[index];
+
+                    if(restaurant_id === currentCounter.getAttribute('restaurant_id')){
+                        let previousValue = parseInt(currentCounter.innerText);
+
+                        currentCounter.innerText = previousValue - 1; 
+                    }
+                }
             }
         }
     });
