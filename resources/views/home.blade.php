@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ресторанти</title>
-    <script src="https://kit.fontawesome.com/f2264ef78f.js" crossorigin="anonymous" defer></script> 
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/all.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js" defer></script>
     <script src="{{ asset('js/script_filter.js') }}" defer></script>
     <script src="{{ asset('js/script_menu.js') }}"></script>
@@ -68,7 +68,7 @@
                     <div class='padding-sm center-text new-line'><h3>{{ $restaurant->name }}</h3></div>
                     <div class='image'><img src="{{ $restaurant->image_path }}" class='photo'></div>
                     <div class='padding-sm center-text lower-div'>
-                        <p>{{ $restaurant->price }}</p>
+                        <p>{{ $restaurant->price }} <i class="fa-solid fa-fork-knife"></i></p>
                         <button id='favourite'><i class='fa-regular fa-heart'></i></button>
                         <p class="favourite-counter" restaurant_id="{{ $restaurant->id }}">{{ $favourited_count[$restaurant->id] }}</p>
                     </div>
@@ -85,7 +85,7 @@
                 <div class='padding-sm center-text new-line'><h3>{{ $restaurant->name }}</h3></div>
                 <div class='image'><img src="{{ $restaurant->image_path }}" class='photo'></div>
                 <div class='padding-sm center-text lower-div'>
-                    <p>{{ $restaurant->price }}</p>
+                    <p>{{ $restaurant->price }} <i class="fa-solid fa-fork-knife"></i></p>
                     <button id='favourite'><i class='fa-regular fa-heart'></i></button>
                     <p class="favourite-counter" restaurant_id="{{ $restaurant->id }}">{{ $favourited_count[$restaurant->id] }}</p>
                 </div>
