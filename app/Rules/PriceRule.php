@@ -14,7 +14,7 @@ class PriceRule implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if(!preg_match('/^\d+\s?lv\.\s*-\s*\d+\s?lv\.$/', $value)){
+        if(!preg_match('/^\d+\s?лв\.\s*-\s*\d+\s?лв\.$/', $value)){
             $fail('Ценовият диапазон е невалиден');
         }
     }

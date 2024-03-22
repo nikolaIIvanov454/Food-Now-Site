@@ -50,7 +50,7 @@ class RestaurantController extends Controller
 
 
     protected function loadClickedRestaurant(Request $request)
-    {
+    {   
         $id = $request->input('id');
 
         $restaurant = Restaurant::all()->where('id', $id)->first();

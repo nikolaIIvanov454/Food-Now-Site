@@ -50,7 +50,7 @@
             @error('error')
                 <div id="error">{{ $message }}</div>
             @enderror
-    		<div class="input"><i class="fa-solid fa-user"></i><input type="text" class="inputs" name="info" id="user" placeholder="Потребителско име / E-Mail" required></div>
+    		<div class="input"><i class="fa-solid fa-user"></i><input type="text" class="inputs" name="info" id="user" placeholder="Потребителско име / E-Mail" value="{{ old('info') }}" required></div>
 			<div class="input"><i class="fa-solid fa-lock" style="color: #000000;"></i><input type="password" class="inputs" name="password" id="pass" placeholder="Парола" required></div>
 			<input type="submit" class="border-radius submit" value="Влизане">
 			<a href="{{ url('/register') }}">Регистрация</a>

@@ -54,7 +54,7 @@
             @csrf
             <h3 class="margin-bot-sm">Добавяне на ресторанти:</h3>
             <label for="name_restaurant">Име на ресторанта:</label>
-            <input type="text" name="name" class="margin-bot-sm inputs" id="name_restaurant" required>
+            <input type="text" name="name" class="margin-bot-sm inputs" id="name_restaurant" value=" {{ old('name') }} " required>
             @if ($errors->first_form->has('name'))
                 <div id="error">{{ $errors->first_form->first('name') }}</div>
             @endif
@@ -65,17 +65,17 @@
             @endif
             <label for="description_restaurant">Описание за ресторанта:</label>
             <textarea name="description" class="margin-bot-sm desc" style="resize: none;" id="description_restaurant" cols="30"
-                rows="10" required></textarea>
+                rows="10" value=" {{ old('description') }} " required></textarea>
             @if ($errors->first_form->has('description'))
                 <div id="error">{{ $errors->first_form->first('description') }}</div>
             @endif
             <label for="price_restaurant">Ценови диапазон на ресторанта:</label>
-            <input type="text" class="margin-bot-sm inputs" name="price" id="price_restaurant" required>
+            <input type="text" class="margin-bot-sm inputs" name="price" id="price_restaurant" value=" {{ old('price') }} " placeholder="XX лв. - XX лв." required>
             @if ($errors->first_form->has('price'))
                 <div id="error">{{ $errors->first_form->first('price') }}</div>
             @endif
             <label for="region_restaurant">Регион на ресторанта:</label>
-            <input type="text" class="inputs" name="region" id="region_restaurant" required>
+            <input type="text" class="inputs" name="region" id="region_restaurant" value=" {{ old('region') }} " required>
             @if ($errors->first_form->has('region'))
                 <div id="error">{{ $errors->first_form->first('region') }}</div>
             @endif
@@ -89,7 +89,7 @@
             @endif
             <h3 class="margin-bot-sm">Премахване на ресторанти:</h3>
             <label for="name_restaurant">Име на ресторанта:</label>
-            <input type="text" class="inputs" name="name_to_delete" id="name_restaurant" required>
+            <input type="text" class="inputs" name="name_to_delete" id="name_restaurant" value=" {{ old('name_to_delete') }} " required>
             <input type="submit" class="margin-top-sm" value="Премахване">
         </form>
 
@@ -100,7 +100,7 @@
             @endif
             <h3 class="margin-bot-sm">Премахване на потребители:</h3>
             <label for="name_user">Име на потребителя:</label>
-            <input type="text" class="inputs" name="username" id="name_user" required>
+            <input type="text" class="inputs" name="username" id="name_user"  value=" {{ old('username') }} " required>
             <input type="submit" class="margin-top-sm" value="Премахване">
         </form>
     </div>

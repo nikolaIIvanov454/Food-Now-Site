@@ -68,7 +68,7 @@
                     <div class='padding-sm center-text new-line'><h3>{{ $restaurant->name }}</h3></div>
                     <div class='image'><img src="{{ $restaurant->image_path }}" class='photo'></div>
                     <div class='padding-sm center-text lower-div'>
-                        <p>{{ $restaurant->price }} <i class="fa-solid fa-fork-knife"></i></p>
+                        <p>{{ $restaurant->price }} лв. <i class="fa-solid fa-fork-knife"></i></p>
                         <button id='favourite'><i class='fa-regular fa-heart'></i></button>
                         <p class="favourite-counter" restaurant_id="{{ $restaurant->id }}">{{ $favourited_count[$restaurant->id] }}</p>
                     </div>
@@ -85,7 +85,7 @@
                 <div class='padding-sm center-text new-line'><h3>{{ $restaurant->name }}</h3></div>
                 <div class='image'><img src="{{ $restaurant->image_path }}" class='photo'></div>
                 <div class='padding-sm center-text lower-div'>
-                    <p>{{ $restaurant->price }} <i class="fa-solid fa-fork-knife"></i></p>
+                    <p>{{ $restaurant->price }} лв. <i class="fa-solid fa-fork-knife"></i></p>
                     <button id='favourite'><i class='fa-regular fa-heart'></i></button>
                     <p class="favourite-counter" restaurant_id="{{ $restaurant->id }}">{{ $favourited_count[$restaurant->id] }}</p>
                 </div>

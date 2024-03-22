@@ -51,11 +51,11 @@
         <form action="{{ route('register_user') }}" method="post" class="form-style">
             @csrf
             <h1 class="no-margin-top break-words">Регистрация в сайта</h1>
-            <div class="input"><i class="fa-solid fa-user"></i><input type="text" class="inputs" name="username" id="user" placeholder="Потребителско име" required></div>
+            <div class="input"><i class="fa-solid fa-user"></i><input type="text" class="inputs" name="username" id="user" placeholder="Потребителско име" value="{{ old('username') }}" required></div>
             @if($errors->has('username'))
                 <div id="error">{{ $errors->first('username') }}</div>
             @endif
-            <div class="input"><i class="fa-solid fa-envelope"></i><input type="email" class="inputs" name="email" id="mail" placeholder="E-mail" required></div>
+            <div class="input"><i class="fa-solid fa-envelope"></i><input type="email" class="inputs" name="email" id="mail" placeholder="E-mail" value=" {{ old('email') }}" required></div>
             @if($errors->has('email'))
                 <div id="error">{{ $errors->first('email') }}</div>
             @endif
