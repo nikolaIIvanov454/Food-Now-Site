@@ -100,6 +100,7 @@
     @endif
 
     <div class="bottom">
+        <div class="test">
         <form class="review-form">
             @csrf
             <input type="hidden" name="id_restaurant" value="{{ $loaded_restaurant->id }}" required>
@@ -115,6 +116,7 @@
             <textarea name="review-description" id="review" cols="40" rows="10" maxlength="1000" required></textarea>
             <input type="submit" value="Напиши ревю" class="submit-button">
         </form>
+        </div>
 
         <div class="reviews-div">
             @if(isset($loaded_reviews))

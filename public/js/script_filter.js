@@ -44,7 +44,7 @@ let showRestaurant = (element) => {
     let restaurant = element;
     let form = restaurant.children[0];
 
-    form.submit();
+    form?.submit();
 };
 
 //THIS IS FOR MANIPULATION OF THE FAVOURITE BUTTON

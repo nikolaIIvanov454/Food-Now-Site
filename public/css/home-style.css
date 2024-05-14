@@ -1,11 +1,11 @@
 @import url("navbar.css");
 @import url("footer.css");
 
-:root{
-    --whiteish: #F3F7F3;
-    --orange: #F6673C;
+:root {
+    --whiteish: #f3f7f3;
+    --orange: #f6673c;
     --grey: #211621;
-    --orange_2: #BC6448;
+    --orange_2: #bc6448;
 }
 
 /* STYLE FOR THE LISTED RESTAURANTS */
@@ -54,13 +54,14 @@
     transition: transform 300ms ease-in-out;
 }
 
-.item h3{
+.item h3 {
+    color: var(--whiteish);
     font-size: xx-large;
     cursor: default;
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
 }
 
-.image img:hover{
+.image img:hover {
     transform: scale(1.1);
 }
 
@@ -70,7 +71,7 @@
     margin-bottom: 10px;
 }
 
-#see-restaurant-button button{
+#see-restaurant-button button {
     background-color: var(--orange_2);
     transition: background-color 450ms ease;
     border-radius: 16px;
@@ -78,11 +79,11 @@
     cursor: pointer;
 }
 
-#see-restaurant-button button:hover{
+#see-restaurant-button button:hover {
     background-color: var(--whiteish);
 }
 
-.lower-div{
+.lower-div {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -114,10 +115,15 @@
 .fa-heart {
     font-size: xx-large;
     cursor: default;
-    color: var(--whiteish); 
+    color: var(--whiteish);
+}
+
+.fa-fork-knife {
+    color: var(--whiteish);
 }
 
 .center-text p {
+    color: var(--whiteish);
     font-size: x-large;
     font-weight: 500;
 }
@@ -184,8 +190,6 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-chevron-up' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z'/%3E%3C/svg%3E");
 }
 
-
-
 /* STYLE FOR THE CLICKED RESTAURANT */
 
 .container {
@@ -224,7 +228,7 @@
     align-items: center;
 }
 
-#price-div{
+#price-div {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -239,20 +243,20 @@
 }
 
 .right-div {
-    width: 48%; 
+    width: 48%;
 }
 
 @media (max-width: 1035px) {
     .right-div {
         width: 100%;
     }
-}   
+}
 
 @media (max-width: 910px) {
-    .footer{
+    .footer {
         position: relative;
     }
-} 
+}
 
 .products {
     display: flex;
@@ -373,7 +377,7 @@
     height: 50em;
     background-color: var(--grey);
 }
-w
+
 .bottom form {
     display: flex;
     flex-direction: column;
@@ -393,26 +397,28 @@ w
     background-color: var(--whiteish);
 }
 
-#rating-slider{
+#rating-slider {
+    display: flex;
+    justify-content: center;
     font-size: larger;
     margin-bottom: 20px;
 }
 
-.fa-star{
+.fa-star {
     color: #616161;
 }
 
-.checked{
+.checked {
     color: orange;
 }
 
-.review-form h1{
+.review-form h1 {
     margin: 20px;
     color: white;
     text-align: center;
 }
 
-.reviews-div{
+.reviews-div {
     display: flex;
     flex-direction: column;
     background-color: var(--whiteish);
@@ -421,7 +427,7 @@ w
     overflow-y: auto;
 }
 
-#user-info{
+#user-info {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -434,43 +440,43 @@ w
     border-radius: 16px;
 }
 
-#user-info i[class*="fa-user"]{
+#user-info i[class*="fa-user"] {
     border: 2px solid black;
     border-radius: 8px;
     padding: 8px;
 }
 
-#user-info i[class*="fa-star"]{
+#user-info i[class*="fa-star"] {
     text-indent: 10px;
 }
 
-#user-info p{
+#user-info p {
     flex: 1;
 }
 
-.reviews-div div[class*="review"]{
+.reviews-div div[class*="review"] {
     border-bottom: 5px solid var(--orange);
 }
 
-.reviews-div div span{
+.reviews-div div span {
     float: right;
 }
 
-.reviews-div > div > p::before{
-    content: '🡲 ';
+.reviews-div > div > p::before {
+    content: "🡲 ";
 }
 
-.reviews-div > div > p{
+.reviews-div > div > p {
     font-size: x-large;
     margin: 10px;
     text-indent: 5px;
     word-break: break-word;
 }
 
-.reviews-div #delete-review{
+.reviews-div #delete-review {
     float: right;
     margin: 0 10px 0 0;
-    background-color: #FF2400;
+    background-color: #ff2400;
     padding: 8px;
     opacity: 0.7;
     transition: opacity 0.8s ease;
@@ -478,7 +484,6 @@ w
     border-color: var(--orange);
 }
 
-
-.reviews-div #delete-review:hover{
+.reviews-div #delete-review:hover {
     opacity: 1;
 }
